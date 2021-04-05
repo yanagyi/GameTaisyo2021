@@ -18,12 +18,12 @@ public class zenmai : MonoBehaviour
     }
 
     public GameObject camera;
-    public cameraScript cameraScp;
+    public CameraControl CameraScript;
     // Start is called before the first frame update
     void Start()
     {
         if ((nowParent = gameObject.transform.parent.gameObject) != null) {
-            nowParent.GetComponent<zenmaiObject>().isZenmai = true;
+            nowParent.GetComponent<ZenmaiObject>().isZenmai = true;
             oldParent = nowParent;
         } else {
             nowParent = null;
@@ -31,7 +31,7 @@ public class zenmai : MonoBehaviour
         
         state = (int)statePattern.Idle;
         camera = GameObject.Find("Main Camera");
-        cameraScp = camera.GetComponent<cameraScript>();
+        CameraScript = camera.GetComponent<CameraControl>();
     }
 
     // Update is called once per frame
@@ -55,7 +55,7 @@ public class zenmai : MonoBehaviour
     private void Idle()
     {
         if (Input.GetKey(LTrigger)) {
-            nowParent.GetComponent<zenmaiObject>().isZenmai = false;
+            nowParent.GetComponent<ZenmaiObject>().isZenmai = false;
             state = (int)statePattern.Controlled;
             nowParent = null;
             gameObject.transform.parent = null;
@@ -64,7 +64,7 @@ public class zenmai : MonoBehaviour
         if (nowParent == null) {
             nowParent = oldParent;
         }
-        cameraScp.ZenmaiOn();
+      
         transform.Rotate(new Vector3(0, rotateSpeed, 0));
     }
 
@@ -73,12 +73,8 @@ public class zenmai : MonoBehaviour
             state = (int)statePattern.ParentCheck;
             return;
         }
-        //最寄りの円枚オブジェクト捜索
+        //最寄りのゼンマイオブジェクト捜索
         gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")/4, Input.GetAxis("Horizontal")/4);
-        cameraScp.ZenmaiOff();
-
-
-
     }
     private void ParentCheck() {
 
@@ -88,7 +84,7 @@ public class zenmai : MonoBehaviour
     public void Setparent(GameObject obj)
     {
         nowParent = obj;
-        nowParent.GetComponent<zenmaiObject>().isZenmai = true;
+        nowParent.GetComponent<ZenmaiObject>().isZenmai = true;
         oldParent = nowParent;
         gameObject.transform.parent = nowParent.transform;
         gameObject.transform.localPosition = new Vector3(0, 1.3f, 0);
