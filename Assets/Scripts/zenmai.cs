@@ -17,7 +17,7 @@ public class zenmai : MonoBehaviour
         ParentCheck,
     }
 
-    public GameObject camera;
+    public GameObject Camera;
     public CameraControl CameraScript;
     // Start is called before the first frame update
     void Start()
@@ -30,8 +30,8 @@ public class zenmai : MonoBehaviour
         }
         
         state = (int)statePattern.Idle;
-        camera = GameObject.Find("Main Camera");
-        CameraScript = camera.GetComponent<CameraControl>();
+        Camera = GameObject.Find("Main Camera");
+        CameraScript = Camera.GetComponent<CameraControl>();
     }
 
     // Update is called once per frame
