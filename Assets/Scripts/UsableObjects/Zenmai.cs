@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class zenmai : MonoBehaviour
+public class Zenmai : MonoBehaviour
 {
     public string LTrigger;
     public string RTrigger;
@@ -23,7 +23,7 @@ public class zenmai : MonoBehaviour
     void Start()
     {
         if ((nowParent = gameObject.transform.parent.gameObject) != null) {
-            nowParent.GetComponent<ZenmaiObject>().isZenmai = true;
+            nowParent.GetComponent<UsableObject>().isZenmai = true;
             oldParent = nowParent;
         } else {
             nowParent = null;
@@ -55,7 +55,7 @@ public class zenmai : MonoBehaviour
     private void Idle()
     {
         if (Input.GetKey(LTrigger)) {
-            nowParent.GetComponent<ZenmaiObject>().isZenmai = false;
+            nowParent.GetComponent<UsableObject>().isZenmai = false;
             state = (int)statePattern.Controlled;
             nowParent = null;
             gameObject.transform.parent = null;
@@ -84,7 +84,7 @@ public class zenmai : MonoBehaviour
     public void Setparent(GameObject obj)
     {
         nowParent = obj;
-        nowParent.GetComponent<ZenmaiObject>().isZenmai = true;
+        nowParent.GetComponent<UsableObject>().isZenmai = true;
         oldParent = nowParent;
         gameObject.transform.parent = nowParent.transform;
         gameObject.transform.localPosition = new Vector3(0, 1.3f, 0);
