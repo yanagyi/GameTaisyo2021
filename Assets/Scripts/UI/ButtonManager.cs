@@ -16,6 +16,22 @@ public class ButtonManager : ButtonBase
         {
             this.ClickButtonNo();
         }
+        else if ("ButtonBack".Equals(objectName))
+        {
+            this.ClickButtonBack();
+        }
+        else if ("ButtonTitleBack".Equals(objectName))
+        {
+            this.ClickButtonTitleBack();
+        }
+        else if ("ButtonRetry".Equals(objectName))
+        {
+            this.ClickButtonRetry();
+        }
+        else if ("ButtonConfig".Equals(objectName))
+        {
+            this.ClickButtonConfig();
+        }
         else if ("ButtonUp".Equals(objectName))
         {
             this.ClickButtonUp();
@@ -42,9 +58,24 @@ public class ButtonManager : ButtonBase
 
     // å¬ï É{É^Éìèàóù
 
-    private void ClickButtonStart()
+    private void ClickButtonBack()
     {
-        Debug.Log("ClickButton Start");
+        Debug.Log("ClickButton Back");
+    }
+
+    private void ClickButtonTitleBack()
+    {
+        Debug.Log("ClickButton TitleBack");
+    }
+
+    private void ClickButtonRetry()
+    {
+        Debug.Log("ClickButton Retry");
+    }
+
+    private void ClickButtonConfig()
+    {
+        Debug.Log("ClickButton Config");
     }
 
     private void ClickButtonYes()
