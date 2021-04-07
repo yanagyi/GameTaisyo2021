@@ -27,10 +27,10 @@ public class PlayerControl : UsableObject
         //    return;
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0) {
-            StartCoroutine("Move", new Vector3(0, 0, -moveSpeed));
+            rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -moveSpeed));
         }
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0) {
-            StartCoroutine("Move", new Vector3(0, 0, moveSpeed));
+            rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
         }
         if (Input.GetKey(KeyCode.Return) || Input.GetKey(button)) {
             Gravity_Effect();
