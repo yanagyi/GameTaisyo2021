@@ -49,4 +49,9 @@ public class PlayerControl : UsableObject
         rb.angularVelocity = Vector3.zero;
         yield return null;
     }
+    IEnumerator ChangeGravity()
+    {
+
+        yield return null;
+    }
 }

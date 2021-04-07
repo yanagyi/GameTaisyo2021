@@ -5,6 +5,7 @@ using UnityEngine;
 public class UsableObject : MonoBehaviour
 {
     // Start is called before the first frame update
+    public bool isZenmai;
     void Start()
     {
         
