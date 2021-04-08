@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    // 仮置きステート
-    public enum TemporaryState
+    // 仮ステート
+    public enum State
     {
         Title,
         Menu,
         Game,
     }
 
-    // 仮置きUI用
-    public enum TemporaryMenuState
+    // 仮UI用ステート
+    public enum MenuState
     {
         Menu,
         Abandoned,
@@ -22,96 +22,158 @@ public class UiManager : MonoBehaviour
         Config,
     }
 
+    // 仮設定用ステート
+    public enum ConfigState
+    {
+        Volume,
+        Aspect,
+        KeyConfig,
+    }
+
     private int state;
     private int menuState;
+    private int configState;
+
     public GameObject titleUiInstance;
+
     public GameObject menuAllUiInstance;
     public GameObject menuUiInstance;
     public GameObject abandonedUiInstance;
     public GameObject retryUiInstance;
     public GameObject configUiInstance;
+
+    public GameObject configVolumeInstance;
+    public GameObject configAspectInstance;
+    public GameObject configKeyConfigInstance;
+
     //public GameObject gameUiInstance;
     //public GameObject pauseUiInstance;
 
     void Start()
     {
-        state = (int)TemporaryState.Title;
-        menuState = (int)TemporaryMenuState.Menu;
+        state = (int)State.Title;
+        menuState = (int)MenuState.Menu;
+        configState = (int)ConfigState.Volume;
     }
 
     void Update()
     {
+
         switch(state)
         {
-            case (int)TemporaryState.Title:
+            case (int)State.Title:
                 menuAllUiInstance.SetActive(false);
                 titleUiInstance.SetActive(true);
-
-                if (Input.GetKeyDown(KeyCode.Alpha0))
-                {
-                    state = (int)TemporaryState.Menu;
-                }
-                break;
-
-            case (int)TemporaryState.Menu:
-                titleUiInstance.SetActive(false);
-                menuAllUiInstance.SetActive(true);
-
-                if (menuState == (int)TemporaryMenuState.Menu)
-                {
-                    menuUiInstance.SetActive(true);
-                    abandonedUiInstance.SetActive(false);
-                    retryUiInstance.SetActive(false);
-                    configUiInstance.SetActive(false);
-                }
-                if (menuState == (int)TemporaryMenuState.Abandoned)
-                {
-                    abandonedUiInstance.SetActive(true);
-                    menuUiInstance.SetActive(false);
-                    retryUiInstance.SetActive(false);
-                    configUiInstance.SetActive(false);
-                }
-                if (menuState == (int)TemporaryMenuState.Retry)
-                {
-                    retryUiInstance.SetActive(true);
-                    menuUiInstance.SetActive(false);
-                    abandonedUiInstance.SetActive(false);
-                    configUiInstance.SetActive(false);
-                }
-                if (menuState == (int)TemporaryMenuState.Config)
-                {
-                    configUiInstance.SetActive(true);
-                    menuUiInstance.SetActive(false);
-                    abandonedUiInstance.SetActive(false);
-                    retryUiInstance.SetActive(false);
-                }
-
+                menuState = (int)MenuState.Menu;
 
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    menuState++;
-                }
-                if (menuState > (int)TemporaryMenuState.Config)
-                {
-                    menuState = (int)TemporaryMenuState.Menu;
-                }
-
-                if (Input.GetKeyDown(KeyCode.Alpha0))
-                {
-                    state = (int)TemporaryState.Title;
-                    menuState = (int)TemporaryMenuState.Menu;
+                    state = (int)State.Game;
                 }
                 break;
 
-            case (int)TemporaryState.Game:
+            case (int)State.Menu:
                 titleUiInstance.SetActive(false);
-                menuUiInstance.SetActive(false);
+                menuAllUiInstance.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.Alpha0))
+                if (menuState == (int)MenuState.Menu)
                 {
-                    state = (int)TemporaryState.Title;
+                    menuUiInstance.SetActive(true);
+
+                    abandonedUiInstance.SetActive(false);
+                    retryUiInstance.SetActive(false);
+                    configUiInstance.SetActive(false);
+
+                    configState = (int)MenuState.Menu;
+                }
+                if (menuState == (int)MenuState.Abandoned)
+                {
+                    abandonedUiInstance.SetActive(true);
+
+                    menuUiInstance.SetActive(false);
+                    retryUiInstance.SetActive(false);
+                    configUiInstance.SetActive(false);
+                }
+                if (menuState == (int)MenuState.Retry)
+                {
+                    retryUiInstance.SetActive(true);
+
+                    menuUiInstance.SetActive(false);
+                    abandonedUiInstance.SetActive(false);
+                    configUiInstance.SetActive(false);
+                }
+                if (menuState == (int)MenuState.Config)
+                {
+                    configUiInstance.SetActive(true);
+
+                    menuUiInstance.SetActive(false);
+                    abandonedUiInstance.SetActive(false);
+                    retryUiInstance.SetActive(false);
+
+                    if (configState == (int)ConfigState.Volume)
+                    {
+                        configVolumeInstance.SetActive(true);
+
+                        configAspectInstance.SetActive(false);
+                        configKeyConfigInstance.SetActive(false);
+                    }
+                    if (configState == (int)ConfigState.Aspect)
+                    {
+                        configAspectInstance.SetActive(true);
+
+                        configVolumeInstance.SetActive(false);
+                        configKeyConfigInstance.SetActive(false);
+                    }
+                    if (configState == (int)ConfigState.KeyConfig)
+                    {
+                        configKeyConfigInstance.SetActive(true);
+
+                        configVolumeInstance.SetActive(false);
+                        configAspectInstance.SetActive(false);
+                    }
+                }
+                break;
+
+            case (int)State.Game:
+                titleUiInstance.SetActive(false);
+                menuAllUiInstance.SetActive(false);
+                menuState = (int)MenuState.Menu;
+
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    state = (int)State.Menu;
                 }
                 break;
         }
+    }
+
+    public int GetState()
+    {
+        return state;
+    }
+
+    public void SetState(int _state)
+    {
+        state = _state;
+    }
+
+    public int GetMenuState()
+    {
+        return menuState;
+    }
+
+    public void SetMenuState(int _state)
+    {
+        menuState = _state;
+    }
+
+    public int GetConfigState()
+    {
+        return configState;
+    }
+
+    public void SetConfigState(int _state)
+    {
+        configState = _state;
     }
 }
