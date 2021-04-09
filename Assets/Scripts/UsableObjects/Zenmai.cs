@@ -71,7 +71,7 @@ public class Zenmai : MonoBehaviour
             return;
         }
         //最寄りのゼンマイオブジェクト捜索
-        gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")/4, Input.GetAxis("Horizontal")/4);
+        gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")/8, Input.GetAxis("Horizontal")/8);
     }
     private void ParentCheck() {
 
