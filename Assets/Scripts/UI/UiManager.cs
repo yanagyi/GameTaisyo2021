@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
@@ -22,14 +23,6 @@ public class UiManager : MonoBehaviour
         Config,
     }
 
-    // 仮設定用ステート
-    public enum ConfigState
-    {
-        Volume,
-        Aspect,
-        KeyConfig,
-    }
-
     private int state;
     private int menuState;
     private int configState;
@@ -49,17 +42,27 @@ public class UiManager : MonoBehaviour
     //public GameObject gameUiInstance;
     //public GameObject pauseUiInstance;
 
+    // ボタン取得用
+    [SerializeField] EventSystem eventSystem;
+    private GameObject selectedButton;
+
+    // 設定画面で自動的にボタンを選択するための変数
+    private Button defaultConfigButton;
+    private bool flagSetButton;
+
+
     void Start()
     {
         state = (int)State.Title;
         menuState = (int)MenuState.Menu;
-        configState = (int)ConfigState.Volume;
+
+        defaultConfigButton = GameObject.Find("Canvas/MenuUI/Config/ConfigButtons/ButtonVolume").GetComponent<Button>();
+        flagSetButton = false;
     }
 
     void Update()
     {
-
-        switch(state)
+        switch (state)
         {
             case (int)State.Title:
                 menuAllUiInstance.SetActive(false);
@@ -84,7 +87,7 @@ public class UiManager : MonoBehaviour
                     retryUiInstance.SetActive(false);
                     configUiInstance.SetActive(false);
 
-                    configState = (int)MenuState.Menu;
+                    flagSetButton = false;
                 }
                 if (menuState == (int)MenuState.Abandoned)
                 {
@@ -110,21 +113,29 @@ public class UiManager : MonoBehaviour
                     abandonedUiInstance.SetActive(false);
                     retryUiInstance.SetActive(false);
 
-                    if (configState == (int)ConfigState.Volume)
+                    if(!flagSetButton)
+                    {
+                        defaultConfigButton.Select();
+                        flagSetButton = true;
+                    }
+
+                    selectedButton = eventSystem.currentSelectedGameObject.gameObject;
+
+                    if (selectedButton.name == "ButtonVolume")
                     {
                         configVolumeInstance.SetActive(true);
 
                         configAspectInstance.SetActive(false);
                         configKeyConfigInstance.SetActive(false);
                     }
-                    if (configState == (int)ConfigState.Aspect)
+                    if (selectedButton.name == "ButtonAspect")
                     {
                         configAspectInstance.SetActive(true);
 
                         configVolumeInstance.SetActive(false);
                         configKeyConfigInstance.SetActive(false);
                     }
-                    if (configState == (int)ConfigState.KeyConfig)
+                    if (selectedButton.name == "ButtonKeyConfig")
                     {
                         configKeyConfigInstance.SetActive(true);
 
@@ -165,15 +176,5 @@ public class UiManager : MonoBehaviour
     public void SetMenuState(int _state)
     {
         menuState = _state;
-    }
-
-    public int GetConfigState()
-    {
-        return configState;
-    }
-
-    public void SetConfigState(int _state)
-    {
-        configState = _state;
     }
 }
