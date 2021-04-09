@@ -142,14 +142,14 @@ public class ButtonManager : ButtonBase
     {
         Debug.Log("ClickButton Volume");
 
-        _uiManager.SetConfigState((int)UiManager.ConfigState.Volume);
+        //_uiManager.SetConfigState((int)UiManager.ConfigState.Volume);
     }
 
     private void ClickButtonAspect()
     {
         Debug.Log("ClickButton Aspect");
 
-        _uiManager.SetConfigState((int)UiManager.ConfigState.Aspect);
+        //_uiManager.SetConfigState((int)UiManager.ConfigState.Aspect);
     }
 
     private void ClickButtonAspectDefault()
@@ -171,7 +171,7 @@ public class ButtonManager : ButtonBase
     {
         Debug.Log("ClickButton KeyConfig");
 
-        _uiManager.SetConfigState((int)UiManager.ConfigState.KeyConfig);
+        //_uiManager.SetConfigState((int)UiManager.ConfigState.KeyConfig);
     }
 
     private void ClickButtonYes()
