@@ -47,7 +47,7 @@ public class UiManager : MonoBehaviour
     private GameObject selectedButton;
 
     // 設定画面で自動的にボタンを選択するための変数
-    private Button defaultConfigButton;
+    public Button defaultConfigButton;
     private bool flagSetButton;
 
 
@@ -56,7 +56,6 @@ public class UiManager : MonoBehaviour
         state = (int)State.Title;
         menuState = (int)MenuState.Menu;
 
-        defaultConfigButton = GameObject.Find("Canvas/MenuUI/Config/ConfigButtons/ButtonVolume").GetComponent<Button>();
         flagSetButton = false;
     }
 
