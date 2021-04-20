@@ -5,12 +5,14 @@ using UnityEngine;
 public class Goal : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject stageMng;
-    StageManager StageManagerScript;
+    public GameObject ClearCanvasObj;
+
+    ClearCanvas ClearCanvasScript;
     void Start()
     {
-        stageMng = GameObject.Find("StageManager");
-        StageManagerScript = stageMng.GetComponent<StageManager>();
+    //    stageMng = GameObject.Find("StageManager");
+//       stageMng = GameObject.Find("ClearCanvas");
+        ClearCanvasScript = ClearCanvasObj.GetComponent<ClearCanvas>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class Goal : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
-        StageManagerScript.AdvanceGame();
+        ClearCanvasScript.ClearConfilm();
+
     }
 }
