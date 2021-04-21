@@ -54,7 +54,7 @@ public class StageManager : MonoBehaviour
         NextLevel += 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    void RetryGame()
+    public void RetryGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
