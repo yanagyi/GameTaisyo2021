@@ -12,7 +12,7 @@ public class NoButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StageManagerScript = stageMng.GetComponent<RetryGame>();
+        StageManagerScript = stageMng.GetComponent<StageManager>();
     }
 
     // Update is called once per frame
