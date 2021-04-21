@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.373122, g: 0.38074183, b: 0.35872623, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731224, g: 0.38074207, b: 0.35872674, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1653,7 +1653,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stages:
   - {fileID: 102490278}
+  - {fileID: 423598308}
   - {fileID: 1238098766}
+  - {fileID: 1875350764}
   - {fileID: 1941963875}
 --- !u!4 &224358908
 Transform:
@@ -4455,7 +4457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9953c3cff731640935f96a15bc15e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearCanvasObj: {fileID: 0}
+  stageMng: {fileID: 0}
 --- !u!65 &580429565
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9506,7 +9508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1238098767
 Transform:
   m_ObjectHideFlags: 0
@@ -13230,7 +13232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9953c3cff731640935f96a15bc15e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearCanvasObj: {fileID: 1875350764}
+  stageMng: {fileID: 0}
 --- !u!65 &1714352324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13401,7 +13403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9953c3cff731640935f96a15bc15e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearCanvasObj: {fileID: 0}
+  stageMng: {fileID: 0}
 --- !u!65 &1734349452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14626,7 +14628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1941963876
 Transform:
   m_ObjectHideFlags: 0
