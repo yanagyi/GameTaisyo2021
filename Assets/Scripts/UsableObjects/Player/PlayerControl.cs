@@ -9,6 +9,7 @@ public class PlayerControl : UsableObject
     public float moveSpeed;//= 0.25f;
     public string button;
     bool onTheWall;
+    bool nowFall;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,7 @@ public class PlayerControl : UsableObject
     // Update is called once per frame
     void Update()
     {
-        if (isZenmai == false)
+        if (isZenmai == false&&nowFall==false)
             return;
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0) {
@@ -30,5 +31,23 @@ public class PlayerControl : UsableObject
         if (Input.GetKey(KeyCode.Return) || Input.GetKey(button)) {
             Gravity_Effect();
         }
+    }
+    public void Gravity_Effect()
+    {
+        Physics.gravity *= -1.0f;
+    }
+
+    IEnumerator GravityEffect()
+    {
+        Gravity_Effect();
+        do {
+            
+            yield return null;
+        } while (nowFall == true);
+        yield break;
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+
     }
 }
