@@ -16,7 +16,5 @@ public class UsableObject : MonoBehaviour
     {
         
     }
-    public void Gravity_Effect() {
-        Physics.gravity *= -1.0f;
-    }
+
 }
