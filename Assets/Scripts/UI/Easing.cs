@@ -7,7 +7,7 @@ using UnityEngine;
 // InOutは合体したもの
 // 
 // time(現在の時間)、timeLength(時間の長さ)、start(開始数値)、end(終了数値)
-// この4つを設定し、Updateでtimeを++するなどして使う
+// この4つを設定し、Update(FixedUpdate)でtimeを++するなどして使う
 //
 // ※BACK系統のみovershoot(どれだけバックするか)が追加されている 注意されたし
 

@@ -181,10 +181,12 @@ public class ButtonManager : ButtonBase
         if(uiMenuState == (int)UiManager.MenuState.Abandoned)
         {
             _uiManager.SetState((int)UiManager.State.Title);
+            PauseManager.Pause(false);
         }
         if (uiMenuState == (int)UiManager.MenuState.Retry)
         {
             _uiManager.SetState((int)UiManager.State.Game);
+            PauseManager.Pause(true);
         }
     }
 
