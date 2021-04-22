@@ -12,6 +12,7 @@ public class ClearCanvas : MonoBehaviour
     void Start()
     {
         StageManagerScript = stageMng.GetComponent<StageManager>();
+
         gameObject.SetActive(false);
 
     }
