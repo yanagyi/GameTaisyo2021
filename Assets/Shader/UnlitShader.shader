@@ -2,11 +2,16 @@
 
 Shader "Unlit/UnlitShader"
 {
-    Properties
+    Properties // マテリアルのInspectorで設定したいプロパティを記述
+               // プロパティ名 ("Inspectorに表示する名前", 型) = "デフォルト値" { オプション }
     {
-        [NoScaleOffset] _MainTex("Texture", 2D) = "white" {}
+        [NoScaleOffset] _MainTex("Texture", 2D) = "white" {}    // NoScaleDffset -> Tiling,Offsetを使用しない
+                                                                // Texture -> テクスチャ名
+                                                                // 2D -> 2Dのテクスチャ(普通のテクスチャ)を使用
+                                                                // white -> テクスチャがNoneの場合のデフォルトカラー(black or white or red)
     }
-        SubShader
+    
+    SubShader // シェーダーの中身(複数可)
     {
         Pass
         {
@@ -57,4 +62,6 @@ Shader "Unlit/UnlitShader"
             ENDCG
         }
     }
+        
+    FallBack "Standard" // Standard -> SubShaderが使えなかった場合に使うシェーダー
 }
