@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.373122, g: 0.38074183, b: 0.35872623, a: 1}
+  m_IndirectSpecularColor: {r: 0.3731222, g: 0.38074198, b: 0.3587266, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4455,7 +4455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9953c3cff731640935f96a15bc15e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasNext: {fileID: 0}
+  CanvasNext: {fileID: 1875350764}
 --- !u!65 &580429565
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13051,7 +13051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9953c3cff731640935f96a15bc15e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasNext: {fileID: 0}
+  CanvasNext: {fileID: 1875350764}
 --- !u!65 &1714352324
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13222,7 +13222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9953c3cff731640935f96a15bc15e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanvasNext: {fileID: 0}
+  CanvasNext: {fileID: 1875350764}
 --- !u!65 &1734349452
 BoxCollider:
   m_ObjectHideFlags: 0

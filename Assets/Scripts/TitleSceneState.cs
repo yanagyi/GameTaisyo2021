@@ -5,21 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class TitleSceneState : MonoBehaviour
 {
-
+    public string nextSceneName;
+    public string DecideButton;
+    bool isCalledNext;
     // Use this for initialization
     void Start()
     {
-        Invoke("ChangeScene", 3.0f);
+        isCalledNext = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isCalledNext==false&&Input.GetKey(DecideButton)) {
+            Invoke("ChangeScene", 2.0f);
+            isCalledNext = true;
+        }
     }
 
     void ChangeScene()
     {
-        SceneManager.LoadScene("Yuda");
+        SceneManager.LoadScene(nextSceneName);
     }
 }

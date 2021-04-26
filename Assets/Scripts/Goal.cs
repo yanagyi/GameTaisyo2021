@@ -7,9 +7,10 @@ public class Goal : MonoBehaviour
     // Start is called before the first frame update
     public GameObject CanvasNext;
     ClearCanvas ClearCanvas;
+
     void Start()
     {
-        CanvasNext = GameObject.Find("ClearCanvas");
+      //  CanvasNext = GameObject.Find("ClearCanvas");
         ClearCanvas = CanvasNext.GetComponent<ClearCanvas>();
     }
 
