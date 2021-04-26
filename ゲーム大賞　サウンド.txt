@@ -1,0 +1,3 @@
+audio source音を鳴らす
+audio mixer音をグループ化　音量調整
+slider 音量調整
