@@ -52,7 +52,7 @@ public class UiManager : MonoBehaviour
 
     void Awake()
     {
-        PauseManager.Pause(false);
+        //PauseManager.Pause(false);
     }
 
     void Start()

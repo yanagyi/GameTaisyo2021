@@ -10,6 +10,7 @@ public class Zenmai : MonoBehaviour
     public GameObject oldParent;
     public GameObject nowParent;
     int state;
+    public float SpeedMag;
     private enum statePattern
     {
         Idle=0,
@@ -51,7 +52,8 @@ public class Zenmai : MonoBehaviour
     //state==========================================================
     private void Idle()
     {
-        if (Input.GetKey(LTrigger)) {
+
+        if (Input.GetKey(LTrigger)||Input.GetKey(KeyCode.LeftShift)) {
             nowParent.GetComponent<UsableObject>().isZenmai = false;
             state = (int)statePattern.Controlled;
             nowParent = null;
@@ -59,19 +61,22 @@ public class Zenmai : MonoBehaviour
             return;
         }
         if (nowParent == null) {
-            nowParent = oldParent;
+            Setparent(GameObject.Find(oldParent.name));
+            if (oldParent == null) {
+                Setparent(GameObject.Find("Player"));
+            }
         }
       
         transform.Rotate(new Vector3(0, rotateSpeed, 0));
     }
 
    private void Controlled() {
-        if (!Input.GetKey(LTrigger)) {
+        if (!Input.GetKey(LTrigger) )  {
             state = (int)statePattern.ParentCheck;
             return;
         }
         //最寄りのゼンマイオブジェクト捜索
-        gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")/8, Input.GetAxis("Horizontal")/8);
+        gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")*SpeedMag, Input.GetAxis("Horizontal") * SpeedMag);
     }
     private void ParentCheck() {
 
