@@ -50,6 +50,10 @@ public class UiManager : MonoBehaviour
     public Button defaultConfigButton;
     private bool flagSetButton;
 
+    void Awake()
+    {
+        //PauseManager.Pause(false);
+    }
 
     void Start()
     {
@@ -77,6 +81,7 @@ public class UiManager : MonoBehaviour
             case (int)State.Menu:
                 titleUiInstance.SetActive(false);
                 menuAllUiInstance.SetActive(true);
+
 
                 if (menuState == (int)MenuState.Menu)
                 {
