@@ -13,7 +13,8 @@ public class StageManager : MonoBehaviour
     void Start()
     {
         NowLevel = NextLevel;
-
+        GameObject.Find("Main Camera").GetComponent<CameraControl>().SetCameraPos(NowLevel);
+        Debug.Log("NowLevel::" + NowLevel+"@StageManager");
         ShowStage();
 
     }
@@ -52,6 +53,7 @@ public class StageManager : MonoBehaviour
     {
         if(NowLevel<Stages.Length)
         NextLevel += 1;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void RetryGame()
@@ -82,4 +84,9 @@ public class StageManager : MonoBehaviour
         NextLevel = 3;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    public int GetStageIndex()
+    {
+        return (int)Stages.Length;
+    }
+
 }

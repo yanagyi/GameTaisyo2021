@@ -21,6 +21,8 @@ public class Zenmai : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
         if ((nowParent = gameObject.transform.parent.gameObject) != null) {
             nowParent.GetComponent<UsableObject>().isZenmai = true;
             oldParent = nowParent;
@@ -107,4 +109,5 @@ public class Zenmai : MonoBehaviour
         }
     }
     public int GetState() { return state; }//0がIdle,1がコントロール、2がチェック
+    
 }
