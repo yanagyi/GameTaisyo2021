@@ -37,10 +37,11 @@ public class DataManager : MonoBehaviour
         // ファイルパス指定
         filePath = Application.persistentDataPath + "/savedata.json";
         saveData = new SaveData();
-        saveData.stageData = new StageData[10];
+        saveData.stageData = new StageData[20];
 
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < saveData.stageData.Length; i++)
         {
+            saveData.stageData[i] = new StageData();
             saveData.stageData[i].stageNum = i + 1;
             saveData.stageData[i].clear = false;
 

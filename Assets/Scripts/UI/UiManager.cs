@@ -39,6 +39,9 @@ public class UiManager : MonoBehaviour
     public GameObject configAspectInstance;
     public GameObject configKeyConfigInstance;
 
+    private GameObject pauseManagerObject;
+    private PauseManager pauseManager;
+
     //public GameObject gameUiInstance;
     //public GameObject pauseUiInstance;
 
@@ -50,13 +53,12 @@ public class UiManager : MonoBehaviour
     public Button defaultConfigButton;
     private bool flagSetButton;
 
-    void Awake()
-    {
-        //PauseManager.Pause(false);
-    }
-
     void Start()
     {
+
+        pauseManagerObject = GameObject.Find("PauseManager");
+        pauseManager = pauseManagerObject.GetComponent<PauseManager>();
+
         state = (int)State.Title;
         menuState = (int)MenuState.Menu;
 
@@ -68,6 +70,8 @@ public class UiManager : MonoBehaviour
         switch (state)
         {
             case (int)State.Title:
+                pauseManager.Pause();
+
                 menuAllUiInstance.SetActive(false);
                 titleUiInstance.SetActive(true);
                 menuState = (int)MenuState.Menu;
@@ -79,6 +83,8 @@ public class UiManager : MonoBehaviour
                 break;
 
             case (int)State.Menu:
+                pauseManager.Pause();
+
                 titleUiInstance.SetActive(false);
                 menuAllUiInstance.SetActive(true);
 
@@ -150,6 +156,7 @@ public class UiManager : MonoBehaviour
                 break;
 
             case (int)State.Game:
+                pauseManager.Resume();
                 titleUiInstance.SetActive(false);
                 menuAllUiInstance.SetActive(false);
                 menuState = (int)MenuState.Menu;
