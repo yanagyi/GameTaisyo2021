@@ -60,6 +60,7 @@ public class Circle_Ashiba : MonoBehaviour
     }
     public void playerGrasp()
     {
+        player.GetComponent<Rigidbody>().isKinematic = true;
         player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
         player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
         player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
@@ -67,7 +68,7 @@ public class Circle_Ashiba : MonoBehaviour
     }
     public void playerGraspOff()
     {
-
+        player.GetComponent<Rigidbody>().isKinematic = false;
         //いったん全解除
         player.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         //回転ロック

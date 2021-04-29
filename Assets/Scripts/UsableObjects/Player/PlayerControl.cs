@@ -28,7 +28,7 @@ public class PlayerControl : UsableObject
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0) {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
         }
-        if (Input.GetKey(KeyCode.Return) || Input.GetKey(button)) {
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) {
             Gravity_Effect();
         }
     }
