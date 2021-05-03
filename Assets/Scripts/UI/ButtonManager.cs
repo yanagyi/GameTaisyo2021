@@ -57,22 +57,6 @@ public class ButtonManager : ButtonBase
         {
             this.ClickButtonVolume();
         }
-        else if ("ButtonAspect".Equals(objectName))
-        {
-            this.ClickButtonAspect();
-        }
-        else if ("ButtonAspectDefault".Equals(objectName))
-        {
-            this.ClickButtonAspectDefault();
-        }
-        else if ("ButtonAspectFullscreen".Equals(objectName))
-        {
-            this.ClickButtonAspectFullscreen();
-        }
-        else if ("ButtonAspectFree".Equals(objectName))
-        {
-            this.ClickButtonAspectFree();
-        }
         else if ("ButtonKeyConfig".Equals(objectName))
         {
             this.ClickButtonKeyConfig();
@@ -142,36 +126,14 @@ public class ButtonManager : ButtonBase
     {
         Debug.Log("ClickButton Volume");
 
-        //_uiManager.SetConfigState((int)UiManager.ConfigState.Volume);
-    }
-
-    private void ClickButtonAspect()
-    {
-        Debug.Log("ClickButton Aspect");
-
-        //_uiManager.SetConfigState((int)UiManager.ConfigState.Aspect);
-    }
-
-    private void ClickButtonAspectDefault()
-    {
-        Debug.Log("ClickButton Aspect");
-    }
-
-    private void ClickButtonAspectFullscreen()
-    {
-        Debug.Log("ClickButton AspectFullscreen");
-    }
-
-    private void ClickButtonAspectFree()
-    {
-        Debug.Log("ClickButton AspectFree");
+        _uiManager.SetConfigState((int)UiManager.ConfigState.Volume);
     }
 
     private void ClickButtonKeyConfig()
     {
         Debug.Log("ClickButton KeyConfig");
 
-        //_uiManager.SetConfigState((int)UiManager.ConfigState.KeyConfig);
+        _uiManager.SetConfigState((int)UiManager.ConfigState.KeyConfig);
     }
 
     private void ClickButtonYes()

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
@@ -23,6 +22,12 @@ public class UiManager : MonoBehaviour
         Config,
     }
 
+    public enum ConfigState
+    {
+        Volume,
+        KeyConfig,
+    }
+
     private int state;
     private int menuState;
     private int configState;
@@ -36,7 +41,6 @@ public class UiManager : MonoBehaviour
     public GameObject configUiInstance;
 
     public GameObject configVolumeInstance;
-    public GameObject configAspectInstance;
     public GameObject configKeyConfigInstance;
 
     private GameObject pauseManagerObject;
@@ -44,14 +48,6 @@ public class UiManager : MonoBehaviour
 
     //public GameObject gameUiInstance;
     //public GameObject pauseUiInstance;
-
-    // ボタン取得用
-    [SerializeField] EventSystem eventSystem;
-    private GameObject selectedButton;
-
-    // 設定画面で自動的にボタンを選択するための変数
-    public Button defaultConfigButton;
-    private bool flagSetButton;
 
     void Start()
     {
@@ -61,8 +57,7 @@ public class UiManager : MonoBehaviour
 
         state = (int)State.Title;
         menuState = (int)MenuState.Menu;
-
-        flagSetButton = false;
+        configState = (int)ConfigState.Volume;
     }
 
     void Update()
@@ -74,7 +69,7 @@ public class UiManager : MonoBehaviour
 
                 menuAllUiInstance.SetActive(false);
                 titleUiInstance.SetActive(true);
-                menuState = (int)MenuState.Menu;
+                menuUiInstance.SetActive(false);
 
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
@@ -85,7 +80,6 @@ public class UiManager : MonoBehaviour
             case (int)State.Menu:
                 pauseManager.Pause();
 
-                titleUiInstance.SetActive(false);
                 menuAllUiInstance.SetActive(true);
 
 
@@ -96,8 +90,6 @@ public class UiManager : MonoBehaviour
                     abandonedUiInstance.SetActive(false);
                     retryUiInstance.SetActive(false);
                     configUiInstance.SetActive(false);
-
-                    flagSetButton = false;
                 }
                 if (menuState == (int)MenuState.Abandoned)
                 {
@@ -123,34 +115,18 @@ public class UiManager : MonoBehaviour
                     abandonedUiInstance.SetActive(false);
                     retryUiInstance.SetActive(false);
 
-                    if(!flagSetButton)
-                    {
-                        defaultConfigButton.Select();
-                        flagSetButton = true;
-                    }
 
-                    selectedButton = eventSystem.currentSelectedGameObject.gameObject;
-
-                    if (selectedButton.name == "ButtonVolume")
+                    if (configState == (int)ConfigState.Volume)
                     {
                         configVolumeInstance.SetActive(true);
 
-                        configAspectInstance.SetActive(false);
                         configKeyConfigInstance.SetActive(false);
                     }
-                    if (selectedButton.name == "ButtonAspect")
-                    {
-                        configAspectInstance.SetActive(true);
-
-                        configVolumeInstance.SetActive(false);
-                        configKeyConfigInstance.SetActive(false);
-                    }
-                    if (selectedButton.name == "ButtonKeyConfig")
+                    if (configState == (int)ConfigState.KeyConfig)
                     {
                         configKeyConfigInstance.SetActive(true);
 
                         configVolumeInstance.SetActive(false);
-                        configAspectInstance.SetActive(false);
                     }
                 }
                 break;
@@ -159,11 +135,12 @@ public class UiManager : MonoBehaviour
                 pauseManager.Resume();
                 titleUiInstance.SetActive(false);
                 menuAllUiInstance.SetActive(false);
-                menuState = (int)MenuState.Menu;
+                menuUiInstance.SetActive(false);
 
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
                     state = (int)State.Menu;
+                    menuState = (int)MenuState.Menu;
                 }
                 break;
         }
@@ -187,5 +164,15 @@ public class UiManager : MonoBehaviour
     public void SetMenuState(int _state)
     {
         menuState = _state;
+    }
+
+    public int GetConfigState()
+    {
+        return configState;
+    }
+
+    public void SetConfigState(int _state)
+    {
+        configState = _state;
     }
 }
