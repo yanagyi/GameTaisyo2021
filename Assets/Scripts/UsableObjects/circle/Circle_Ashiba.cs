@@ -29,12 +29,13 @@ public class Circle_Ashiba : MonoBehaviour
         player.transform.parent = gameObject.transform;
 
         playerScript = player.GetComponent<PlayerControl>();
+  //      playerGrasp();
     }
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.tag != "Player")
             return;
-       player.gameObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        player.gameObject.transform.localRotation = new Quaternion(0, 0, 0, 0);
         //Rootにねじがついてないときはプレイヤーと親子でない。
         //Rootにねじがついているときのみプレイヤーと親子。
         switch (parentsScript.isZenmai()) {
@@ -55,6 +56,7 @@ public class Circle_Ashiba : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
+        playerGraspOff();
         player = null;
         
     }
