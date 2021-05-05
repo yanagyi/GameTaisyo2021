@@ -4,8 +4,7 @@ using UnityEngine;
 using System.IO;
 
 
-// ※セーブデータはAppData/LocalLow/GameTaisyo2021フォルダ内に生成される
-// 中身を確認したい人はそこ見てね
+// Debug.Logでセーブデータの保存場所を表示しているのでみたい方はどうぞ
 
 
 // セーブデータクラス
@@ -13,6 +12,10 @@ using System.IO;
 public class SaveData
 {
     public StageData[] stageData;
+
+    public float volumeMaster;
+    public float volumeBgm;
+    public float volumeSe;
 }
 
 // ステージのクリア状態管理
@@ -32,6 +35,9 @@ public class DataManager : MonoBehaviour
     private string filePath;
     private SaveData saveData;
 
+    private GameObject volumeManagerObject;
+    private VolumeManager volumeManager;
+
     void Awake()
     {
         // ファイルパス指定
@@ -39,7 +45,14 @@ public class DataManager : MonoBehaviour
         saveData = new SaveData();
         saveData.stageData = new StageData[20];
 
-        for(int i = 0; i < saveData.stageData.Length; i++)
+        volumeManagerObject = GameObject.Find("VolumeManager");
+        volumeManager = volumeManagerObject.GetComponent<VolumeManager>();
+
+        saveData.volumeMaster = 0.5f;
+        saveData.volumeBgm = 0.5f;
+        saveData.volumeSe = 0.5f;
+
+        for (int i = 0; i < saveData.stageData.Length; i++)
         {
             saveData.stageData[i] = new StageData();
             saveData.stageData[i].stageNum = i + 1;
@@ -56,35 +69,68 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    // ステージ番号とデータ上の配列とのずれを考慮して-1
-
     // ステージのクリア状態のセッター
-    public void StageClearSet(int num, bool clear)
+    public void SetStageClear(int num, bool clear)
     {
-        saveData.stageData[num - 1].clear = clear;
+        for(int i = 0; i < 20; i++)
+        {
+            if(saveData.stageData[i].stageNum == num)
+            {
+                saveData.stageData[i].clear = clear;
+                break;
+            }
+        }
     }
 
     // ステージのクリア状態のゲッター
-    public bool StageClearGet(int num)
+    public bool GetStageClear(int num)
     {
-        return saveData.stageData[num - 1].clear;
+        for (int i = 0; i < 20; i++)
+        {
+            if (saveData.stageData[i].stageNum == num)
+            {
+                return saveData.stageData[i].clear;
+            }
+        }
+
+        return false;
     }
 
     // ステージのアンロック状態のセッター
-    public void StageUnlockSet(int num, bool unlocked)
+    public void SetStageUnlock(int num, bool unlocked)
     {
-        saveData.stageData[num - 1].unlocked = unlocked;
+        for (int i = 0; i < 20; i++)
+        {
+            if (saveData.stageData[i].stageNum == num)
+            {
+                saveData.stageData[i].unlocked = unlocked;
+                break;
+            }
+        }
     }
 
     // ステージのアンロック状態のゲッター
-    public bool StageUnlockGet(int num)
+    public bool GetStageUnlock(int num)
     {
-        return saveData.stageData[num - 1].unlocked;
+        for (int i = 0; i < 20; i++)
+        {
+            if (saveData.stageData[i].stageNum == num)
+            {
+                return saveData.stageData[i].unlocked;
+            }
+        }
+
+        return false;
     }
 
     // セーブ
     public void Save()
     {
+        // スライダーから音量をゲット
+        saveData.volumeMaster = volumeManager.GetMasterVolume();
+        saveData.volumeBgm = volumeManager.GetBgmVolume();
+        saveData.volumeSe = volumeManager.GetSeVolume();
+
         // JSONに変換
         string jsonString = JsonUtility.ToJson(saveData);
 
@@ -93,12 +139,13 @@ public class DataManager : MonoBehaviour
         streamWriter.Flush();
         streamWriter.Close();
 
-        Debug.Log(Application.persistentDataPath);
+        Debug.Log("「" + Application.persistentDataPath + "」にセーブしました");
     }
 
     // ロード
     public void Load()
     {
+        // データが存在しない場合ロードしない
         if (File.Exists(filePath))
         {
             StreamReader streamReader;
@@ -108,11 +155,37 @@ public class DataManager : MonoBehaviour
 
             // JSONからSavaDataクラスに変換
             saveData = JsonUtility.FromJson<SaveData>(data);
+
+            // スライダーに音量をセット
+            volumeManager.SetMasterVolumeSliderValue(saveData.volumeMaster);
+            volumeManager.SetBgmVolumeSliderValue(saveData.volumeBgm);
+            volumeManager.SetSeVolumeSliderValue(saveData.volumeSe);
         }
     }
 
     // データリセット
     public void Reset()
     {
+        // すべての数値を初期化
+        saveData.volumeMaster = 0.5f;
+        saveData.volumeBgm = 0.5f;
+        saveData.volumeSe = 0.5f;
+
+        for (int i = 0; i < saveData.stageData.Length; i++)
+        {
+            saveData.stageData[i].clear = false;
+
+            if (i == 0)
+            {
+                saveData.stageData[i].unlocked = true;
+            }
+            else
+            {
+                saveData.stageData[i].unlocked = false;
+            }
+        }
+
+        // ここで上書きして初期化
+        Save();
     }
 }

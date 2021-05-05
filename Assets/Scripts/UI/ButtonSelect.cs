@@ -9,7 +9,8 @@ public class ButtonSelect : MonoBehaviour
 {
     public GameObject parentObject;
     public Button button;
-    [SerializeField]
+    public Slider slider;
+
     private bool flag;
 
     // Start is called before the first frame update
@@ -23,7 +24,14 @@ public class ButtonSelect : MonoBehaviour
     {
         if (parentObject.activeSelf && !flag)
         {
-            button.Select();
+            if(button != null)
+            {
+                button.Select();
+            }
+            if(slider != null)
+            {
+                slider.Select();
+            }
             flag = true;
         }
         if (!parentObject.activeSelf)
