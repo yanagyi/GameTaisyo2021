@@ -100,7 +100,7 @@ public class Zenmai : MonoBehaviour
             return;
         //入力してんのに当たり判定なかったら戻る
         
-        if (other.gameObject.tag == "zenmaiObj"|| other.gameObject.tag == "Player") {
+        if ( other.gameObject.tag == "Player"||other.gameObject.tag == "zenmaiObj") {
          //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
             Setparent(other.gameObject);
         } else {
