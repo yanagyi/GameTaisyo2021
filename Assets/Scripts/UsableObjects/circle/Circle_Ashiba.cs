@@ -27,7 +27,6 @@ public class Circle_Ashiba : MonoBehaviour
             return;
         player = collision.gameObject;
         player.transform.parent = gameObject.transform;
-
         playerScript = player.GetComponent<PlayerControl>();
     }
     private void OnCollisionStay(Collision collision)
@@ -55,8 +54,8 @@ public class Circle_Ashiba : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
+        playerGraspOff();
         player = null;
-        
     }
     public void playerGrasp()
     {
