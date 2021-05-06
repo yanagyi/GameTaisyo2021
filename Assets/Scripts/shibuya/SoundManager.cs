@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             BGMAudioSource.PlayOneShot(BGM[1]);
@@ -35,6 +36,7 @@ public class SoundManager : MonoBehaviour
         {
             SEAudioSource.PlayOneShot(SE[1]);
         }
+        */
     }
 
     //ëºÇÃÉVÅ[ÉìÇ≈Ç‡è¡Ç¶Ç»Ç¢

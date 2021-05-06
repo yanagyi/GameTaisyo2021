@@ -41,19 +41,24 @@ public class UiManager : MonoBehaviour
     public GameObject configUiInstance;
 
     public GameObject configVolumeInstance;
-    public GameObject configKeyConfigInstance;
+    //public GameObject configKeyConfigInstance;
 
     private GameObject pauseManagerObject;
     private PauseManager pauseManager;
 
+    private GameObject dataManagerObject;
+    private DataManager dataManager;
+
     //public GameObject gameUiInstance;
     //public GameObject pauseUiInstance;
 
-    void Start()
+    void Awake()
     {
-
         pauseManagerObject = GameObject.Find("PauseManager");
         pauseManager = pauseManagerObject.GetComponent<PauseManager>();
+
+        dataManagerObject = GameObject.Find("DataManager");
+        dataManager = dataManagerObject.GetComponent<DataManager>();
 
         state = (int)State.Title;
         menuState = (int)MenuState.Menu;
@@ -65,6 +70,7 @@ public class UiManager : MonoBehaviour
         switch (state)
         {
             case (int)State.Title:
+                dataManager.Load();
                 pauseManager.Pause();
 
                 menuAllUiInstance.SetActive(false);
@@ -120,15 +126,20 @@ public class UiManager : MonoBehaviour
                     {
                         configVolumeInstance.SetActive(true);
 
-                        configKeyConfigInstance.SetActive(false);
+                        //configKeyConfigInstance.SetActive(false);
                     }
+                    /*
                     if (configState == (int)ConfigState.KeyConfig)
                     {
                         configKeyConfigInstance.SetActive(true);
 
                         configVolumeInstance.SetActive(false);
                     }
+                    */
                 }
+
+                dataManager.Save();
+
                 break;
 
             case (int)State.Game:

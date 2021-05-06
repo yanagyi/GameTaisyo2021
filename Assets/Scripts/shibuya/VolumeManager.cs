@@ -15,18 +15,19 @@ public class VolumeManager : MonoBehaviour
     public Slider SeVolumeSlider;
 
     //スライダー選択用変数
-    int select;
+    //int select;
 
     // Start is called before the first frame update
     void Start()
     {
         //選択用変数初期化  
-        select = 0;
+        //select = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         //スライダーの選択
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetAxis("Vertical") > 0)
@@ -78,7 +79,7 @@ public class VolumeManager : MonoBehaviour
                     break;
             }
         }
-
+        */
     }
 
     //音量（デシベル）を0~1で簡単に表せるようにする関数
@@ -91,6 +92,7 @@ public class VolumeManager : MonoBehaviour
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MASTER", ConvertVolumeToDb(MasterVolumeSlider.value));
+        Debug.Log("master");
     }
     public void SetBgmVolume(float volume)
     {
@@ -99,5 +101,41 @@ public class VolumeManager : MonoBehaviour
     public void SetSeVolume(float volume)
     {
         audioMixer.SetFloat("SE", ConvertVolumeToDb(SeVolumeSlider.value));
+    }
+
+
+
+    // 追加関数
+
+    // ボリュームゲッター
+    public float GetMasterVolume()
+    {
+        return MasterVolumeSlider.value;
+    }
+
+    public float GetBgmVolume()
+    {
+        return BgmVolumeSlider.value;
+    }
+
+    public float GetSeVolume()
+    {
+        return SeVolumeSlider.value;
+    }
+
+    // ボリュームスライダーセッター
+    public void SetMasterVolumeSliderValue(float volume)
+    {
+        MasterVolumeSlider.value = volume;
+    }
+
+    public void SetBgmVolumeSliderValue(float volume)
+    {
+        BgmVolumeSlider.value = volume;
+    }
+
+    public void SetSeVolumeSliderValue(float volume)
+    {
+        SeVolumeSlider.value = volume;
     }
 }
