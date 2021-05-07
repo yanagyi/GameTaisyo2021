@@ -10,6 +10,7 @@ public class UiManager : MonoBehaviour
     {
         Title,
         Menu,
+        StageSelect,
         Game,
     }
 
@@ -41,6 +42,11 @@ public class UiManager : MonoBehaviour
     public GameObject configUiInstance;
 
     public GameObject configVolumeInstance;
+
+    public GameObject stageSelectInstance;
+
+    public GameObject backgroundNoise;
+
     //public GameObject configKeyConfigInstance;
 
     private GameObject pauseManagerObject;
@@ -73,21 +79,42 @@ public class UiManager : MonoBehaviour
                 dataManager.Load();
                 pauseManager.Pause();
 
-                menuAllUiInstance.SetActive(false);
                 titleUiInstance.SetActive(true);
+
+                stageSelectInstance.SetActive(false);
+                menuAllUiInstance.SetActive(false);
                 menuUiInstance.SetActive(false);
+                backgroundNoise.SetActive(false);
 
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    state = (int)State.Game;
+                    state = (int)State.StageSelect;
                 }
+                break;
+
+            case (int)State.StageSelect:
+                pauseManager.Pause();
+
+
+                menuAllUiInstance.SetActive(false);
+                titleUiInstance.SetActive(false);
+                menuUiInstance.SetActive(false);
+                backgroundNoise.SetActive(false);
+                abandonedUiInstance.SetActive(false);
+                retryUiInstance.SetActive(false);
+                configUiInstance.SetActive(false);
+
+                stageSelectInstance.SetActive(true);
+
                 break;
 
             case (int)State.Menu:
                 pauseManager.Pause();
 
                 menuAllUiInstance.SetActive(true);
+                backgroundNoise.SetActive(true);
 
+                stageSelectInstance.SetActive(false);
 
                 if (menuState == (int)MenuState.Menu)
                 {
@@ -126,7 +153,7 @@ public class UiManager : MonoBehaviour
                     {
                         configVolumeInstance.SetActive(true);
 
-                        //configKeyConfigInstance.SetActive(false);
+                        dataManager.Save();
                     }
                     /*
                     if (configState == (int)ConfigState.KeyConfig)
@@ -138,15 +165,15 @@ public class UiManager : MonoBehaviour
                     */
                 }
 
-                dataManager.Save();
-
                 break;
 
             case (int)State.Game:
                 pauseManager.Resume();
+                stageSelectInstance.SetActive(false);
                 titleUiInstance.SetActive(false);
                 menuAllUiInstance.SetActive(false);
                 menuUiInstance.SetActive(false);
+                backgroundNoise.SetActive(false);
 
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {

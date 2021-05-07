@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731224, g: 0.38074207, b: 0.35872674, a: 1}
+  m_IndirectSpecularColor: {r: 0.373122, g: 0.38074183, b: 0.35872623, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25043,7 +25043,7 @@ MonoBehaviour:
   retryUiInstance: {fileID: 733385692}
   configUiInstance: {fileID: 833608864}
   configVolumeInstance: {fileID: 929471723}
-  configKeyConfigInstance: {fileID: 1280678595}
+  backgroundNoise: {fileID: 0}
 --- !u!4 &1447628490
 Transform:
   m_ObjectHideFlags: 0

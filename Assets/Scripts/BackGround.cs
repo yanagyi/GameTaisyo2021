@@ -11,6 +11,11 @@ public class BackGround : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Vector3 pos = GameObject.Find("Main Camera").transform.position;
+        pos.x -= 3.0f;
+        pos.y += 6.0f;
+        pos.z = 0.0f;
+        transform.position = pos;
         senterPosition = transform.position;
     }
 
