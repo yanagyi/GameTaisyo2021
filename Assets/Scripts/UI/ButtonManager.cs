@@ -77,6 +77,10 @@ public class ButtonManager : ButtonBase
         {
             this.ClickButtonRight();
         }
+        else if ("ButtonStage".Equals(objectName))
+        {
+            this.ClickButtonStage();
+        }
         else
         {
             // 指定されたボタンが存在しない
@@ -182,5 +186,95 @@ public class ButtonManager : ButtonBase
     private void ClickButtonRight()
     {
         Debug.Log("ClickButton RightArrow");
+    }
+
+    private void ClickButtonStage()
+    {
+        Debug.Log("ClickButton Stage");
+
+        // ステージボタンを押したときの個別処理
+
+        if (stageNum == 1)
+        {
+            
+        }
+        if (stageNum == 2)
+        {
+
+        }
+        if (stageNum == 3)
+        {
+
+        }
+        if (stageNum == 4)
+        {
+
+        }
+        if (stageNum == 5)
+        {
+
+        }
+        if (stageNum == 6)
+        {
+
+        }
+        if (stageNum == 7)
+        {
+
+        }
+        if (stageNum == 8)
+        {
+
+        }
+        if (stageNum == 9)
+        {
+
+        }
+        if (stageNum == 10)
+        {
+
+        }
+        if (stageNum == 11)
+        {
+
+        }
+        if (stageNum == 12)
+        {
+
+        }
+        if (stageNum == 13)
+        {
+
+        }
+        if (stageNum == 14)
+        {
+
+        }
+        if (stageNum == 15)
+        {
+
+        }
+        if (stageNum == 16)
+        {
+
+        }
+        if (stageNum == 17)
+        {
+
+        }
+        if (stageNum == 18)
+        {
+
+        }
+        if (stageNum == 19)
+        {
+
+        }
+        if (stageNum == 20)
+        {
+
+        }
+
+        _uiManager.SetState((int)UiManager.State.Game);
     }
 }

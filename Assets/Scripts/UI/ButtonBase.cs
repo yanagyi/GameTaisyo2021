@@ -7,6 +7,9 @@ public class ButtonBase : MonoBehaviour
 {
     public ButtonBase button;
 
+    // ステージセレクト用 他では未使用
+    public int stageNum;
+
     public void OnClick()
     {
         if (button == null)
