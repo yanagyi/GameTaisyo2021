@@ -23,6 +23,8 @@ public class Zenmai : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
+
+
         if ((nowParent = gameObject.transform.parent.gameObject) != null) {
             nowParent.GetComponent<UsableObject>().isZenmai = true;
             oldParent = nowParent;
@@ -73,10 +75,11 @@ public class Zenmai : MonoBehaviour
     }
 
    private void Controlled() {
-        if (!Input.GetKey(LTrigger) )  {
+        if (!Input.GetKey(LTrigger) && !Input.GetKey(KeyCode.LeftShift))  {
             state = (int)statePattern.ParentCheck;
             return;
         }
+
         //最寄りのゼンマイオブジェクト捜索
         gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")*SpeedMag, Input.GetAxis("Horizontal") * SpeedMag);
     }
