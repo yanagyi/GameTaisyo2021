@@ -92,7 +92,6 @@ public class VolumeManager : MonoBehaviour
     public void SetMasterVolume(float volume)
     {
         audioMixer.SetFloat("MASTER", ConvertVolumeToDb(MasterVolumeSlider.value));
-        Debug.Log("master");
     }
     public void SetBgmVolume(float volume)
     {
