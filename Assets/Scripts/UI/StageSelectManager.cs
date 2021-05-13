@@ -22,7 +22,7 @@ public class StageSelectManager : MonoBehaviour
     // true‚ª¶Afalse‚ª‰E
     bool directionLR;
 
-    bool setPos;
+    bool horizontalLimit;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,7 @@ public class StageSelectManager : MonoBehaviour
         stageNum = 0;
         nowMove = false;
         directionLR = false;
+        horizontalLimit = false;
 
         dataManager = dataObject.GetComponent<DataManager>();
 
@@ -55,7 +56,12 @@ public class StageSelectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dataManager.SetStageUnlock(2, true);
+        if(horizontalLimit)
+        {
+            horizontalLimit = false;
+            eventSystem.enabled = true;
+            selectButton.Select();
+        }
 
         if (nowMove)
         {
@@ -97,6 +103,7 @@ public class StageSelectManager : MonoBehaviour
             eventSystem.enabled = false;
 
         }
+
         if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && dataManager.GetStageUnlock(stageNum + 2))
         {
             nowMove = true;
@@ -104,6 +111,12 @@ public class StageSelectManager : MonoBehaviour
             selectButton = this.transform.GetChild(stageNum + 1).gameObject.GetComponent<Button>();
             eventSystem.enabled = false;
 
+        }
+        if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && !dataManager.GetStageUnlock(stageNum + 2))
+        {
+            selectButton = this.transform.GetChild(stageNum).gameObject.GetComponent<Button>();
+            eventSystem.enabled = false;
+            horizontalLimit = true;
         }
 
         dataManager.Save();

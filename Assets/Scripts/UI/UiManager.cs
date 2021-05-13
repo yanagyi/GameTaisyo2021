@@ -12,6 +12,7 @@ public class UiManager : MonoBehaviour
         Menu,
         StageSelect,
         Game,
+        Result,
     }
 
     // 仮UI用ステート
@@ -29,9 +30,9 @@ public class UiManager : MonoBehaviour
         KeyConfig,
     }
 
-    private int state;
-    private int menuState;
-    private int configState;
+    static int state;
+    static int menuState;
+    static int configState;
 
     public GameObject titleUiInstance;
 
@@ -45,18 +46,18 @@ public class UiManager : MonoBehaviour
 
     public GameObject stageSelectInstance;
 
+    public GameObject resultInstance;
+
     public GameObject backgroundNoise;
 
-    //public GameObject configKeyConfigInstance;
+    public GameObject stageMng;
+    StageManager StageManagerScript;
 
     private GameObject pauseManagerObject;
     private PauseManager pauseManager;
 
     private GameObject dataManagerObject;
     private DataManager dataManager;
-
-    //public GameObject gameUiInstance;
-    //public GameObject pauseUiInstance;
 
     void Awake()
     {
@@ -66,9 +67,20 @@ public class UiManager : MonoBehaviour
         dataManagerObject = GameObject.Find("DataManager");
         dataManager = dataManagerObject.GetComponent<DataManager>();
 
-        state = (int)State.Title;
-        menuState = (int)MenuState.Menu;
-        configState = (int)ConfigState.Volume;
+        dataManager.Load();
+
+        if (state == null)
+        {
+            state = (int)State.Title;
+        }
+        if (menuState == null)
+        {
+            menuState = (int)MenuState.Menu;
+        }
+        if (configState == null)
+        {
+            configState = (int)ConfigState.Volume;
+        }
     }
 
     void Update()
@@ -76,7 +88,6 @@ public class UiManager : MonoBehaviour
         switch (state)
         {
             case (int)State.Title:
-                dataManager.Load();
                 pauseManager.Pause();
 
                 titleUiInstance.SetActive(true);
@@ -85,6 +96,7 @@ public class UiManager : MonoBehaviour
                 menuAllUiInstance.SetActive(false);
                 menuUiInstance.SetActive(false);
                 backgroundNoise.SetActive(false);
+                resultInstance.SetActive(false);
 
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
@@ -103,6 +115,7 @@ public class UiManager : MonoBehaviour
                 abandonedUiInstance.SetActive(false);
                 retryUiInstance.SetActive(false);
                 configUiInstance.SetActive(false);
+                resultInstance.SetActive(false);
 
                 stageSelectInstance.SetActive(true);
 
@@ -115,6 +128,7 @@ public class UiManager : MonoBehaviour
                 backgroundNoise.SetActive(true);
 
                 stageSelectInstance.SetActive(false);
+                resultInstance.SetActive(false);
 
                 if (menuState == (int)MenuState.Menu)
                 {
@@ -166,6 +180,21 @@ public class UiManager : MonoBehaviour
                 }
 
                 break;
+            case (int)State.Result:
+                pauseManager.Pause();
+                menuAllUiInstance.SetActive(false);
+                titleUiInstance.SetActive(false);
+                menuUiInstance.SetActive(false);
+                backgroundNoise.SetActive(false);
+                abandonedUiInstance.SetActive(false);
+                retryUiInstance.SetActive(false);
+                configUiInstance.SetActive(false);
+
+                resultInstance.SetActive(true);
+
+                dataManager.Save();
+
+                break;
 
             case (int)State.Game:
                 pauseManager.Resume();
@@ -174,6 +203,7 @@ public class UiManager : MonoBehaviour
                 menuAllUiInstance.SetActive(false);
                 menuUiInstance.SetActive(false);
                 backgroundNoise.SetActive(false);
+                resultInstance.SetActive(false);
 
                 if (Input.GetKeyDown(KeyCode.Escape))
                 {
@@ -181,6 +211,18 @@ public class UiManager : MonoBehaviour
                     menuState = (int)MenuState.Menu;
                 }
                 break;
+        }
+
+        // ゲーム終了
+        if (Input.GetKey(KeyCode.Q))
+        {
+            Application.Quit();
+        }
+
+        // データリセット
+        if (Input.GetKey(KeyCode.R))
+        {
+            dataManager.Reset();
         }
     }
 
