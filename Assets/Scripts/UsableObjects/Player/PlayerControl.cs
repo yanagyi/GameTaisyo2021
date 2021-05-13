@@ -10,12 +10,20 @@ public class PlayerControl : UsableObject
     public string button;
     bool onTheWall;
     bool nowFall;
+
+    //パーティクル変数
+    private ParticleSystem particle;
+
     // Start is called before the first frame update
     void Start()
     {
-      
-        rb = gameObject.GetComponent<Rigidbody>();
+      //プレイヤーのリジッドボディ取得
+      rb = gameObject.GetComponent<Rigidbody>();
+
+      //パーティクルシステムの取得
+      particle = GetComponentInChildren<ParticleSystem>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -32,6 +40,8 @@ public class PlayerControl : UsableObject
             Gravity_Effect();
         }
     }
+
+    //重力反転処理
     public void Gravity_Effect()
     {
         Physics.gravity *= -1.0f;
@@ -46,8 +56,13 @@ public class PlayerControl : UsableObject
         } while (nowFall == true);
         yield break;
     }
+
     private void OnCollisionEnter(Collision collision)
     {
-
+        // "floor"タグのオブジェクトと衝突したらパーティクル生成
+        if(collision.gameObject.tag == "floor")
+        {
+            particle.Play();
+        }
     }
 }
