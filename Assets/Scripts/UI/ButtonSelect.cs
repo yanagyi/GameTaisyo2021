@@ -39,13 +39,13 @@ public class ButtonSelect : MonoBehaviour
                 {
                     if (i == 21)
                     {
-                        button = parentObject.transform.GetChild(19).gameObject.GetComponent<Button>();
+                        button = parentObject.transform.GetChild(20).gameObject.GetComponent<Button>();
                         button.Select();
                         break;
                     }
                     if (!dataManager.GetStageUnlock(i))
                     {
-                        button = parentObject.transform.GetChild(i - 1).gameObject.GetComponent<Button>();
+                        button = parentObject.transform.GetChild(i - 2).gameObject.GetComponent<Button>();
                         button.Select();
                         break;
                     }
