@@ -94,7 +94,11 @@ public class Zenmai : MonoBehaviour
         nowParent.GetComponent<UsableObject>().isZenmai = true;
         oldParent = nowParent;
         gameObject.transform.parent = nowParent.transform;
-        gameObject.transform.localPosition = new Vector3(0, 1.3f, 0);
+        if (obj.tag == "Player") {
+            gameObject.transform.localPosition = new Vector3(0, 1.3f, -1.5f);
+        } else {
+            gameObject.transform.localPosition = new Vector3(0, 1.3f, 0);
+        }
 
     }
     private void OnTriggerStay(Collider other)

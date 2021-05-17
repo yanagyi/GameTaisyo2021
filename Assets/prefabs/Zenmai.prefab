@@ -506,8 +506,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3282618560770507114}
   - component: {fileID: 6509882259812406888}
+  - component: {fileID: 3509832635169007073}
   m_Layer: 0
-  m_Name: zenmai 1
+  m_Name: Zenmai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -543,6 +544,23 @@ CapsuleCollider:
   m_Height: 0.17172319
   m_Direction: 1
   m_Center: {x: -0.023621516, y: 0.08637222, z: -0.00042238634}
+--- !u!114 &3509832635169007073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2793890505831013328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d315895c2136a2946a5f1594c1541a13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LTrigger: joystick button 9
+  RTrigger: joystick button 5
+  oldParent: {fileID: 0}
+  nowParent: {fileID: 0}
+  SpeedMag: 0
 --- !u!1 &3217623937445465794
 GameObject:
   m_ObjectHideFlags: 0
