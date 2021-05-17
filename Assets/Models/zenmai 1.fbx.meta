@@ -1,19 +1,9 @@
 fileFormatVersion: 2
-guid: f612d3077e467fb4c85b448cb56984aa
+guid: 60458442a5f7f5c47ab234b62bee1422
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert2
-    second: {fileID: 2100000, guid: 6a27f68a0c10bcb4da155d25652563b1, type: 2}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: at_lambert1_BaseColor
-    second: {fileID: 2800000, guid: a45d20c20dbebf943b822fc1742a577e, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
