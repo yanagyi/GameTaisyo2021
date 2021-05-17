@@ -9,15 +9,23 @@ public class StageManager : MonoBehaviour
     public GameObject[] Stages;//ステージオブジェクトを格納する配列
     bool isStageClear;
     bool isStageFault;
+
+    private GameObject fadeManagerObject;
+    private Fade fadeManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        fadeManagerObject = GameObject.Find("FadeManager");
+        fadeManager = fadeManagerObject.GetComponent<Fade>();
+
         NowLevel = NextLevel;
         Debug.Log(NowLevel);
         GameObject.Find("Main Camera").GetComponent<CameraControl>().SetCameraPos(NowLevel);
         Debug.Log("NowLevel::" + NowLevel+"@StageManager");
         ShowStage();
 
+        fadeManager.FadeIn();
     }
 
     // Update is called once per frame
