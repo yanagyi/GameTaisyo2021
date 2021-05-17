@@ -560,7 +560,7 @@ MonoBehaviour:
   RTrigger: joystick button 5
   oldParent: {fileID: 0}
   nowParent: {fileID: 0}
-  SpeedMag: 0
+  SpeedMag: 0.25
 --- !u!1 &3217623937445465794
 GameObject:
   m_ObjectHideFlags: 0

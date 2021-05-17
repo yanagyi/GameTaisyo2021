@@ -95,9 +95,9 @@ public class Zenmai : MonoBehaviour
         oldParent = nowParent;
         gameObject.transform.parent = nowParent.transform;
         if (obj.tag == "Player") {
-            gameObject.transform.localPosition = new Vector3(0, 1.3f, -1.5f);
+            gameObject.transform.localPosition = new Vector3(0, 0, -0.02f);
         } else {
-            gameObject.transform.localPosition = new Vector3(0, 1.3f, 0);
+            gameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
         }
 
     }
