@@ -35,6 +35,7 @@ public class StageSelectManager : MonoBehaviour
         horizontalLimit = false;
 
         dataManager = dataObject.GetComponent<DataManager>();
+        dataManager.Load();
 
         for (int i = 1; i <= 21; i++)
         {
@@ -56,67 +57,76 @@ public class StageSelectManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(horizontalLimit)
+        if (!Fade.isFadeOut && !Fade.isFadeIn)
         {
-            horizontalLimit = false;
-            eventSystem.enabled = true;
-            selectButton.Select();
-        }
-
-        if (nowMove)
-        {
-            if (directionLR)
+            if (horizontalLimit)
             {
-                transform.position = new Vector3(Easing.CubicInOut(time, timeLength, 0, 1200.0f) + -stageNum * 1200.0f + 720.0f, 540.0f, 0);
-            }
-            else
-            {
-                transform.position = new Vector3(-Easing.CubicInOut(time, timeLength, 0, 1200.0f) + -stageNum * 1200.0f + 720.0f, 540.0f, 0);
+                horizontalLimit = false;
+                eventSystem.enabled = true;
+                selectButton.Select();
             }
 
-            time += 1.0f;
-        }
-
-        if (timeLength < time)
-        {
-            time = 0.0f;
-            nowMove = false;
-
-            eventSystem.enabled = true;
-            selectButton.Select();
-
-            if (directionLR)
+            if (nowMove)
             {
-                stageNum--;
+                if (directionLR)
+                {
+                    transform.position = new Vector3(Easing.CubicInOut(time, timeLength, 0, 1200.0f) + -stageNum * 1200.0f + 720.0f, 540.0f, 0);
+                }
+                else
+                {
+                    transform.position = new Vector3(-Easing.CubicInOut(time, timeLength, 0, 1200.0f) + -stageNum * 1200.0f + 720.0f, 540.0f, 0);
+                }
+
+                time += 1.0f;
             }
-            else
+
+            if (timeLength < time)
             {
-                stageNum++;
+                time = 0.0f;
+                nowMove = false;
+
+                eventSystem.enabled = true;
+                selectButton.Select();
+
+                if (directionLR)
+                {
+                    stageNum--;
+                }
+                else
+                {
+                    stageNum++;
+                }
             }
-        }
 
-        if (!nowMove && Input.GetAxis("Horizontal") < 0 && stageNum > 0)
-        {
-            nowMove = true;
-            directionLR = true;
-            selectButton = this.transform.GetChild(stageNum - 1).gameObject.GetComponent<Button>();
-            eventSystem.enabled = false;
+            if(!nowMove && Input.GetAxis("Horizontal") == 0)
+            {
+                selectButton = this.transform.GetChild(stageNum).gameObject.GetComponent<Button>();
+                selectButton.Select();
+            }
 
-        }
+            if (!nowMove && Input.GetAxis("Horizontal") < 0 && stageNum > 0)
+            {
+                nowMove = true;
+                directionLR = true;
+                selectButton = this.transform.GetChild(stageNum - 1).gameObject.GetComponent<Button>();
+                eventSystem.enabled = false;
 
-        if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && dataManager.GetStageUnlock(stageNum + 2))
-        {
-            nowMove = true;
-            directionLR = false;
-            selectButton = this.transform.GetChild(stageNum + 1).gameObject.GetComponent<Button>();
-            eventSystem.enabled = false;
+            }
 
-        }
-        if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && !dataManager.GetStageUnlock(stageNum + 2))
-        {
-            selectButton = this.transform.GetChild(stageNum).gameObject.GetComponent<Button>();
-            eventSystem.enabled = false;
-            horizontalLimit = true;
+            if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && dataManager.GetStageUnlock(stageNum + 2))
+            {
+                nowMove = true;
+                directionLR = false;
+                selectButton = this.transform.GetChild(stageNum + 1).gameObject.GetComponent<Button>();
+                eventSystem.enabled = false;
+
+            }
+            if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && !dataManager.GetStageUnlock(stageNum + 2))
+            {
+                selectButton = this.transform.GetChild(stageNum).gameObject.GetComponent<Button>();
+                eventSystem.enabled = false;
+                horizontalLimit = true;
+            }
         }
 
         dataManager.Save();

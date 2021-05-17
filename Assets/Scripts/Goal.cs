@@ -23,16 +23,21 @@ public class Goal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Player")
             return;
 
-        dataManager.SetStageClear(StageManager.GetNowLevel(), true);
-        dataManager.SetStageUnlock(StageManager.GetNowLevel() + 1, true);
+        dataManager.SetStageClear(StageManager.GetNowLevel() + 1, true);
 
-        _uiManager.SetState((int)UiManager.State.Result);
+        if(StageManager.GetNowLevel() + 2 <= 20)
+        {
+            dataManager.SetStageUnlock(StageManager.GetNowLevel() + 2, true);
+        }
+
+        dataManager.Save();
+
+        _uiManager.SetNextState((int)UiManager.State.Result);
     }
 }

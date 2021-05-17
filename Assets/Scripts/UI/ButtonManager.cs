@@ -187,6 +187,7 @@ public class ButtonManager : ButtonBase
         Debug.Log("ClickButton GameBack");
 
         _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonTitleBack()
@@ -235,18 +236,18 @@ public class ButtonManager : ButtonBase
     {
         Debug.Log("ClickButton NextStage");
 
-        stageManager.AdvanceGame();
+        _uiManager.SetStageNum(StageManager.GetNowLevel() + 2);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickRetry()
     {
         Debug.Log("Click Retry");
 
-        stageManager.RetryGame();
+        _uiManager.SetStageNum(StageManager.GetNowLevel() + 1);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonYes()
@@ -255,13 +256,12 @@ public class ButtonManager : ButtonBase
 
         if(_uiManager.GetMenuState() == (int)UiManager.MenuState.Abandoned)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-            _uiManager.SetState((int)UiManager.State.Title);
+            _uiManager.SetNextState((int)UiManager.State.Title);
         }
         if (_uiManager.GetMenuState() == (int)UiManager.MenuState.Retry)
         {
-            stageManager.RetryGame();
-            _uiManager.SetState((int)UiManager.State.Game);
+            _uiManager.SetStageNum(StageManager.GetNowLevel() + 1);
+            _uiManager.SetNextState((int)UiManager.State.Game);
         }
     }
 
@@ -303,9 +303,7 @@ public class ButtonManager : ButtonBase
     {
         Debug.Log("ClickButton StageSelect");
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-        _uiManager.SetState((int)UiManager.State.StageSelect);
+        _uiManager.SetNextState((int)UiManager.State.StageSelect);
 
     }
 
@@ -313,179 +311,179 @@ public class ButtonManager : ButtonBase
     {
         Debug.Log("ClickButton Stage1");
 
-        stageManager.GoStageAny(1);
+        _uiManager.SetStageNum(1);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage2()
     {
         Debug.Log("ClickButton Stage2");
 
-        stageManager.GoStageAny(2);
+        _uiManager.SetStageNum(2);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage3()
     {
         Debug.Log("ClickButton Stage3");
 
-        stageManager.GoStageAny(3);
+        _uiManager.SetStageNum(3);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage4()
     {
         Debug.Log("ClickButton Stage4");
 
-        stageManager.GoStageAny(4);
+        _uiManager.SetStageNum(4);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage5()
     {
         Debug.Log("ClickButton Stage5");
 
-        stageManager.GoStageAny(5);
+        _uiManager.SetStageNum(5);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage6()
     {
         Debug.Log("ClickButton Stage6");
 
-        stageManager.GoStageAny(6);
+        _uiManager.SetStageNum(6);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage7()
     {
         Debug.Log("ClickButton Stage7");
 
-        stageManager.GoStageAny(7);
+        _uiManager.SetStageNum(7);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage8()
     {
         Debug.Log("ClickButton Stage8");
 
-        stageManager.GoStageAny(8);
+        _uiManager.SetStageNum(8);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage9()
     {
         Debug.Log("ClickButton Stage9");
 
-        stageManager.GoStageAny(9);
+        _uiManager.SetStageNum(9);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage10()
     {
         Debug.Log("ClickButton Stage10");
 
-        stageManager.GoStageAny(10);
+        _uiManager.SetStageNum(10);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage11()
     {
         Debug.Log("ClickButton Stage11");
 
-        stageManager.GoStageAny(11);
+        _uiManager.SetStageNum(11);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage12()
     {
         Debug.Log("ClickButton Stage12");
 
-        stageManager.GoStageAny(12);
+        _uiManager.SetStageNum(12);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage13()
     {
         Debug.Log("ClickButton Stage13");
 
-        stageManager.GoStageAny(13);
+        _uiManager.SetStageNum(13);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage14()
     {
         Debug.Log("ClickButton Stage14");
 
-        stageManager.GoStageAny(14);
+        _uiManager.SetStageNum(14);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage15()
     {
         Debug.Log("ClickButton Stage15");
 
-        stageManager.GoStageAny(15);
+        _uiManager.SetStageNum(15);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage16()
     {
         Debug.Log("ClickButton Stage16");
 
-        stageManager.GoStageAny(16);
+        _uiManager.SetStageNum(16);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage17()
     {
         Debug.Log("ClickButton Stage17");
 
-        stageManager.GoStageAny(17);
+        _uiManager.SetStageNum(17);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage18()
     {
         Debug.Log("ClickButton Stage18");
 
-        stageManager.GoStageAny(18);
+        _uiManager.SetStageNum(18);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage19()
     {
         Debug.Log("ClickButton Stage19");
 
-        stageManager.GoStageAny(19);
+        _uiManager.SetStageNum(19);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 
     private void ClickButtonStage20()
     {
         Debug.Log("ClickButton Stage20");
 
-        stageManager.GoStageAny(20);
+        _uiManager.SetStageNum(20);
 
-        _uiManager.SetState((int)UiManager.State.Game);
+        _uiManager.SetNextState((int)UiManager.State.Game);
     }
 }

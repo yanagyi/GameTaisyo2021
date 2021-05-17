@@ -27,10 +27,10 @@ public class RigidbodyVelocity
 public class PauseManager : MonoBehaviour
 {
     // ポーズ中か否か
-    private bool isPause;
+    private static bool isPause;
 
     // 前のポーズ状態を保存
-    private bool prevPause;
+    private static bool prevPause;
 
     // 無視するオブジェクト
     public GameObject[] ignoreObjects;
@@ -43,8 +43,14 @@ public class PauseManager : MonoBehaviour
 
     void Start()
     {
-        isPause = false;
-        prevPause = false;
+        if(isPause == null)
+        {
+            isPause = false;
+        }
+        if(isPause == null)
+        {
+            prevPause = false;
+        }
     }
 
     void Update()

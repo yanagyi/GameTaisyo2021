@@ -11,8 +11,6 @@ public class ButtonSelect : MonoBehaviour
     public Button button;
     public Slider slider;
     public GameObject dataObject;
-    private DataManager dataManager;
-    private StageSelectManager stageSelectManager;
 
     private bool flag;
 
@@ -20,48 +18,22 @@ public class ButtonSelect : MonoBehaviour
     void Start()
     {
         flag = false;
-
-        if (parentObject.name == "Stage")
-        {
-            dataManager = dataObject.GetComponent<DataManager>();
-            stageSelectManager = parentObject.GetComponent<StageSelectManager>();
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (parentObject.activeSelf && !flag)
+        if (parentObject.activeSelf && !flag && !Fade.isFadeIn && !Fade.isFadeOut)
         {
-            if(parentObject.name == "Stage")
+            if (button != null)
             {
-                for(int i = 1; i <= 21; i++)
-                {
-                    if (i == 21)
-                    {
-                        button = parentObject.transform.GetChild(20).gameObject.GetComponent<Button>();
-                        button.Select();
-                        break;
-                    }
-                    if (!dataManager.GetStageUnlock(i))
-                    {
-                        button = parentObject.transform.GetChild(i - 2).gameObject.GetComponent<Button>();
-                        button.Select();
-                        break;
-                    }
-                }
+                button.Select();
             }
-            else
+            if (slider != null)
             {
-                if (button != null)
-                {
-                    button.Select();
-                }
-                if (slider != null)
-                {
-                    slider.Select();
-                }
+                slider.Select();
             }
+            
             flag = true;
         }
         if (!parentObject.activeSelf)

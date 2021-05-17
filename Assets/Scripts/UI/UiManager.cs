@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    // 仮ステート
     public enum State
     {
         Title,
@@ -15,7 +14,6 @@ public class UiManager : MonoBehaviour
         Result,
     }
 
-    // 仮UI用ステート
     public enum MenuState
     {
         Menu,
@@ -31,8 +29,11 @@ public class UiManager : MonoBehaviour
     }
 
     static int state;
+    static int nextState;
     static int menuState;
     static int configState;
+
+    static int stageNum;
 
     public GameObject titleUiInstance;
 
@@ -50,8 +51,8 @@ public class UiManager : MonoBehaviour
 
     public GameObject backgroundNoise;
 
-    public GameObject stageMng;
-    StageManager StageManagerScript;
+    private GameObject stageManagerObject;
+    private StageManager stageManager;
 
     private GameObject pauseManagerObject;
     private PauseManager pauseManager;
@@ -59,8 +60,21 @@ public class UiManager : MonoBehaviour
     private GameObject dataManagerObject;
     private DataManager dataManager;
 
+    private GameObject fadeManagerObject;
+    private Fade fadeManager;
+
+    private static bool nowFade;
+
     void Awake()
     {
+        if(nowFade == null)
+        {
+            nowFade = false;
+        }
+
+        stageManagerObject = GameObject.Find("StageManager");
+        stageManager = stageManagerObject.GetComponent<StageManager>();
+
         pauseManagerObject = GameObject.Find("PauseManager");
         pauseManager = pauseManagerObject.GetComponent<PauseManager>();
 
@@ -69,9 +83,17 @@ public class UiManager : MonoBehaviour
 
         dataManager.Load();
 
+        fadeManagerObject = GameObject.Find("FadeManager");
+        fadeManager = fadeManagerObject.GetComponent<Fade>();
+
         if (state == null)
         {
             state = (int)State.Title;
+            fadeManager.FadeIn();
+        }
+        if (nextState == null)
+        {
+            nextState = state;
         }
         if (menuState == null)
         {
@@ -85,6 +107,24 @@ public class UiManager : MonoBehaviour
 
     void Update()
     {
+        if(state != nextState && !Fade.isFadeOut && !nowFade)
+        {
+            fadeManager.FadeOut();
+            pauseManager.Pause();
+            nowFade = true;
+        }
+
+        if(state != nextState && !Fade.isFadeOut && !Fade.isFadeIn && nowFade)
+        {
+            fadeManager.FadeIn();
+            nowFade = false;
+            state = nextState;
+            if (nextState == (int)State.Game)
+            {
+                stageManager.GoStageAny(stageNum);
+            }
+        }
+
         switch (state)
         {
             case (int)State.Title:
@@ -98,9 +138,9 @@ public class UiManager : MonoBehaviour
                 backgroundNoise.SetActive(false);
                 resultInstance.SetActive(false);
 
-                if (Input.GetKeyDown(KeyCode.Return))
+                if (Input.GetKeyDown(KeyCode.Return) && !Fade.isFadeOut && !Fade.isFadeIn)
                 {
-                    state = (int)State.StageSelect;
+                    nextState = (int)State.StageSelect;
                 }
                 break;
 
@@ -182,6 +222,7 @@ public class UiManager : MonoBehaviour
                 break;
             case (int)State.Result:
                 pauseManager.Pause();
+
                 menuAllUiInstance.SetActive(false);
                 titleUiInstance.SetActive(false);
                 menuUiInstance.SetActive(false);
@@ -197,7 +238,15 @@ public class UiManager : MonoBehaviour
                 break;
 
             case (int)State.Game:
-                pauseManager.Resume();
+                if(nextState == (int)State.Game)
+                {
+                    pauseManager.Resume();
+                }
+                else
+                {
+                    pauseManager.Pause();
+                }
+
                 stageSelectInstance.SetActive(false);
                 titleUiInstance.SetActive(false);
                 menuAllUiInstance.SetActive(false);
@@ -205,9 +254,10 @@ public class UiManager : MonoBehaviour
                 backgroundNoise.SetActive(false);
                 resultInstance.SetActive(false);
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape) && !Fade.isFadeOut && !Fade.isFadeIn)
                 {
                     state = (int)State.Menu;
+                    nextState = (int)State.Menu;
                     menuState = (int)MenuState.Menu;
                 }
                 break;
@@ -236,6 +286,16 @@ public class UiManager : MonoBehaviour
         state = _state;
     }
 
+    public int GetNextState()
+    {
+        return nextState;
+    }
+
+    public void SetNextState(int _state)
+    {
+        nextState = _state;
+    }
+
     public int GetMenuState()
     {
         return menuState;
@@ -254,5 +314,10 @@ public class UiManager : MonoBehaviour
     public void SetConfigState(int _state)
     {
         configState = _state;
+    }
+
+    public void SetStageNum(int num)
+    {
+        stageNum = num;
     }
 }
