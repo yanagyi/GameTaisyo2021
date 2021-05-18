@@ -37,20 +37,14 @@ public class PauseManager : MonoBehaviour
 
 
     // ポーズ用配列
-    private RigidbodyVelocity[] pauseRigidbodyVelocitys;
-    private Rigidbody[] pauseRigidbodys;
-    private MonoBehaviour[] pauseMonoBehaviours;
+    private static RigidbodyVelocity[] pauseRigidbodyVelocitys;
+    private static Rigidbody[] pauseRigidbodys;
+    private static MonoBehaviour[] pauseMonoBehaviours;
 
     void Start()
     {
-        if(isPause == null)
-        {
-            isPause = false;
-        }
-        if(isPause == null)
-        {
-            prevPause = false;
-        }
+        isPause = false;
+        prevPause = false;
     }
 
     void Update()

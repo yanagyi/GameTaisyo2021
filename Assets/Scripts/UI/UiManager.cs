@@ -110,7 +110,6 @@ public class UiManager : MonoBehaviour
         if(state != nextState && !Fade.isFadeOut && !nowFade)
         {
             fadeManager.FadeOut();
-            pauseManager.Pause();
             nowFade = true;
         }
 
@@ -238,11 +237,7 @@ public class UiManager : MonoBehaviour
                 break;
 
             case (int)State.Game:
-                if(nextState == (int)State.Game)
-                {
-                    pauseManager.Resume();
-                }
-                else
+                if(nextState != (int)State.Game)
                 {
                     pauseManager.Pause();
                 }

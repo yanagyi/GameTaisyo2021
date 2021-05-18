@@ -22,6 +22,9 @@ public class PlayerControl : UsableObject
 
       //パーティクルシステムの取得
       particle = GetComponentInChildren<ParticleSystem>();
+
+        // 重力の初期化
+        Physics.gravity = new Vector3(0.0f, -9.81f, 0.0f);
     }
 
     // Update is called once per frame

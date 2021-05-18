@@ -6,11 +6,14 @@ using UnityEngine.SceneManagement;
 // ButtonBaseƒNƒ‰ƒX‚©‚çŒp³‚µ‚±‚±‚Åˆ—
 public class ButtonManager : ButtonBase
 {
-    GameObject uiManagerObject;
-    UiManager _uiManager;
+    private GameObject uiManagerObject;
+    private UiManager _uiManager;
 
-    GameObject stageManagerObject;
-    StageManager stageManager;
+    private GameObject stageManagerObject;
+    private StageManager stageManager;
+
+    private GameObject pauseManagerObject;
+    private PauseManager pauseManager;
 
     void Start()
     {
@@ -19,6 +22,9 @@ public class ButtonManager : ButtonBase
 
         stageManagerObject = GameObject.Find("StageManager");
         stageManager = stageManagerObject.GetComponent<StageManager>();
+
+        pauseManagerObject = GameObject.Find("PauseManager");
+        pauseManager = pauseManagerObject.GetComponent<PauseManager>();
     }
 
     void Update()
@@ -185,6 +191,8 @@ public class ButtonManager : ButtonBase
     private void ClickButtonGameBack()
     {
         Debug.Log("ClickButton GameBack");
+
+        pauseManager.Resume();
 
         _uiManager.SetState((int)UiManager.State.Game);
         _uiManager.SetNextState((int)UiManager.State.Game);
