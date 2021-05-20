@@ -40,6 +40,7 @@ public class PlayerControl : UsableObject
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
         }
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) {
+            SetKinematic(false);
             Gravity_Effect();
         }
     }
@@ -67,5 +68,38 @@ public class PlayerControl : UsableObject
         {
             particle.Play();
         }
+    }
+
+    public void SetKinematic(bool flag)
+    {
+        rb.isKinematic = flag;
+    }
+
+    public bool GetKinematic()
+    {
+        if(rb.isKinematic)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    public void playerGrasp()
+    {
+        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX |
+                                                           RigidbodyConstraints.FreezeRotationY |
+                                                           RigidbodyConstraints.FreezeRotationZ |
+                                                           RigidbodyConstraints.FreezePositionX |
+                                                           RigidbodyConstraints.FreezePositionY |
+                                                           RigidbodyConstraints.FreezePositionZ;
+    }
+
+    public void playerGraspOff()
+    {
+        gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX |
+                                                           RigidbodyConstraints.FreezeRotationY |
+                                                           RigidbodyConstraints.FreezeRotationZ |
+                                                           RigidbodyConstraints.FreezePositionX;
     }
 }
