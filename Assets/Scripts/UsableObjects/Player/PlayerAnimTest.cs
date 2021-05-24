@@ -14,7 +14,7 @@ public class PlayerAnimTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             //transform.position += transform.forward * 0.2f;
             anim.SetBool("isWalking", true);
