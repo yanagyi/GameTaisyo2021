@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 1602503575435693330}
   m_Layer: 0
   m_Name: lift
-  m_TagString: Untagged
+  m_TagString: move_floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

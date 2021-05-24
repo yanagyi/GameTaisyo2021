@@ -11,6 +11,10 @@ public class Zenmai : MonoBehaviour
     public GameObject nowParent;
     int state;
     public float SpeedMag;
+
+    private GameObject player;
+    private PlayerControl playerScript;
+
     private enum statePattern
     {
         Idle=0,
@@ -21,6 +25,9 @@ public class Zenmai : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<PlayerControl>();
+
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<Rigidbody>().useGravity = false;
 
@@ -62,6 +69,9 @@ public class Zenmai : MonoBehaviour
             state = (int)statePattern.Controlled;
             nowParent = null;
             gameObject.transform.parent = null;
+
+            playerScript.playerGrasp();
+
             return;
         }
         if (nowParent == null) {
@@ -77,8 +87,11 @@ public class Zenmai : MonoBehaviour
    private void Controlled() {
         if (!Input.GetKey(LTrigger) && !Input.GetKey(KeyCode.LeftShift))  {
             state = (int)statePattern.ParentCheck;
+            playerScript.playerGraspOff();
             return;
         }
+
+        playerScript.playerGrasp();
 
         //最寄りのゼンマイオブジェクト捜索
         gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")*SpeedMag, Input.GetAxis("Horizontal") * SpeedMag);
