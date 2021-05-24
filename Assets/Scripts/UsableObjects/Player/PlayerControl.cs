@@ -11,6 +11,8 @@ public class PlayerControl : UsableObject
     bool onTheWall;
     bool nowFall;
 
+    Animator anim;
+
     //パーティクル変数
     private ParticleSystem particle;
 
@@ -25,6 +27,8 @@ public class PlayerControl : UsableObject
 
         // 重力の初期化
         Physics.gravity = new Vector3(0.0f, -9.81f, 0.0f);
+       // Init anim
+       this.anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,13 +39,20 @@ public class PlayerControl : UsableObject
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0) {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -moveSpeed));
+            anim.SetBool("isWalking", true);
         }
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0) {
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
+        {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
+            anim.SetBool("isWalking", true);
         }
-        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) {
+        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) {
             SetKinematic(false);
             Gravity_Effect();
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
     }
 
