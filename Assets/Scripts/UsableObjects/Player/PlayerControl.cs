@@ -8,9 +8,7 @@ public class PlayerControl : UsableObject
    public Rigidbody rb;
     public float moveSpeed;//= 0.25f;
     public string button;
-    bool onTheWall;
-    bool nowFall;
-
+    public float rotateSpeed;//3.0くらいがよいっぽい
     Animator anim;
 
     //パーティクル変数
@@ -34,7 +32,7 @@ public class PlayerControl : UsableObject
     // Update is called once per frame
     void Update()
     {
-        if (isZenmai == false&&nowFall==false)
+        if (isZenmai == false)
             return;
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0) {
@@ -48,7 +46,7 @@ public class PlayerControl : UsableObject
         }
         else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) {
             SetKinematic(false);
-            Gravity_Effect();
+            StartCoroutine("GravityEffect");
         }
         else
         {
@@ -64,11 +62,16 @@ public class PlayerControl : UsableObject
 
     IEnumerator GravityEffect()
     {
-        Gravity_Effect();
-        do {
-            
+        rb.isKinematic = true;
+        transform.position += new Vector3(0.0f,-0.25f*Physics.gravity.y, 0.0f);
+        for (float i = 0; i < 180.0f; i+=rotateSpeed) {
+            //上下を180まで、前後を90(=180/2)回転
+            transform.Rotate(rotateSpeed,0.0f,0.0f,Space.World);
             yield return null;
-        } while (nowFall == true);
+        }
+        rb.isKinematic = false;
+        Gravity_Effect();
+
         yield break;
     }
 
@@ -113,4 +116,5 @@ public class PlayerControl : UsableObject
                                                            RigidbodyConstraints.FreezeRotationZ |
                                                            RigidbodyConstraints.FreezePositionX;
     }
+
 }
