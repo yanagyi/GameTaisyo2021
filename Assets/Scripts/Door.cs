@@ -33,24 +33,20 @@ public class Door : SwitchObjectsScript
     public override IEnumerator OnAction()
     {
         isActivate = true;
-        float count=0;
-        do {
+for(float count=0.0f;count<90.0f;count+=Mathf.Abs(RotSpeed)) {
             transform.Rotate(new Vector3(RotSpeed, 0, 0),Space.World);
             yield return null;
-            count += Mathf.Abs(RotSpeed);
-        } while (count < 90.0f);
+        } 
         isActivate = false;
         yield break;
     }
     public override IEnumerator OffAction()
     {
         isActivate = true;
-        float count = 0;
-        do {
+        for(float count=0.0f;count<90.0f;count+= Mathf.Abs(RotSpeed)) {
             transform.Rotate(new Vector3(-RotSpeed, 0, 0),Space.World) ;
-            count += Mathf.Abs(RotSpeed);
             yield return null;
-        } while (count<90.0f);
+        } 
         isActivate = false;
         yield break;
     }
