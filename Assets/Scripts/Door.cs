@@ -35,7 +35,7 @@ public class Door : SwitchObjectsScript
         do {
             transform.Rotate(new Vector3(RotSpeed, 0, 0),Space.World);
             yield return null;
-            count += RotSpeed;
+            count += Mathf.Abs(RotSpeed);
         } while (count < 90.0f);
         isActivate = false;
         yield break;
@@ -45,8 +45,8 @@ public class Door : SwitchObjectsScript
         isActivate = true;
         float count = 0;
         do {
-            transform.Rotate(new Vector3(-RotSpeed, 0, 0),Space.World) ;
-            count += RotSpeed;
+            transform.Rotate(new Vector3(-RotSpeed, 0, 0),Space.World);
+            count += Mathf.Abs(RotSpeed);
             yield return null;
         } while (count<90.0f);
         isActivate = false;
