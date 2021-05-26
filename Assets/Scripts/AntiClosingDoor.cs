@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Door : SwitchObjectsScript
+public class AntiClosingDoor : SwitchObjectsScript
 {
     public GameObject Switch;
     FloorButton ButtonScript;
-    public float MaxRot;
     public float RotSpeed;
     public bool isActivate;
     public bool dummy;
+    bool isOpen;
     // Start is called before the first frame update
     void Start()
     {
         ButtonScript = Switch.GetComponent<FloorButton>();
+        isOpen = false;
     }
 
     // Update is called once per frame
@@ -24,35 +24,45 @@ public class Door : SwitchObjectsScript
     }
     public override void CallActionOn()
     {
-        Debug.Log("CalledActOn");
         StartCoroutine("OnAction");
     }
     public override void CallActionOff()
     {
-        Debug.Log("CalledActOff");
-        StartCoroutine("OffAction");
+        return;
     }
     public override IEnumerator OnAction()
     {
-
         isActivate = true;
-        float count = 0.0f;
-        do {
-            transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
-            count += Mathf.Abs(RotSpeed);
-            yield return null;
-        } while (count < 90.0f);
+        float count = 0;
+        switch (isOpen) {
+            case true:
+                do {
+                    transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
+                    count += RotSpeed;
+                    yield return null;
+                } while (count < 90.0f);
+                isOpen = false;
+                break;
+            case false:
+                do {
+                    transform.Rotate(new Vector3(-RotSpeed, 0, 0), Space.World);
+                    yield return null;
+                    count += RotSpeed;
+                } while (count < 90.0f);
+                isOpen = true;
+                break;
+        }
+
         isActivate = false;
         yield break;
     }
     public override IEnumerator OffAction()
     {
-
         isActivate = true;
-        float count = 0.0f;
+        float count = 0;
         do {
-            transform.Rotate(new Vector3(-RotSpeed, 0, 0), Space.World);
-            count += Mathf.Abs(RotSpeed);
+            transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
+            count += RotSpeed;
             yield return null;
         } while (count < 90.0f);
         isActivate = false;
