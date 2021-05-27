@@ -97,8 +97,25 @@ public class Zenmai : MonoBehaviour
         gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")*SpeedMag, Input.GetAxis("Horizontal") * SpeedMag);
     }
     private void ParentCheck() {
+        //当たり判定用に例を作る
+        Ray upRay;
+        Ray downRay;
+        RaycastHit hit;
+        float RayLength=5.0f;
+        upRay = new Ray(transform.position, Vector3.up * RayLength);
+        downRay = new Ray(transform.position, Vector3.down * RayLength);
 
-        state = (int)statePattern.Idle;
+        if (Physics.Raycast(upRay, out hit, RayLength)|| Physics.Raycast(upRay, out hit, RayLength)) {
+            if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "zenmaiObj") {
+                //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
+                Setparent(hit.collider.gameObject);
+            } else {
+                //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
+                Setparent(oldParent);
+            }
+        }
+
+            state = (int)statePattern.Idle;
     }
 
     public void Setparent(GameObject obj)
@@ -106,7 +123,8 @@ public class Zenmai : MonoBehaviour
         nowParent = obj;
         nowParent.GetComponent<UsableObject>().isZenmai = true;
         oldParent = nowParent;
-        gameObject.transform.parent = nowParent.transform;
+        gameObject.transform.parent = nowParent.tr
+ansform;
         if (obj.tag == "Player") {
             gameObject.transform.localPosition = new Vector3(0, 0, -0.02f);
         } else {
@@ -114,9 +132,24 @@ public class Zenmai : MonoBehaviour
         }
 
     }
+    /*
+    private void OnTriggerEnter(Collider other)
+    {
+        if (state == (int)statePattern.Idle)
+            return;
+        //入力してんのに当たり判定なかったら戻る
+
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "zenmaiObj") {
+            //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
+            Setparent(other.gameObject);
+        } else {
+            //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
+            Setparent(oldParent);
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
-        if (state != (int)statePattern.ParentCheck)
+        if (state == (int)statePattern.Idle)
             return;
         //入力してんのに当たり判定なかったら戻る
         
@@ -128,6 +161,7 @@ public class Zenmai : MonoBehaviour
             Setparent(oldParent);
         }
     }
+    */
     public int GetState() { return state; }//0がIdle,1がコントロール、2がチェック
     
 }
