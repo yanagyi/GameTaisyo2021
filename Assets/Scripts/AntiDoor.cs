@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class Door : SwitchObjectsScript
+public class AntiDoor : SwitchObjectsScript
 {
     public GameObject Switch;
     FloorButton ButtonScript;
@@ -38,7 +37,7 @@ public class Door : SwitchObjectsScript
         isActivate = true;
         float count = 0.0f;
         do {
-            transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
+            transform.Rotate(new Vector3(-RotSpeed, 0, 0), Space.World);
             count += Mathf.Abs(RotSpeed);
             yield return null;
         } while (count < 90.0f);
@@ -51,7 +50,7 @@ public class Door : SwitchObjectsScript
         isActivate = true;
         float count = 0.0f;
         do {
-            transform.Rotate(new Vector3(-RotSpeed, 0, 0), Space.World);
+            transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
             count += Mathf.Abs(RotSpeed);
             yield return null;
         } while (count < 90.0f);
