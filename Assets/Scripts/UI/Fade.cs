@@ -74,7 +74,7 @@ public class Fade : MonoBehaviour
         //フラグ有効なら毎フレームフェードイン/アウト処理
         if (isFadeIn)
         {
-            alpha -= fadeSpeed;
+            alpha -= fadeSpeed * Time.deltaTime;
 
             //フェードイン終了判定
             if (alpha <= 0.0f)
@@ -106,7 +106,7 @@ public class Fade : MonoBehaviour
         }
         else if (isFadeOut)
         {
-            alpha += fadeSpeed;
+            alpha += fadeSpeed * Time.deltaTime;
 
             //フェードアウト終了判定
             if (alpha >= 1.0f)
