@@ -6,7 +6,8 @@ public class AntiDoor : SwitchObjectsScript
 {
     public GameObject Switch;
     FloorButton ButtonScript;
-    public float MaxRot;
+    public float startAngle;
+    public float maxAngle;
     public float RotSpeed;
     public bool isActivate;
     public bool dummy;
@@ -33,28 +34,42 @@ public class AntiDoor : SwitchObjectsScript
     }
     public override IEnumerator OnAction()
     {
+       
 
-        isActivate = true;
-        float count = 0.0f;
-        do {
-            transform.Rotate(new Vector3(-RotSpeed, 0, 0), Space.World);
-            count += Mathf.Abs(RotSpeed);
+        Vector3 position = this.transform.localPosition;
+        Quaternion rotation = this.transform.localRotation;
+        Vector3 scale = this.transform.localScale;
+
+        // クォータニオン → オイラー角への変換
+        Vector3 rotationAngles = rotation.eulerAngles;
+
+        // X軸の90度回転
+        for (int i = 0; i < (maxAngle - startAngle) / RotSpeed; i++) {
+            rotationAngles.x += RotSpeed;
+            rotation = Quaternion.Euler(rotationAngles);
+            transform.localRotation = rotation;
             yield return null;
-        } while (count < 90.0f);
-        isActivate = false;
+        }
         yield break;
     }
     public override IEnumerator OffAction()
     {
 
-        isActivate = true;
-        float count = 0.0f;
-        do {
-            transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
-            count += Mathf.Abs(RotSpeed);
+        // Transform値を取得する
+        Vector3 position = this.transform.localPosition;
+        Quaternion rotation = this.transform.localRotation;
+        Vector3 scale = this.transform.localScale;
+
+        // クォータニオン → オイラー角への変換
+        Vector3 rotationAngles = rotation.eulerAngles;
+
+        // X軸の90度回転
+        for (int i = 0; i < (startAngle) / RotSpeed; i++) {
+            rotationAngles.x -= RotSpeed;
+            rotation = Quaternion.Euler(rotationAngles);
+            transform.localRotation = rotation;
             yield return null;
-        } while (count < 90.0f);
-        isActivate = false;
+        }
         yield break;
     }
 }
