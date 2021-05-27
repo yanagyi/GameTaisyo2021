@@ -20,6 +20,7 @@ public class FloorButton : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Hit");
         if (collision.gameObject.tag == "Player") {
             isTrigger = true;
             CtrlObjScript.CallActionOn();
