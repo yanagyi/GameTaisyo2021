@@ -15,24 +15,26 @@ public class VolumeManager : MonoBehaviour
     public Slider SeVolumeSlider;
 
     //スライダー選択用変数
-    //int select;
+    int select;
 
     // Start is called before the first frame update
     void Start()
     {
         //選択用変数初期化  
-        //select = 0;
+        select = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         //スライダーの選択
         {
-            if (Input.GetKeyDown(KeyCode.W) || Input.GetAxis("Vertical") > 0)
+            //if (Input.GetKeyDown(KeyCode.W) || Input.GetAxis("Vertical") > 0)
+            if (Input.GetKeyDown(KeyCode.W))
                 select--;
-            if (Input.GetKeyDown(KeyCode.S) || Input.GetAxis("Vertical") < 0)
+            //if (Input.GetKeyDown(KeyCode.S) || Input.GetAxis("Vertical") < 0)
+            if (Input.GetKeyDown(KeyCode.S))
                 select++;
             if (select < 0)
                 select = 0;
@@ -41,7 +43,8 @@ public class VolumeManager : MonoBehaviour
         }
 
         //ボリュームを上げる
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetAxis("Horizontal") > 0)
+        //if (Input.GetKeyDown(KeyCode.D) || Input.GetAxis("Horizontal") > 0)
+        if (Input.GetKeyDown(KeyCode.D))
         {
             switch (select)
             {
@@ -61,7 +64,8 @@ public class VolumeManager : MonoBehaviour
         }
 
         //ボリュームを下げる
-        if (Input.GetKeyDown(KeyCode.A)|| Input.GetAxis("Horizontal") < 0)
+        //if (Input.GetKeyDown(KeyCode.A)|| Input.GetAxis("Horizontal") < 0)
+        if (Input.GetKeyDown(KeyCode.A))
         {
             switch (select)
             {
@@ -79,7 +83,7 @@ public class VolumeManager : MonoBehaviour
                     break;
             }
         }
-        */
+        
     }
 
     //音量（デシベル）を0~1で簡単に表せるようにする関数
