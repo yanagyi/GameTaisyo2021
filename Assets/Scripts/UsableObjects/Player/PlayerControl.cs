@@ -45,8 +45,7 @@ public class PlayerControl : UsableObject
             anim.SetBool("isWalking", true);
         }
         else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) {
-            SetKinematic(false);
-            StartCoroutine("GravityEffect");
+            Gravity_Effect();
         }
         else
         {
