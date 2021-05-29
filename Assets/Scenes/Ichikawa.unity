@@ -23137,6 +23137,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 231699588}
     m_Modifications:
+    - target: {fileID: 623238758676274315, guid: 2ecbb1d1357ee7443956eb3c05b4fffd, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1602503575085947794, guid: 2ecbb1d1357ee7443956eb3c05b4fffd, type: 3}
       propertyPath: m_Name
       value: liftSet (4)
@@ -46903,6 +46907,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7787019940463866724, guid: af3d04f2983a47d4e9404cde05370ebc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667487231141831004, guid: af3d04f2983a47d4e9404cde05370ebc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667487231141831004, guid: af3d04f2983a47d4e9404cde05370ebc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8667487231141831004, guid: af3d04f2983a47d4e9404cde05370ebc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
       value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
