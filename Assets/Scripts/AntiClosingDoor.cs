@@ -6,6 +6,8 @@ public class AntiClosingDoor : SwitchObjectsScript
 {
     public GameObject Switch;
     FloorButton ButtonScript;
+    public float startAngle;
+    public float maxAngle;
     public float RotSpeed;
     public bool isActivate;
     public bool dummy;
@@ -32,23 +34,33 @@ public class AntiClosingDoor : SwitchObjectsScript
     }
     public override IEnumerator OnAction()
     {
+        Vector3 position = this.transform.localPosition;
+        Quaternion rotation = this.transform.localRotation;
+        Vector3 scale = this.transform.localScale;
+        // クォータニオン → オイラー角への変換
+        Vector3 rotationAngles = rotation.eulerAngles;
+
         isActivate = true;
-        float count = 0;
         switch (isOpen) {
             case true:
-                do {
-                    transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
-                    count += RotSpeed;
+
+                // X軸の90度回転
+                for (int i = 0; i < (maxAngle - startAngle) / RotSpeed; i++) {
+                    rotationAngles.x += RotSpeed;
+                    rotation = Quaternion.Euler(rotationAngles);
+                    transform.localRotation = rotation;
                     yield return null;
-                } while (count < 90.0f);
+                }
                 isOpen = false;
                 break;
             case false:
-                do {
-                    transform.Rotate(new Vector3(-RotSpeed, 0, 0), Space.World);
+                // X軸の90度回転
+                for (int i = 0; i < (startAngle) / RotSpeed; i++) {
+                    rotationAngles.x -= RotSpeed;
+                    rotation = Quaternion.Euler(rotationAngles);
+                    transform.localRotation = rotation;
                     yield return null;
-                    count += RotSpeed;
-                } while (count < 90.0f);
+                }
                 isOpen = true;
                 break;
         }
@@ -58,13 +70,35 @@ public class AntiClosingDoor : SwitchObjectsScript
     }
     public override IEnumerator OffAction()
     {
+        Vector3 position = this.transform.localPosition;
+        Quaternion rotation = this.transform.localRotation;
+        Vector3 scale = this.transform.localScale;
+        // クォータニオン → オイラー角への変換
+        Vector3 rotationAngles = rotation.eulerAngles;
         isActivate = true;
-        float count = 0;
-        do {
-            transform.Rotate(new Vector3(RotSpeed, 0, 0), Space.World);
-            count += RotSpeed;
-            yield return null;
-        } while (count < 90.0f);
+        switch (isOpen) {
+            case false:
+
+                // X軸の90度回転
+                for (int i = 0; i < (maxAngle - startAngle) / RotSpeed; i++) {
+                    rotationAngles.x += RotSpeed;
+                    rotation = Quaternion.Euler(rotationAngles);
+                    transform.localRotation = rotation;
+                    yield return null;
+                }
+                isOpen = false;
+                break;
+            case true:
+                // X軸の90度回転
+                for (int i = 0; i < (startAngle) / RotSpeed; i++) {
+                    rotationAngles.x -= RotSpeed;
+                    rotation = Quaternion.Euler(rotationAngles);
+                    transform.localRotation = rotation;
+                    yield return null;
+                }
+                isOpen = true;
+                break;
+        }
         isActivate = false;
         yield break;
     }
