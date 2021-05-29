@@ -283,6 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Switch: {fileID: 2678307059821934793}
+  MaxRot: 0
   RotSpeed: 1
   isActivate: 0
   dummy: 0
