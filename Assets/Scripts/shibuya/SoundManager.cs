@@ -7,14 +7,18 @@ public class SoundManager : MonoBehaviour
 {
 
     //オーディオソース設定
-    [SerializeField] private AudioSource BGMAudioSource;
-    [SerializeField] private AudioSource SEAudioSource;
+    [SerializeField]
+    private AudioSource BGMAudioSource;
+    [SerializeField]
+    private AudioSource SEAudioSource;
 
     //音源を入れる変数
-    [SerializeField] private AudioClip[] BGM;
+    [SerializeField]
+    private AudioClip[] BGM;
 
 
-    [SerializeField] private AudioClip[] SE;
+    [SerializeField]
+    private AudioClip[] SE;
 
 
     // Start is called before the first frame update
@@ -26,14 +30,6 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            
-            SEAudioSource.PlayOneShot(SE[0]);
-        }
-                    
-        
 
     }
 
