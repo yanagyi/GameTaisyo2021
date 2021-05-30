@@ -14,7 +14,7 @@ public class Zenmai : MonoBehaviour
 
     private GameObject player;
     private PlayerControl playerScript;
-
+    public GameObject SoundObject;
     private enum statePattern
     {
         Idle=0,
@@ -40,7 +40,7 @@ public class Zenmai : MonoBehaviour
         }
         
         state = (int)statePattern.Idle;
-
+        SoundObject = GameObject.Find("SoundManager");
     }
 
     // Update is called once per frame
@@ -107,11 +107,14 @@ public class Zenmai : MonoBehaviour
 
         if (Physics.Raycast(upRay, out hit, RayLength) || Physics.Raycast(upRay, out hit, RayLength)) {
             if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "zenmaiObj") {
+
                 //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
                 Setparent(hit.collider.gameObject);
+                SoundObject.GetComponent<SoundManager>().Play_SE_Object_Active();
             } else {
                 //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
                 Setparent(oldParent);
+                SoundObject.GetComponent<SoundManager>().Play_SE_Object_Passive();
             }
         }
 
