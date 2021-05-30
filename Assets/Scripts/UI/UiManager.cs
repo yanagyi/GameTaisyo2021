@@ -66,6 +66,7 @@ public class UiManager : MonoBehaviour
     private static bool nowFade;
 
     public GameObject SoundObject;
+    private static bool isBgmOn;
 
     void Awake()
     {
@@ -73,6 +74,8 @@ public class UiManager : MonoBehaviour
         {
             nowFade = false;
         }
+
+        isBgmOn = false;
 
         stageManagerObject = GameObject.Find("StageManager");
         stageManager = stageManagerObject.GetComponent<StageManager>();
@@ -125,14 +128,20 @@ public class UiManager : MonoBehaviour
             if (nextState == (int)State.Game)
             {
                 stageManager.GoStageAny(stageNum);
-                SoundObject.GetComponent<SoundManager>().Play_BGM_GAME();
             }
+            isBgmOn = false;
         }
 
         switch (state)
         {
             case (int)State.Title:
                 pauseManager.Pause();
+
+                if (!isBgmOn)
+                {
+                    SoundObject.GetComponent<SoundManager>().Play_BGM_TITLE();
+                    isBgmOn = true;
+                }
 
                 titleUiInstance.SetActive(true);
 
@@ -145,13 +154,18 @@ public class UiManager : MonoBehaviour
                 if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.JoystickButton1)) && !Fade.isFadeOut && !Fade.isFadeIn)
                 {
                     nextState = (int)State.StageSelect;
-                    SoundObject.GetComponent<SoundManager>().Play_BGM_SELECT();
                 }
 
                 break;
 
             case (int)State.StageSelect:
                 pauseManager.Pause();
+
+                if (!isBgmOn)
+                {
+                    SoundObject.GetComponent<SoundManager>().Play_BGM_SELECT();
+                    isBgmOn = true;
+                }
 
 
                 menuAllUiInstance.SetActive(false);
@@ -249,6 +263,12 @@ public class UiManager : MonoBehaviour
                 if(nextState != (int)State.Game)
                 {
                     pauseManager.Pause();
+                }
+
+                if(!isBgmOn)
+                {
+                    SoundObject.GetComponent<SoundManager>().Play_BGM_GAME();
+                    isBgmOn = true;
                 }
 
                 stageSelectInstance.SetActive(false);
