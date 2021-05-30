@@ -11,7 +11,7 @@ public class AntiClosingDoor : SwitchObjectsScript
     public float RotSpeed;
     public bool isActivate;
     public bool dummy;
-    public bool isOpen;
+    bool isOpen;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,13 +26,11 @@ public class AntiClosingDoor : SwitchObjectsScript
     }
     public override void CallActionOn()
     {
-        Debug.Log("yobareta,on");
-        StartCoroutine(OnAction());
+        StartCoroutine("OnAction");
     }
     public override void CallActionOff()
     {
-        Debug.Log("yobareta,off");
-        StartCoroutine(OffAction());
+        return;
     }
     public override IEnumerator OnAction()
     {
