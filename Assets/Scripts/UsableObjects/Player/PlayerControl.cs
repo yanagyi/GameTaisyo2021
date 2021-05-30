@@ -9,6 +9,8 @@ public class PlayerControl : UsableObject
     public float moveSpeed;//= 0.25f;
     public string button;
     public float rotateSpeed;//3.0くらいがよいっぽい
+    public float GVOn;
+    public bool isActive;
     Animator anim;
 
     //パーティクル変数
@@ -27,6 +29,8 @@ public class PlayerControl : UsableObject
         Physics.gravity = new Vector3(0.0f, -9.81f, 0.0f);
        // Init anim
        this.anim = GetComponent<Animator>();
+
+        isActive = false;
     }
 
     // Update is called once per frame
@@ -35,7 +39,8 @@ public class PlayerControl : UsableObject
         if (isZenmai == false)
             return;
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0) {
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
+        {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -moveSpeed));
             anim.SetBool("isWalking", true);
         }
@@ -44,8 +49,9 @@ public class PlayerControl : UsableObject
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
             anim.SetBool("isWalking", true);
         }
-        else if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) {
-            Gravity_Effect();
+        else if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) && isActive == false)
+        {
+            StartCoroutine("GravityEffect");
         }
         else
         {
@@ -61,16 +67,29 @@ public class PlayerControl : UsableObject
 
     IEnumerator GravityEffect()
     {
+        isActive = true;
+
+        // Transform値を取得する
+        Vector3 position = this.transform.localPosition;
+        Quaternion rotation = this.transform.localRotation;
+
+        // クォータニオン → オイラー角への変換
+        Vector3 rotationAngles = rotation.eulerAngles;
+
         rb.isKinematic = true;//重力の影響をうけなくする
-        transform.position += new Vector3(0.0f,-0.25f*Physics.gravity.y, 0.0f);//重力の反対方向(=プレイ屋の頭の方向）
-        //にいったんプレイヤーの位置位置を上にあげている
+       
         for (float i = 0; i < 180.0f; i+=rotateSpeed) {
-            //上下を180まで、前後を90(=180/2)回転
-            transform.Rotate(rotateSpeed,rotateSpeed,0.0f,Space.Self);
+            transform.localPosition += new Vector3(0.0f, -GVOn * (Physics.gravity.y)*0.01f, 0.0f);//重力の反対方向(=プレイ屋の頭の方向）
+                                                                                      //にいったんプレイヤーの位置位置を上にあげている
+
+            rotationAngles.z += rotateSpeed;
+            rotation = Quaternion.Euler(rotationAngles);
+            transform.localRotation = rotation;
             yield return null;
         }
         rb.isKinematic = false;
         Gravity_Effect();
+        isActive = false;
 
         yield break;
     }
