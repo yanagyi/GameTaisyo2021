@@ -40,37 +40,37 @@ public class SoundManager : MonoBehaviour
     }
 
     //====BGM====
-    void Play_BGM_CLEAR()
+    public void Play_BGM_CLEAR()
     {
         BGMAudioSource.Stop();
         BGMAudioSource.PlayOneShot(BGM[0]);
     }
 
-    void Play_BGM_GAME()
+    public void Play_BGM_GAME()
     {
         BGMAudioSource.Stop();
         BGMAudioSource.PlayOneShot(BGM[1]);
     }
 
-    void Play_BGM_SELECT()
+    public void Play_BGM_SELECT()
     {
         BGMAudioSource.Stop();
         BGMAudioSource.PlayOneShot(BGM[2]);
     }
 
-    void Play_BGM_TITLE()
+    public void Play_BGM_TITLE()
     {
         BGMAudioSource.Stop();
         BGMAudioSource.PlayOneShot(BGM[3]);
     }
 
-    void Play_BGM_TUTORIAL()
+    public void Play_BGM_TUTORIAL()
     {
         BGMAudioSource.Stop();
         BGMAudioSource.PlayOneShot(BGM[4]);
     }
 
-    void Play_BGM_GAMEOVER()
+    public void Play_BGM_GAMEOVER()
     {
         BGMAudioSource.Stop();
         BGMAudioSource.PlayOneShot(BGM[5]);
@@ -78,78 +78,77 @@ public class SoundManager : MonoBehaviour
 
 
     //====SE====
-    void Play_SE_Cancel()
+    public void Play_SE_Cancel()
     {
         SEAudioSource.PlayOneShot(SE[0]);
     }
 
-    void Play_SE_Deside()
+    public void Play_SE_Deside()
     {
         SEAudioSource.PlayOneShot(SE[1]);
     }
 
-    void Play_SE_Ground_Collision()
+    public void Play_SE_Ground_Collision()
     {
         SEAudioSource.PlayOneShot(SE[2]);
     }
 
-    void Play_SE_Item_Active()
+    public void Play_SE_Item_Active()
     {
         SEAudioSource.PlayOneShot(SE[3]);
     }
 
-    void Play_SE_Item_Passive()
+    public void Play_SE_Item_Passive()
     {
         SEAudioSource.PlayOneShot(SE[4]);
     }
 
-    void Play_SE_Object_Active()
+    public void Play_SE_Object_Active()
     {
         SEAudioSource.PlayOneShot(SE[5]);
     }
 
-    void Play_SE_Object_Passive()
+    public void Play_SE_Object_Passive()
     {
         SEAudioSource.PlayOneShot(SE[6]);
     }
 
-
-    void Play_SE_Object_Unusable_Collision()
+    public void Play_SE_Object_Unusable_Collision()
     {
         SEAudioSource.PlayOneShot(SE[7]);
     }
 
-    void Play_SE_Object_Usable_Collision()
+    public void Play_SE_Object_Usable_Collision()
     {
         SEAudioSource.PlayOneShot(SE[8]);
     }
 
-    void Play_SE_Remove_Item()
+    public void Play_SE_Remove_Item()
     {
         SEAudioSource.PlayOneShot(SE[9]);
     }
 
-    void Play_SE_Result()
+    public void Play_SE_Result()
     {
         SEAudioSource.PlayOneShot(SE[10]);
     }
 
-    void Play_SE_Retry()
+    public void Play_SE_Retry()
     {
         SEAudioSource.PlayOneShot(SE[11]);
     }
 
-    void Play_SE_Start()
+    public void Play_SE_Start()
     {
         SEAudioSource.PlayOneShot(SE[12]);
     }
 
-    void Play_SE_Use_Item()
+    public void Play_SE_Use_Item()
     {
         SEAudioSource.PlayOneShot(SE[13]);
     }
 
-    void Play_SE_Landing()
+    public void Play_SE_Landing()
     {
         SEAudioSource.PlayOneShot(SE[14]);
     }
