@@ -65,6 +65,8 @@ public class UiManager : MonoBehaviour
 
     private static bool nowFade;
 
+    public GameObject SoundObject;
+
     void Awake()
     {
         if(nowFade == null)
@@ -86,6 +88,7 @@ public class UiManager : MonoBehaviour
         fadeManagerObject = GameObject.Find("FadeManager");
         fadeManager = fadeManagerObject.GetComponent<Fade>();
 
+        SoundObject = GameObject.Find("SoundManager");
         if (state == null)
         {
             state = (int)State.Title;
@@ -103,6 +106,7 @@ public class UiManager : MonoBehaviour
         {
             configState = (int)ConfigState.Volume;
         }
+
     }
 
     void Update()
@@ -121,6 +125,7 @@ public class UiManager : MonoBehaviour
             if (nextState == (int)State.Game)
             {
                 stageManager.GoStageAny(stageNum);
+                SoundObject.GetComponent<SoundManager>().Play_BGM_GAME();
             }
         }
 
@@ -140,7 +145,9 @@ public class UiManager : MonoBehaviour
                 if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKey(KeyCode.JoystickButton1)) && !Fade.isFadeOut && !Fade.isFadeIn)
                 {
                     nextState = (int)State.StageSelect;
+                    SoundObject.GetComponent<SoundManager>().Play_BGM_SELECT();
                 }
+
                 break;
 
             case (int)State.StageSelect:
@@ -158,6 +165,7 @@ public class UiManager : MonoBehaviour
 
                 stageSelectInstance.SetActive(true);
 
+                
                 break;
 
             case (int)State.Menu:
@@ -184,6 +192,7 @@ public class UiManager : MonoBehaviour
                     menuUiInstance.SetActive(false);
                     retryUiInstance.SetActive(false);
                     configUiInstance.SetActive(false);
+
                 }
                 if (menuState == (int)MenuState.Retry)
                 {
