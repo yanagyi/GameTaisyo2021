@@ -389,6 +389,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   moveSpeed: 0
   button: 
+  rotateSpeed: 0
 --- !u!114 &3539144833215426484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   moveSpeed: 0
   button: 
+  rotateSpeed: 0
 --- !u!1 &1693479645871036636
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,7 +640,7 @@ GameObject:
   - component: {fileID: 3539144834489539566}
   - component: {fileID: 3539144834489539349}
   m_Layer: 0
-  m_Name: Player
+  m_Name: Player_
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -739,7 +741,8 @@ MonoBehaviour:
   isZenmai: 0
   rb: {fileID: 0}
   moveSpeed: 0.125
-  button: joystick button 0
+  button: joystick button 12
+  rotateSpeed: 0
 --- !u!114 &3539144834489539349
 MonoBehaviour:
   m_ObjectHideFlags: 0

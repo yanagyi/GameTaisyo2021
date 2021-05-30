@@ -61,11 +61,12 @@ public class PlayerControl : UsableObject
 
     IEnumerator GravityEffect()
     {
-        rb.isKinematic = true;
-        transform.position += new Vector3(0.0f,-0.25f*Physics.gravity.y, 0.0f);
+        rb.isKinematic = true;//重力の影響をうけなくする
+        transform.position += new Vector3(0.0f,-0.25f*Physics.gravity.y, 0.0f);//重力の反対方向(=プレイ屋の頭の方向）
+        //にいったんプレイヤーの位置位置を上にあげている
         for (float i = 0; i < 180.0f; i+=rotateSpeed) {
             //上下を180まで、前後を90(=180/2)回転
-            transform.Rotate(rotateSpeed,0.0f,0.0f,Space.World);
+            transform.Rotate(rotateSpeed,rotateSpeed,0.0f,Space.Self);
             yield return null;
         }
         rb.isKinematic = false;
