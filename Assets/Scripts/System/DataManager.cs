@@ -41,7 +41,7 @@ public class DataManager : MonoBehaviour
     void Awake()
     {
         //fps固定をここでやらせてもらいましう。by kameyama
-        Application.targetFrameRate = 30;
+        //Application.targetFrameRate = 30;
         // ファイルパス指定
         filePath = Application.persistentDataPath + "/savedata.json";
         saveData = new SaveData();
