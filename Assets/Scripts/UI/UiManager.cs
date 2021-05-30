@@ -75,7 +75,10 @@ public class UiManager : MonoBehaviour
             nowFade = false;
         }
 
-        isBgmOn = false;
+	if(isBgmOn == null)
+	{
+            isBgmOn = false;
+	}
 
         stageManagerObject = GameObject.Find("StageManager");
         stageManager = stageManagerObject.GetComponent<StageManager>();
