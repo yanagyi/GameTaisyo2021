@@ -7,10 +7,12 @@ public class FloorButton : MonoBehaviour
     public bool isTrigger;
     public GameObject ControlObject;
      SwitchObjectsScript CtrlObjScript;
+    public GameObject SoundObject;
     // Start is called before the first frame update
     void Start()
     {
-        CtrlObjScript = ControlObject.GetComponent<SwitchObjectsScript>();    
+        CtrlObjScript = ControlObject.GetComponent<SwitchObjectsScript>();
+        SoundObject = GameObject.Find("SoundManager");
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class FloorButton : MonoBehaviour
         if (collision.gameObject.tag == "Player") {
             isTrigger = true;
             CtrlObjScript.CallActionOn();
+            SoundObject.GetComponent<SoundManager>().Play_SE_Object_Active();
         }
     }
     private void OnCollisionExit(Collision collision)
