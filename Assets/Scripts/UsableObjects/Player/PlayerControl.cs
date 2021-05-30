@@ -16,6 +16,8 @@ public class PlayerControl : UsableObject
     //パーティクル変数
     private ParticleSystem particle;
 
+    public GameObject SoundObject;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,8 @@ public class PlayerControl : UsableObject
        this.anim = GetComponent<Animator>();
 
         isActive = false;
+
+        SoundObject = GameObject.Find("SoundManager");
     }
 
     // Update is called once per frame
@@ -43,6 +47,7 @@ public class PlayerControl : UsableObject
         {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -moveSpeed));
             anim.SetBool("isWalking", true);
+            SoundObject.GetComponent<SoundManager>().Play_SE_Landing();
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
         {
