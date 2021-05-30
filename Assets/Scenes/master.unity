@@ -13792,7 +13792,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.156
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -38088,7 +38088,7 @@ Transform:
   m_LocalScale: {x: 3.1794038, y: 1, z: 1.7976682}
   m_Children: []
   m_Father: {fileID: 1957839914}
-  m_RootOrder: 8
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -90}
 --- !u!64 &888889131
 MeshCollider:
@@ -82529,12 +82529,12 @@ Transform:
   - {fileID: 613857799}
   - {fileID: 2047651231}
   - {fileID: 1317763789}
+  - {fileID: 888889130}
   - {fileID: 1792856375}
   - {fileID: 1572835426}
   - {fileID: 290984086}
   - {fileID: 524897120}
   - {fileID: 928550502}
-  - {fileID: 888889130}
   m_Father: {fileID: 1343341681}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
