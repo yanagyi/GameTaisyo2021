@@ -6,7 +6,7 @@ public class Zenmai : MonoBehaviour
 {
     public string LTrigger;
     public string RTrigger;
-    float rotateSpeed=1;
+    public float rotateSpeed=1;
     public GameObject oldParent;
     public GameObject nowParent;
     int state;
