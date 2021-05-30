@@ -260,6 +260,12 @@ public class UiManager : MonoBehaviour
 
                 dataManager.Save();
 
+                if (!isBgmOn)
+                {
+                    SoundObject.GetComponent<SoundManager>().Play_BGM_CLEAR();
+                    isBgmOn = true;
+                }
+
                 break;
 
             case (int)State.Game:
