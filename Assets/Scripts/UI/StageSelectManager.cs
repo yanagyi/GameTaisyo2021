@@ -37,11 +37,11 @@ public class StageSelectManager : MonoBehaviour
         dataManager = dataObject.GetComponent<DataManager>();
         dataManager.Load();
 
-        for (int i = 1; i <= 23; i++)
+        for (int i = 1; i <= 22; i++)
         {
-            if(i == 23)
+            if(i == 22)
             {
-                stageNum = 22;
+                stageNum = 21;
                 transform.position = new Vector3(-stageNum * 1200.0f + 720.0f, 540.0f, 0);
                 break;
             }
@@ -113,7 +113,7 @@ public class StageSelectManager : MonoBehaviour
 
             }
 
-            if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && dataManager.GetStageUnlock(stageNum + 2))
+            if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 21 && dataManager.GetStageUnlock(stageNum + 2))
             {
                 nowMove = true;
                 directionLR = false;
@@ -121,7 +121,7 @@ public class StageSelectManager : MonoBehaviour
                 eventSystem.enabled = false;
 
             }
-            if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 19 && !dataManager.GetStageUnlock(stageNum + 2))
+            if (!nowMove && Input.GetAxis("Horizontal") > 0 && stageNum < 21 && !dataManager.GetStageUnlock(stageNum + 2))
             {
                 selectButton = this.transform.GetChild(stageNum).gameObject.GetComponent<Button>();
                 eventSystem.enabled = false;

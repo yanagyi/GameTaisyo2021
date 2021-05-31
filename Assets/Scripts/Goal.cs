@@ -39,7 +39,7 @@ public class Goal : MonoBehaviour
 
         dataManager.SetStageClear(StageManager.GetNowLevel() + 1, true);
 
-        if(StageManager.GetNowLevel() + 2 <= 22)
+        if(StageManager.GetNowLevel() + 2 <= 21)
         {
             dataManager.SetStageUnlock(StageManager.GetNowLevel() + 2, true);
         }

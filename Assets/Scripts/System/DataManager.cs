@@ -190,4 +190,14 @@ public class DataManager : MonoBehaviour
         // ここで上書きして初期化
         Save();
     }
+
+    // デバッグ用
+    public void AllUnlock()
+    {
+        for (int i = 0; i < saveData.stageData.Length; i++)
+        {
+            saveData.stageData[i].clear = true;
+            saveData.stageData[i].unlocked = true;
+        }
+    }
 }
