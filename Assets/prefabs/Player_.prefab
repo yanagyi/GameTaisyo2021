@@ -681,6 +681,8 @@ GameObject:
   - component: {fileID: 3539144834489539349}
   - component: {fileID: 3910493716671459606}
   - component: {fileID: 2033871722919961056}
+  - component: {fileID: 7062829294715875446}
+  - component: {fileID: 5005483068433910961}
   m_Layer: 0
   m_Name: Player_
   m_TagString: Player
@@ -906,10 +908,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a7fa742cc54234c9593be1406ffbc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: cff89fceb093b4645b597cf92474df95, type: 3}
+  listAudioClips:
+  - groundTypeTag: 
+    audioClips: []
   randomizePitch: 1
   pitchRange: 0.1
+--- !u!135 &7062829294715875446
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457711133493316676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2420528
+  m_Center: {x: 0.46006858, y: -0.8794942, z: 0.19903123}
+--- !u!114 &5005483068433910961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4457711133493316676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b96fb2ff55af4ce4287ba58790e53fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  relayTo: {fileID: 0}
 --- !u!1 &5816459412193184810
 GameObject:
   m_ObjectHideFlags: 0
