@@ -17,6 +17,17 @@ public class Zenmai : MonoBehaviour
     public GameObject SoundObject;
     public Vector3 SetByPlayerPos;
     public Vector3 SetByObjPos;
+
+    private int triggerObjectType;
+    private GameObject triggerObject;
+
+    private enum triggerObjectPattern
+    {
+        None = 0,
+        Player = 1,
+        ZenmaiObject = 2,
+    }
+
     private enum statePattern
     {
         Idle=0,
@@ -27,6 +38,8 @@ public class Zenmai : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        triggerObjectType = (int)triggerObjectPattern.None;
+
         player = GameObject.Find("Player");
         playerScript = player.GetComponent<PlayerControl>();
 
@@ -72,8 +85,6 @@ public class Zenmai : MonoBehaviour
             nowParent = null;
             gameObject.transform.parent = null;
 
-            playerScript.playerGrasp();
-
             return;
         }
         if (nowParent == null) {
@@ -94,35 +105,29 @@ public class Zenmai : MonoBehaviour
             return;
         }
 
-        playerScript.playerGrasp();
+        //playerScript.playerGrasp();
 
         //最寄りのゼンマイオブジェクト捜索
         gameObject.transform.position+=new Vector3(0, Input.GetAxis("Vertical")*SpeedMag, Input.GetAxis("Horizontal") * SpeedMag);
     }
-    private void ParentCheck() {
-        //当たり判定用に例を作る
-        Ray upRay;
-        Ray downRay;
-        RaycastHit hit;
-        float RayLength = 5.0f;
-        upRay = new Ray(transform.position, Vector3.up * RayLength);
-        downRay = new Ray(transform.position, Vector3.down * RayLength);
 
-        if (Physics.Raycast(upRay, out hit, RayLength) || Physics.Raycast(upRay, out hit, RayLength)) {
-            if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "zenmaiObj") {
-                
-                //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
-                Setparent(hit.collider.gameObject);
-                SoundObject.GetComponent<SoundManager>().Play_SE_Object_Active();
-            } else {
-                //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
-                Setparent(oldParent);
-                SoundObject.GetComponent<SoundManager>().Play_SE_Object_Passive();
-            }
+    private void ParentCheck()
+    {
+        if (triggerObjectType == (int)triggerObjectPattern.None)
+        {
+            Setparent(oldParent);
+            state = (int)statePattern.Idle;
         }
-
-        state = (int)statePattern.Idle;
-        state = (int)statePattern.Idle;
+        if (triggerObjectType == (int)triggerObjectPattern.Player)
+        {
+            Setparent(triggerObject);
+            state = (int)statePattern.Idle;
+        }
+        if (triggerObjectType == (int)triggerObjectPattern.ZenmaiObject)
+        {
+            Setparent(triggerObject);
+            state = (int)statePattern.Idle;
+        }
     }
 
     public void Setparent(GameObject obj)
@@ -142,33 +147,47 @@ public class Zenmai : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("ZenmaiTriggerEnter.ObjName:" + other.gameObject.name);
-        if (state != (int)statePattern.ParentCheck)
-            return;
-        //入力してんのに当たり判定なかったら戻る
+        Debug.Log(other.gameObject.tag);
 
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "zenmaiObj") {
-            //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
-            Setparent(other.gameObject);
-        } else {
-            //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
-            Setparent(oldParent);
+        if (other.gameObject.tag == "Player")
+        {
+            triggerObjectType = (int)triggerObjectPattern.Player;
+            triggerObject = other.gameObject;
+        }
+        else if (other.gameObject.tag == "zenmaiObj")
+        {
+            triggerObjectType = (int)triggerObjectPattern.ZenmaiObject;
+            triggerObject = other.gameObject;
+        }
+        else
+        {
+            triggerObjectType = (int)triggerObjectPattern.None;
+            triggerObject = null;
         }
     }
+
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("ZenmaiTriggerStay.ObjName:" + other.gameObject.name);
-        if (state != (int)statePattern.ParentCheck)
-            return;
-        //入力してんのに当たり判定なかったら戻る
+        Debug.Log("ZenmaiTriggerEnter.ObjName:" + other.gameObject.name);
+        Debug.Log(other.gameObject.tag);
 
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "zenmaiObj") {
-            //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
-            Setparent(other.gameObject);
-        } else {
-            //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
-            Setparent(oldParent);
+        if (other.gameObject.tag == "Player")
+        {
+            triggerObjectType = (int)triggerObjectPattern.Player;
+            triggerObject = other.gameObject;
+        }
+        else if (other.gameObject.tag == "zenmaiObj")
+        {
+            triggerObjectType = (int)triggerObjectPattern.ZenmaiObject;
+            triggerObject = other.gameObject;
+        }
+        else
+        {
+            triggerObjectType = (int)triggerObjectPattern.None;
+            triggerObject = null;
         }
     }
+
     public int GetState() { return state; }//0がIdle,1がコントロール、2がチェック
     
 }

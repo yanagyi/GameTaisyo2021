@@ -36,15 +36,12 @@ public class lift : MonoBehaviour
 
         if ((transform.localPosition.y < posMaximum) && (Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("Vertical") > 0)) {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, moveSpeed, 0));
-            playerScript.SetKinematic(true);
         }
         else if ((transform.localPosition.y > posMinimum) && (Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("Vertical") < 0)) {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, -moveSpeed, 0));
-            playerScript.SetKinematic(true);
         }
         else
         {
-            playerScript.SetKinematic(false);
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -56,7 +53,6 @@ public class lift : MonoBehaviour
         {
             player = collision.gameObject;
             player.transform.parent = gameObject.transform;
-
             playerScript = player.GetComponent<PlayerControl>();
 
             firstHit = true;
@@ -73,7 +69,6 @@ public class lift : MonoBehaviour
         if (collision.gameObject.tag != "Player")
             return;
         player.transform.parent = pauseManagerObject.transform;
-        playerScript.SetKinematic(false);
         player = null;
         firstHit = false;
     }

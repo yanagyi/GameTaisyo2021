@@ -11,6 +11,9 @@ public class Goal : MonoBehaviour
     GameObject dataManagerObject;
     DataManager dataManager;
 
+    private GameObject player;
+    private PlayerControl playerScript;
+
     void Start()
     {
         uiManagerObject = GameObject.Find("UiManager");
@@ -18,6 +21,9 @@ public class Goal : MonoBehaviour
 
         dataManagerObject = GameObject.Find("DataManager");
         dataManager = dataManagerObject.GetComponent<DataManager>();
+
+        player = GameObject.Find("Player");
+        playerScript = player.GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
@@ -28,6 +34,8 @@ public class Goal : MonoBehaviour
     {
         if (collision.gameObject.tag != "Player")
             return;
+
+        playerScript.playerGrasp();
 
         dataManager.SetStageClear(StageManager.GetNowLevel() + 1, true);
 

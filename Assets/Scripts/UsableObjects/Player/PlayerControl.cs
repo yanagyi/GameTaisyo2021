@@ -75,6 +75,7 @@ public class PlayerControl : UsableObject
     {
         isActive = true;
 
+        /*
         // Transform’l‚ðŽæ“¾‚·‚é
         Vector3 position = this.transform.localPosition;
         Quaternion rotation = this.transform.localRotation;
@@ -94,6 +95,8 @@ public class PlayerControl : UsableObject
             yield return null;
         }
         rb.isKinematic = false;
+        */
+
         Gravity_Effect();
         isActive = false;
 
@@ -133,6 +136,7 @@ public class PlayerControl : UsableObject
                                                            RigidbodyConstraints.FreezePositionX |
                                                            RigidbodyConstraints.FreezePositionY |
                                                            RigidbodyConstraints.FreezePositionZ;
+        anim.SetBool("isWalking", false);
     }
 
     public void playerGraspOff()

@@ -309,46 +309,6 @@ public class UiManager : MonoBehaviour
             dataManager.Reset();
         }
         */
-        if(Input.GetKey(KeyCode.JoystickButton0))
-        Debug.Log("0");
-        if (Input.GetKey(KeyCode.JoystickButton1))
-            Debug.Log("1");
-        if (Input.GetKey(KeyCode.JoystickButton2))
-            Debug.Log("2");
-        if (Input.GetKey(KeyCode.JoystickButton3))
-            Debug.Log("3");
-        if (Input.GetKey(KeyCode.JoystickButton4))
-            Debug.Log("4");
-        if (Input.GetKey(KeyCode.JoystickButton5))
-            Debug.Log("5");
-        if (Input.GetKey(KeyCode.JoystickButton6))
-            Debug.Log("6");
-        if (Input.GetKey(KeyCode.JoystickButton7))
-            Debug.Log("7");
-        if (Input.GetKey(KeyCode.JoystickButton8))
-            Debug.Log("8");
-        if (Input.GetKey(KeyCode.JoystickButton9))
-            Debug.Log("9");
-        if (Input.GetKey(KeyCode.JoystickButton10))
-            Debug.Log("10");
-        if (Input.GetKey(KeyCode.JoystickButton11))
-            Debug.Log("11");
-        if (Input.GetKey(KeyCode.JoystickButton12))
-            Debug.Log("12");
-        if (Input.GetKey(KeyCode.JoystickButton13))
-            Debug.Log("13");
-        if (Input.GetKey(KeyCode.JoystickButton14))
-            Debug.Log("14");
-        if (Input.GetKey(KeyCode.JoystickButton15))
-            Debug.Log("15");
-        if (Input.GetKey(KeyCode.JoystickButton16))
-            Debug.Log("16");
-        if (Input.GetKey(KeyCode.JoystickButton17))
-            Debug.Log("17");
-        if (Input.GetKey(KeyCode.JoystickButton18))
-            Debug.Log("18");
-        if (Input.GetKey(KeyCode.JoystickButton19))
-            Debug.Log("19");
     }
 
     public int GetState()
