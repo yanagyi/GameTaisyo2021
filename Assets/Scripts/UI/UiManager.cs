@@ -303,10 +303,12 @@ public class UiManager : MonoBehaviour
         }
 
         // データリセット
+        /*
         if (Input.GetKey(KeyCode.R))
         {
             dataManager.Reset();
         }
+        */
         if(Input.GetKey(KeyCode.JoystickButton0))
         Debug.Log("0");
         if (Input.GetKey(KeyCode.JoystickButton1))
