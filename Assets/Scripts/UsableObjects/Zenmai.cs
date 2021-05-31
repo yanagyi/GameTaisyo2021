@@ -137,6 +137,20 @@ public class Zenmai : MonoBehaviour
         }
 
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (state != (int)statePattern.ParentCheck)
+            return;
+        //入力してんのに当たり判定なかったら戻る
+
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "zenmaiObj") {
+            //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
+            Setparent(other.gameObject);
+        } else {
+            //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
+            Setparent(oldParent);
+        }
+    }
     private void OnTriggerStay(Collider other)
     {
         if (state != (int)statePattern.ParentCheck)
