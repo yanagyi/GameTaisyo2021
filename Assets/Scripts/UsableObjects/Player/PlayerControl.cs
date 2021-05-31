@@ -47,12 +47,13 @@ public class PlayerControl : UsableObject
         {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -moveSpeed));
             anim.SetBool("isWalking", true);
-            SoundObject.GetComponent<SoundManager>().Play_SE_Landing();
+            //‘«‰¹SoundObject.GetComponent<SoundManager>().Play_SE_Landing();
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
         {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
             anim.SetBool("isWalking", true);
+            //‘«‰¹SoundObject.GetComponent<SoundManager>().Play_SE_Landing();
         }
         else if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) && isActive == false)
         {
@@ -105,6 +106,7 @@ public class PlayerControl : UsableObject
         if(collision.gameObject.tag == "floor")
         {
             particle.Play();
+            //’…’n‰¹SoundObject.GetComponent<SoundManager>().Play_SE_Landing();
         }
     }
 
