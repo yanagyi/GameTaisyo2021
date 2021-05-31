@@ -139,6 +139,7 @@ public class Zenmai : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("ZenmaiTriggerEnter.ObjName:" + other.gameObject.name);
         if (state != (int)statePattern.ParentCheck)
             return;
         //入力してんのに当たり判定なかったら戻る
@@ -153,6 +154,7 @@ public class Zenmai : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("ZenmaiTriggerStay.ObjName:" + other.gameObject.name);
         if (state != (int)statePattern.ParentCheck)
             return;
         //入力してんのに当たり判定なかったら戻る
