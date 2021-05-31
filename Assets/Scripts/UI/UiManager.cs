@@ -128,11 +128,11 @@ public class UiManager : MonoBehaviour
             fadeManager.FadeIn();
             nowFade = false;
             state = nextState;
+            isBgmOn = false;
             if (nextState == (int)State.Game)
             {
                 stageManager.GoStageAny(stageNum);
             }
-            isBgmOn = false;
         }
 
         switch (state)

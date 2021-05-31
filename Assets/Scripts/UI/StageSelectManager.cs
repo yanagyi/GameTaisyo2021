@@ -37,11 +37,11 @@ public class StageSelectManager : MonoBehaviour
         dataManager = dataObject.GetComponent<DataManager>();
         dataManager.Load();
 
-        for (int i = 1; i <= 21; i++)
+        for (int i = 1; i <= 23; i++)
         {
-            if(i == 21)
+            if(i == 23)
             {
-                stageNum = 20;
+                stageNum = 22;
                 transform.position = new Vector3(-stageNum * 1200.0f + 720.0f, 540.0f, 0);
                 break;
             }

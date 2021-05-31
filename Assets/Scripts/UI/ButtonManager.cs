@@ -178,6 +178,14 @@ public class ButtonManager : ButtonBase
         {
             this.ClickButtonStage20();
         }
+        else if ("ButtonStage21".Equals(objectName))
+        {
+            this.ClickButtonStage21();
+        }
+        else if ("ButtonStage22".Equals(objectName))
+        {
+            this.ClickButtonStage22();
+        }
         else
         {
             // éwíËÇ≥ÇÍÇΩÉ{É^ÉìÇ™ë∂ç›ÇµÇ»Ç¢
@@ -491,6 +499,24 @@ public class ButtonManager : ButtonBase
         Debug.Log("ClickButton Stage20");
 
         _uiManager.SetStageNum(20);
+
+        _uiManager.SetNextState((int)UiManager.State.Game);
+    }
+
+    private void ClickButtonStage21()
+    {
+        Debug.Log("ClickButton Stage21");
+
+        _uiManager.SetStageNum(21);
+
+        _uiManager.SetNextState((int)UiManager.State.Game);
+    }
+
+    private void ClickButtonStage22()
+    {
+        Debug.Log("ClickButton Stage22");
+
+        _uiManager.SetStageNum(22);
 
         _uiManager.SetNextState((int)UiManager.State.Game);
     }

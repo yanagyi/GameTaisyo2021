@@ -92,6 +92,14 @@ public class TextChanger : MonoBehaviour
         {
             targetText.text = "ステージ20";
         }
+        if ("ButtonStage21".Equals(gameObject.name))
+        {
+            targetText.text = "ステージ21";
+        }
+        if ("ButtonStage22".Equals(gameObject.name))
+        {
+            targetText.text = "ステージ22";
+        }
     }
 
     // Update is called once per frame

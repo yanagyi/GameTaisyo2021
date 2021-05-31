@@ -45,7 +45,7 @@ public class DataManager : MonoBehaviour
         // ファイルパス指定
         filePath = Application.persistentDataPath + "/savedata.json";
         saveData = new SaveData();
-        saveData.stageData = new StageData[20];
+        saveData.stageData = new StageData[22];
 
         volumeManagerObject = GameObject.Find("VolumeManager");
         volumeManager = volumeManagerObject.GetComponent<VolumeManager>();
@@ -74,7 +74,7 @@ public class DataManager : MonoBehaviour
     // ステージのクリア状態のセッター
     public void SetStageClear(int num, bool clear)
     {
-        for(int i = 0; i < 20; i++)
+        for(int i = 0; i < saveData.stageData.Length; i++)
         {
             if(saveData.stageData[i].stageNum == num)
             {
@@ -87,7 +87,7 @@ public class DataManager : MonoBehaviour
     // ステージのクリア状態のゲッター
     public bool GetStageClear(int num)
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < saveData.stageData.Length; i++)
         {
             if (saveData.stageData[i].stageNum == num)
             {
@@ -101,7 +101,7 @@ public class DataManager : MonoBehaviour
     // ステージのアンロック状態のセッター
     public void SetStageUnlock(int num, bool unlocked)
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < saveData.stageData.Length; i++)
         {
             if (saveData.stageData[i].stageNum == num)
             {
@@ -114,7 +114,7 @@ public class DataManager : MonoBehaviour
     // ステージのアンロック状態のゲッター
     public bool GetStageUnlock(int num)
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < saveData.stageData.Length; i++)
         {
             if (saveData.stageData[i].stageNum == num)
             {
