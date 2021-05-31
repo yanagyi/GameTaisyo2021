@@ -28,15 +28,12 @@ public class circle : MonoBehaviour
     public void MoveOn() {
         if ((Input.GetKey(KeyCode.UpArrow) || Input.GetAxis("Horizontal") < 0)) {
             rb.angularVelocity = new Vector3(-moveSpeed, 0, 0);
-            playerScript.SetKinematic(true);
         }
         else if ((Input.GetKey(KeyCode.DownArrow) || Input.GetAxis("Horizontal") > 0)) {
             rb.angularVelocity = new Vector3(moveSpeed, 0, 0);
-            playerScript.SetKinematic(true);
         }
         else
         {
-            playerScript.SetKinematic(false);
         }
 
     }

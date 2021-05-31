@@ -49,7 +49,6 @@ public class Circle_Ashiba : MonoBehaviour
         if (collision.gameObject.tag != "Player")
             return;
         player.transform.parent = pauseManagerObject.transform;
-        playerScript.SetKinematic(false);
         player = null;
 
         firstHit = false;
