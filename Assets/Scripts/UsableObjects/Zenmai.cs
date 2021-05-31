@@ -15,6 +15,8 @@ public class Zenmai : MonoBehaviour
     private GameObject player;
     private PlayerControl playerScript;
     public GameObject SoundObject;
+    public Vector3 SetByPlayerPos;
+    public Vector3 SetByObjPos;
     private enum statePattern
     {
         Idle=0,
@@ -107,7 +109,7 @@ public class Zenmai : MonoBehaviour
 
         if (Physics.Raycast(upRay, out hit, RayLength) || Physics.Raycast(upRay, out hit, RayLength)) {
             if (hit.collider.gameObject.tag == "Player" || hit.collider.gameObject.tag == "zenmaiObj") {
-
+                
                 //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
                 Setparent(hit.collider.gameObject);
                 SoundObject.GetComponent<SoundManager>().Play_SE_Object_Active();
@@ -129,26 +131,26 @@ public class Zenmai : MonoBehaviour
         oldParent = nowParent;
         gameObject.transform.parent = nowParent.transform;
         if (obj.tag == "Player") {
-            gameObject.transform.localPosition = new Vector3(0, 0, -0.02f);
+            gameObject.transform.localPosition = SetByPlayerPos;
         } else {
-            gameObject.transform.localPosition = new Vector3(0, 0.5f, 0);
+            gameObject.transform.localPosition = SetByObjPos;
         }
 
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (state != (int)statePattern.ParentCheck)
-    //        return;
-    //    //入力してんのに当たり判定なかったら戻る
-        
-    //    if ( other.gameObject.tag == "Player"||other.gameObject.tag == "zenmaiObj") {
-    //     //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
-    //        Setparent(other.gameObject);
-    //    } else {
-    //    //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
-    //        Setparent(oldParent);
-    //    }
-    //}
+    private void OnTriggerStay(Collider other)
+    {
+        if (state != (int)statePattern.ParentCheck)
+            return;
+        //入力してんのに当たり判定なかったら戻る
+
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "zenmaiObj") {
+            //   Debug.Log("hit!at" + other.gameObject.name + "@zenmai.cs.OnCollisionEnter");
+            Setparent(other.gameObject);
+        } else {
+            //    Debug.Log("Don't hit any ZenmaiObj" + "@zenmai.cs.OnCollisionEnter");
+            Setparent(oldParent);
+        }
+    }
     public int GetState() { return state; }//0がIdle,1がコントロール、2がチェック
     
 }

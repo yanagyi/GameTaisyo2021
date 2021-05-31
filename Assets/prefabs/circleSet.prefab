@@ -65,7 +65,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966891703800441906}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.013, y: 0.018, z: 0.013}
@@ -240,7 +240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3001427046273241850
 Transform:
   m_ObjectHideFlags: 0
@@ -836,7 +836,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10.5
+  m_Radius: 2.94
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &120048185711333731
 PrefabInstance:
@@ -920,6 +920,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c65907d5ee756be49b2071b8d30c9273, type: 3}
       propertyPath: m_Name
       value: Switch
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c65907d5ee756be49b2071b8d30c9273, type: 3}
+      propertyPath: m_TagString
+      value: zenmaiObj
       objectReference: {fileID: 0}
     - target: {fileID: 2847235966289986552, guid: c65907d5ee756be49b2071b8d30c9273, type: 3}
       propertyPath: m_LocalPosition.y

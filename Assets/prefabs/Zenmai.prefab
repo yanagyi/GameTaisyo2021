@@ -558,9 +558,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LTrigger: joystick button 9
   RTrigger: joystick button 5
+  rotateSpeed: 1
   oldParent: {fileID: 0}
   nowParent: {fileID: 0}
   SpeedMag: 0.25
+  SoundObject: {fileID: 0}
+  SetByPlayerPos: {x: 0, y: 0, z: 1}
 --- !u!1 &3217623937445465794
 GameObject:
   m_ObjectHideFlags: 0
