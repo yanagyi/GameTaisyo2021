@@ -80,6 +80,7 @@ public class Zenmai : MonoBehaviour
             Setparent(GameObject.Find(oldParent.name));
             if (oldParent == null) {
                 Setparent(GameObject.Find("Player"));
+                playerScript.SetKinematic(false);
             }
         }
       
@@ -132,6 +133,7 @@ public class Zenmai : MonoBehaviour
         gameObject.transform.parent = nowParent.transform;
         if (obj.tag == "Player") {
             gameObject.transform.localPosition = SetByPlayerPos;
+            playerScript.SetKinematic(false);
         } else {
             gameObject.transform.localPosition = SetByObjPos;
         }
