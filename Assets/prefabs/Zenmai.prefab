@@ -561,9 +561,10 @@ MonoBehaviour:
   rotateSpeed: 1
   oldParent: {fileID: 0}
   nowParent: {fileID: 0}
-  SpeedMag: 0.25
+  SpeedMag: 0.01
   SoundObject: {fileID: 0}
   SetByPlayerPos: {x: 0, y: 0, z: 1}
+  SetByObjPos: {x: 0, y: 0, z: 0}
 --- !u!1 &3217623937445465794
 GameObject:
   m_ObjectHideFlags: 0
