@@ -43,37 +43,43 @@ public class SoundManager : MonoBehaviour
     public void Play_BGM_CLEAR()
     {
         BGMAudioSource.Stop();
-        BGMAudioSource.PlayOneShot(BGM[0]);
+        BGMAudioSource.clip = BGM[0];
+        BGMAudioSource.Play();
     }
 
     public void Play_BGM_GAME()
     {
         BGMAudioSource.Stop();
-        BGMAudioSource.PlayOneShot(BGM[1]);
+        BGMAudioSource.clip = BGM[1];
+        BGMAudioSource.Play();
     }
 
     public void Play_BGM_SELECT()
     {
         BGMAudioSource.Stop();
-        BGMAudioSource.PlayOneShot(BGM[2]);
+        BGMAudioSource.clip = BGM[2];
+        BGMAudioSource.Play();
     }
 
     public void Play_BGM_TITLE()
     {
         BGMAudioSource.Stop();
-        BGMAudioSource.PlayOneShot(BGM[3]);
+        BGMAudioSource.clip = BGM[3];
+        BGMAudioSource.Play();
     }
 
     public void Play_BGM_TUTORIAL()
     {
         BGMAudioSource.Stop();
-        BGMAudioSource.PlayOneShot(BGM[4]);
+        BGMAudioSource.clip = BGM[4];
+        BGMAudioSource.Play();
     }
 
     public void Play_BGM_GAMEOVER()
     {
         BGMAudioSource.Stop();
-        BGMAudioSource.PlayOneShot(BGM[5]);
+        BGMAudioSource.clip = BGM[5];
+        BGMAudioSource.Play();
     }
 
 
