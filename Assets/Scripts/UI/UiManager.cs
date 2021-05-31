@@ -90,7 +90,6 @@ public class UiManager : MonoBehaviour
         dataManager = dataManagerObject.GetComponent<DataManager>();
 
         dataManager.Load();
-        dataManager.AllUnlock();
 
         fadeManagerObject = GameObject.Find("FadeManager");
         fadeManager = fadeManagerObject.GetComponent<Fade>();
