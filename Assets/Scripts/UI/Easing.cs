@@ -254,7 +254,7 @@ public class Easing : MonoBehaviour
 
 
     //
-    // ELASTIC(弾力関数) まだ理解が浅い
+    // ELASTIC(弾力関数)
     //
 
     public static float ElasticIn(float time, float timeLength, float start, float end)
@@ -346,7 +346,7 @@ public class Easing : MonoBehaviour
 
 
     //
-    // BOUNCE(バウンス関数) まだ理解が浅い
+    // BOUNCE(バウンス関数)
     //
 
     public static float BounceIn(float time, float timeLength, float start, float end)
