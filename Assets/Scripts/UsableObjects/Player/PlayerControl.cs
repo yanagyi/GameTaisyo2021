@@ -10,6 +10,8 @@ public class PlayerControl : UsableObject
     public string button;
     public float rotateSpeed;//3.0Ç≠ÇÁÇ¢Ç™ÇÊÇ¢Ç¡Ç€Ç¢
     public float GVOn;
+    public float leftRotate;
+    public float rightRotate;
     public bool isActive;
     Animator anim;
 
@@ -40,6 +42,7 @@ public class PlayerControl : UsableObject
     // Update is called once per frame
     void Update()
     {
+
         if (isZenmai == false)
             return;
 
@@ -47,12 +50,16 @@ public class PlayerControl : UsableObject
         {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -moveSpeed));
             anim.SetBool("isWalking", true);
+            //ç∂Ç…å¸Ç≠
+            this.transform.rotation = Quaternion.Euler(0.0f, leftRotate, 0.0f);
             //ë´âπSoundObject.GetComponent<SoundManager>().Play_SE_Landing();
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
         {
             rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
             anim.SetBool("isWalking", true);
+            //âEÇ…å¸Ç≠
+            this.transform.rotation = Quaternion.Euler(0.0f, rightRotate, 0.0f);
             //ë´âπSoundObject.GetComponent<SoundManager>().Play_SE_Landing();
         }
         else if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(button)) && isActive == false)
