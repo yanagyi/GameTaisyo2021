@@ -199,5 +199,7 @@ public class DataManager : MonoBehaviour
             saveData.stageData[i].clear = true;
             saveData.stageData[i].unlocked = true;
         }
+
+        Save();
     }
 }

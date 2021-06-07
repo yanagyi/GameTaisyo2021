@@ -68,6 +68,15 @@ public class UiManager : MonoBehaviour
     public GameObject SoundObject;
     private static bool isBgmOn;
 
+    // インスペクターからいちいち変更するのだるそうだしスクリプトで取得する方式に変更するかも
+    /*
+    private GameObject[] titleUiObject;
+    private GameObject[] menuUiObject;
+    private GameObject[] gameUiObject;
+    private GameObject[] stageSelectUiObject;
+    private GameObject[] systemObject;
+    */
+
     void Awake()
     {
         if(nowFade == null)
@@ -89,12 +98,13 @@ public class UiManager : MonoBehaviour
         dataManagerObject = GameObject.Find("DataManager");
         dataManager = dataManagerObject.GetComponent<DataManager>();
 
-        dataManager.Load();
-
         fadeManagerObject = GameObject.Find("FadeManager");
         fadeManager = fadeManagerObject.GetComponent<Fade>();
 
         SoundObject = GameObject.Find("SoundManager");
+
+        dataManager.Load();
+
         if (state == null)
         {
             state = (int)State.Title;
@@ -234,19 +244,17 @@ public class UiManager : MonoBehaviour
 
                         dataManager.Save();
                     }
-                    /*
-                    if (configState == (int)ConfigState.KeyConfig)
-                    {
-                        configKeyConfigInstance.SetActive(true);
-
-                        configVolumeInstance.SetActive(false);
-                    }
-                    */
                 }
 
                 break;
             case (int)State.Result:
                 pauseManager.Pause();
+
+                if (!isBgmOn)
+                {
+                    SoundObject.GetComponent<SoundManager>().Play_BGM_CLEAR();
+                    isBgmOn = true;
+                }
 
                 menuAllUiInstance.SetActive(false);
                 titleUiInstance.SetActive(false);
@@ -259,12 +267,6 @@ public class UiManager : MonoBehaviour
                 resultInstance.SetActive(true);
 
                 dataManager.Save();
-
-                if (!isBgmOn)
-                {
-                    SoundObject.GetComponent<SoundManager>().Play_BGM_CLEAR();
-                    isBgmOn = true;
-                }
 
                 break;
 
@@ -293,6 +295,7 @@ public class UiManager : MonoBehaviour
                     nextState = (int)State.Menu;
                     menuState = (int)MenuState.Menu;
                 }
+
                 break;
         }
 
@@ -302,13 +305,21 @@ public class UiManager : MonoBehaviour
             Application.Quit();
         }
 
+        // デバッグ時のみ(エディタからのみ使える)
+#if UNITY_EDITOR
         // データリセット
-        /*
         if (Input.GetKey(KeyCode.R))
         {
             dataManager.Reset();
         }
-        */
+
+        // ステージ全開放してタイトルへ
+        if (Input.GetKey(KeyCode.U))
+        {
+            dataManager.AllUnlock();
+            nextState = (int)State.Title;
+        }
+#endif
     }
 
     public int GetState()
