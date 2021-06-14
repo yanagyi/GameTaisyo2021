@@ -10,8 +10,8 @@ public class PlayerControl : UsableObject
     public string button;
     public float rotateSpeed;//3.0‚­‚ç‚¢‚ª‚æ‚¢‚Á‚Û‚¢
     public float GVOn;
-    public float leftRotate;
-    public float rightRotate;
+    public float leftRotate = 180f;
+    public float rightRotate = 0f;
     public bool isActive;
     Animator anim;
 
