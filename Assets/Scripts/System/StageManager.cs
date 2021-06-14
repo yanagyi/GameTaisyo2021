@@ -21,7 +21,13 @@ public class StageManager : MonoBehaviour
 
         NowLevel = NextLevel;
         Debug.Log(NowLevel);
-        GameObject.Find("Main Camera").GetComponent<CameraControl>().SetCameraPos(NowLevel);
+        if(SceneManager.GetActiveScene().name == "Uchiike")
+        {
+        }
+        else
+        {
+            GameObject.Find("Main Camera").GetComponent<CameraControl>().SetCameraPos(NowLevel);
+        }
         Debug.Log("NowLevel::" + NowLevel+"@StageManager");
         ShowStage();
 

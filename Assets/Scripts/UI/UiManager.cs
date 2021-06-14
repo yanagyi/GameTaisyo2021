@@ -152,6 +152,7 @@ public class UiManager : MonoBehaviour
 
                 if (!isBgmOn)
                 {
+                    dataManager.Load();
                     SoundObject.GetComponent<SoundManager>().Play_BGM_TITLE();
                     isBgmOn = true;
                 }
@@ -311,6 +312,7 @@ public class UiManager : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             dataManager.Reset();
+            nextState = (int)State.Title;
         }
 
         // ステージ全開放してタイトルへ
