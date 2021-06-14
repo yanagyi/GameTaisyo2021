@@ -391,6 +391,8 @@ MonoBehaviour:
   button: 
   rotateSpeed: 0
   GVOn: 0
+  leftRotate: 0
+  rightRotate: 0
   isActive: 0
   SoundObject: {fileID: 0}
 --- !u!114 &3539144833215426484
@@ -411,6 +413,8 @@ MonoBehaviour:
   button: 
   rotateSpeed: 0
   GVOn: 0
+  leftRotate: 0
+  rightRotate: 0
   isActive: 0
   SoundObject: {fileID: 0}
 --- !u!1 &1693479645871036636
@@ -755,6 +759,8 @@ MonoBehaviour:
   button: joystick button 12
   rotateSpeed: 0
   GVOn: 0
+  leftRotate: 180
+  rightRotate: 0
   isActive: 0
   SoundObject: {fileID: 0}
 --- !u!114 &3539144834489539349
@@ -877,9 +883,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.8357928
-  m_Height: 5.673616
+  m_Height: 5.546584
   m_Direction: 1
-  m_Center: {x: -0.07627344, y: 1.6283367, z: 0.20165855}
+  m_Center: {x: -0.07627344, y: 1.6918526, z: 0.20165849}
 --- !u!1 &5816459412193184810
 GameObject:
   m_ObjectHideFlags: 0
