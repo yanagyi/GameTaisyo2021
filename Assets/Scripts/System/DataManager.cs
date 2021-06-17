@@ -141,7 +141,7 @@ public class DataManager : MonoBehaviour
         streamWriter.Flush();
         streamWriter.Close();
 
-        Debug.Log("「" + Application.persistentDataPath + "」にセーブしました");
+        //Debug.Log("「" + Application.persistentDataPath + "」にセーブしました");
     }
 
     // ロード
