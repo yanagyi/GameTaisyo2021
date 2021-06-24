@@ -32,6 +32,7 @@ public class VirtualCameraManager : MonoBehaviour
         gaugeScript = gaugeObject.GetComponent<Gauge>();
 
         stageNum = StageManager.GetNowLevel();
+        Debug.Log(stageNum);
 
         for (int i = 0; i < virtualCameras.Length; i++)
         {
