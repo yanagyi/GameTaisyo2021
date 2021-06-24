@@ -14,20 +14,14 @@ public class StageManager : MonoBehaviour
     private Fade fadeManager;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         fadeManagerObject = GameObject.Find("FadeManager");
         fadeManager = fadeManagerObject.GetComponent<Fade>();
 
         NowLevel = NextLevel;
         Debug.Log(NowLevel);
-        if(SceneManager.GetActiveScene().name == "Uchiike")
-        {
-        }
-        else
-        {
-            GameObject.Find("Main Camera").GetComponent<CameraControl>().SetCameraPos(NowLevel);
-        }
+        //GameObject.Find("Main Camera").GetComponent<CameraControl>().SetCameraPos(NowLevel);
         Debug.Log("NowLevel::" + NowLevel+"@StageManager");
         ShowStage();
 

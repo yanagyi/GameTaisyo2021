@@ -7,6 +7,9 @@ public class VirtualCameraManager : MonoBehaviour
     public GameObject[] virtualCameras;
     public GameObject[] lookAt;
 
+    public GameObject gaugeObject;
+    private Gauge gaugeScript;
+
     // ステージナンバーの取得
     private int stageNum;
 
@@ -26,29 +29,30 @@ public class VirtualCameraManager : MonoBehaviour
         pauseManagerObject = GameObject.Find("PauseManager");
         pauseManager = pauseManagerObject.GetComponent<PauseManager>();
 
+        gaugeScript = gaugeObject.GetComponent<Gauge>();
+
         stageNum = StageManager.GetNowLevel();
+        Debug.Log(stageNum);
 
         for (int i = 0; i < virtualCameras.Length; i++)
         {
             if (virtualCameras[i].name == "StageCamera")
             {
                 virtualCameras[i].transform.position = virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum);
-                Debug.Log(virtualCameras[i].transform.position);
-                Debug.Log(virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum));
                 virtualCameras[i].SetActive(true);
             }
             else if (virtualCameras[i].name == "GoalCamera")
             {
                 virtualCameras[i].transform.position = virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum);
-                Debug.Log(virtualCameras[i].transform.position);
-                Debug.Log(virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum));
                 virtualCameras[i].SetActive(true);
             }
             else if (virtualCameras[i].name == "PlayerBehindCamera")
             {
                 virtualCameras[i].transform.position = virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum);
-                Debug.Log(virtualCameras[i].transform.position);
-                Debug.Log(virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum));
+                virtualCameras[i].SetActive(true);
+            }
+            else if (virtualCameras[i].name == "PlayerCamera")
+            {
                 virtualCameras[i].SetActive(true);
             }
             else
@@ -71,22 +75,16 @@ public class VirtualCameraManager : MonoBehaviour
             if (lookAt[i].name == "LookAtStage")
             {
                 lookAt[i].transform.position = lookAt[i].GetComponent<CameraData>().GetPos(stageNum);
-                Debug.Log(lookAt[i].transform.position);
-                Debug.Log(lookAt[i].GetComponent<CameraData>().GetPos(stageNum));
                 lookAt[i].SetActive(true);
             }
             else if (lookAt[i].name == "LookAtGoal")
             {
                 lookAt[i].transform.position = lookAt[i].GetComponent<CameraData>().GetPos(stageNum);
-                Debug.Log(lookAt[i].transform.position);
-                Debug.Log(lookAt[i].GetComponent<CameraData>().GetPos(stageNum));
                 lookAt[i].SetActive(true);
             }
             else if (lookAt[i].name == "LookAtPlayerBehind")
             {
                 lookAt[i].transform.position = lookAt[i].GetComponent<CameraData>().GetPos(stageNum);
-                Debug.Log(lookAt[i].transform.position);
-                Debug.Log(lookAt[i].GetComponent<CameraData>().GetPos(stageNum));
                 lookAt[i].SetActive(true);
             }
             else
@@ -114,25 +112,22 @@ public class VirtualCameraManager : MonoBehaviour
 
         if (timeCount > 2)
         {
-            if (virtualCameras[0].activeSelf)
+            for (int i = 0; i < virtualCameras.Length - 1; i++)
             {
-                virtualCameras[0].SetActive(false);
+                if (virtualCameras[i].activeSelf)
+                {
+                    virtualCameras[i].SetActive(false);
+
+                    if (i == virtualCameras.Length - 2)
+                    {
+                        pauseManager.Resume();
+                        gaugeScript.GaugeValid();
+                    }
+                    break;
+                }
             }
-        }
-        if (timeCount > 4)
-        {
-            if (virtualCameras[1].activeSelf)
-            {
-                virtualCameras[1].SetActive(false);
-            }
-        }
-        if (timeCount > 6)
-        {
-            if (virtualCameras[4].activeSelf)
-            {
-                virtualCameras[4].SetActive(false);
-                pauseManager.Resume();
-            }
+
+            timeCount = 0;
         }
 
         timeCount += Time.deltaTime;

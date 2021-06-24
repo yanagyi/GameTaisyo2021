@@ -49,6 +49,8 @@ public class UiManager : MonoBehaviour
 
     public GameObject resultInstance;
 
+    public GameObject gameInstance;
+
     public GameObject backgroundNoise;
 
     private GameObject stageManagerObject;
@@ -190,6 +192,7 @@ public class UiManager : MonoBehaviour
                 retryUiInstance.SetActive(false);
                 configUiInstance.SetActive(false);
                 resultInstance.SetActive(false);
+                gameInstance.SetActive(false);
 
                 stageSelectInstance.SetActive(true);
 
@@ -204,6 +207,7 @@ public class UiManager : MonoBehaviour
 
                 stageSelectInstance.SetActive(false);
                 resultInstance.SetActive(false);
+                gameInstance.SetActive(false);
 
                 if (menuState == (int)MenuState.Menu)
                 {
@@ -264,6 +268,7 @@ public class UiManager : MonoBehaviour
                 abandonedUiInstance.SetActive(false);
                 retryUiInstance.SetActive(false);
                 configUiInstance.SetActive(false);
+                gameInstance.SetActive(false);
 
                 resultInstance.SetActive(true);
 
@@ -289,6 +294,8 @@ public class UiManager : MonoBehaviour
                 menuUiInstance.SetActive(false);
                 backgroundNoise.SetActive(false);
                 resultInstance.SetActive(false);
+
+                gameInstance.SetActive(true);
 
                 if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton15)) && !Fade.isFadeOut && !Fade.isFadeIn)
                 {
