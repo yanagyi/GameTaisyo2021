@@ -44,7 +44,7 @@ public class AntiDoor : SwitchObjectsScript
         Vector3 rotationAngles = rotation.eulerAngles;
 
         // XŽ²‚Ì90“x‰ñ“]
-        for (int i = 0; i < (maxAngle - startAngle) / RotSpeed; i++) {
+        for (int i = 0; i < (Mathf.Abs(maxAngle) - startAngle) / RotSpeed; i++) {
             rotationAngles.x += RotSpeed;
             rotation = Quaternion.Euler(rotationAngles);
             transform.localRotation = rotation;
