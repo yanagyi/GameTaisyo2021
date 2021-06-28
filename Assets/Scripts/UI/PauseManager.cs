@@ -76,6 +76,11 @@ public class PauseManager : MonoBehaviour
         isPause = false;
     }
 
+    public bool GetPause()
+    {
+        return isPause;
+    }
+
     // ƒ|[ƒY
     void onPause()
     {
