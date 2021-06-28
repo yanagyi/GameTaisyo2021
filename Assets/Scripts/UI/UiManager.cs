@@ -297,7 +297,7 @@ public class UiManager : MonoBehaviour
 
                 gameInstance.SetActive(true);
 
-                if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton15)) && !Fade.isFadeOut && !Fade.isFadeIn)
+                if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.JoystickButton15)) && !Fade.isFadeOut && !Fade.isFadeIn && !pauseManager.GetPause())
                 {
                     state = (int)State.Menu;
                     nextState = (int)State.Menu;
