@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotControl : MonoBehaviour
+public class RobotControl : UsableObject
 {
     //コピペ(circle.cs)
     public GameObject Robot;
@@ -25,9 +25,10 @@ public class RobotControl : MonoBehaviour
         //コピペ(circle.cs)
         rb = gameObject.GetComponent<Rigidbody>();
         player = GameObject.Find("Player");
-        playerScript = player.GetComponent<PlayerControl>();
+       // playerScript = player.GetComponent<PlayerControl>();
 
         controlFlag = false;
+        isZenmai = false;
         SoundObject = GameObject.Find("SoundManager");
     }
 
@@ -37,7 +38,7 @@ public class RobotControl : MonoBehaviour
         SeTempo += Time.deltaTime;//足音用秒数を計る
 
         //ゼンマイが刺さっているとき
-        if (controlFlag)
+        if (isZenmai)
         {
             Move();//移動
             WmoveSpeed = moveSpeed;//作業用変数に値を入れる
@@ -56,9 +57,9 @@ public class RobotControl : MonoBehaviour
                 //右移動
                 if(vecFlag)
                 {
-                    rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, WmoveSpeed));
+                    rb.MovePosition(gameObject.transform.position + new Vector3(WmoveSpeed, 0, 0));
                     //右に向く
-                    this.transform.rotation = Quaternion.Euler(0.0f, playerScript.rightRotate, 0.0f);
+                    this.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
                     //一定時間ごとに音を鳴らす
                     if (SeTempo > 1.0f)
                     {
@@ -69,9 +70,9 @@ public class RobotControl : MonoBehaviour
                 //左移動
                 else
                 {
-                    rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -WmoveSpeed));
+                    rb.MovePosition(gameObject.transform.position + new Vector3(-WmoveSpeed, 0, 0));
                     //左に向く
-                    this.transform.rotation = Quaternion.Euler(0.0f, playerScript.leftRotate, 0.0f);
+                    this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
                     //一定時間ごとに音を鳴らす
                     if (SeTempo > 1.0f)
                     {
@@ -102,9 +103,9 @@ public class RobotControl : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetAxis("Horizontal") < 0)
         {
-            rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, -moveSpeed));
+            rb.MovePosition(gameObject.transform.position + new Vector3(-moveSpeed, 0,0));
             //左に向く
-            this.transform.rotation = Quaternion.Euler(0.0f, playerScript.leftRotate, 0.0f);
+            this.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
             vecFlag = false;
             //一定時間ごとに音を鳴らす
             if (SeTempo > 1.0f)
@@ -115,9 +116,9 @@ public class RobotControl : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow) || Input.GetAxis("Horizontal") > 0)
         {
-            rb.MovePosition(gameObject.transform.position + new Vector3(0, 0, moveSpeed));
+            rb.MovePosition(gameObject.transform.position + new Vector3(moveSpeed, 0,0 ));
             //右に向く
-            this.transform.rotation = Quaternion.Euler(0.0f, playerScript.rightRotate, 0.0f);
+            this.transform.rotation = Quaternion.Euler(0.0f, 180.0f, 0.0f);
             vecFlag = true;
             //一定時間ごとに音を鳴らす
             if (SeTempo > 1.0f)
@@ -138,6 +139,9 @@ public class RobotControl : MonoBehaviour
     public bool RobotFlagOff()
     {
         return controlFlag = false;
+    }
+    public void GetControllFlg(bool isAct) {
+        controlFlag = isAct;
     }
 
 
