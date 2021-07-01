@@ -70,6 +70,8 @@ public class UiManager : MonoBehaviour
     public GameObject SoundObject;
     private static bool isBgmOn;
 
+    private Button dummyButton;
+
     // インスペクターからいちいち変更するのだるそうだしスクリプトで取得する方式に変更するかも
     /*
     private GameObject[] titleUiObject;
@@ -86,10 +88,10 @@ public class UiManager : MonoBehaviour
             nowFade = false;
         }
 
-	if(isBgmOn == null)
-	{
+	    if(isBgmOn == null)
+	    {
             isBgmOn = false;
-	}
+        }
 
         stageManagerObject = GameObject.Find("StageManager");
         stageManager = stageManagerObject.GetComponent<StageManager>();
@@ -125,6 +127,11 @@ public class UiManager : MonoBehaviour
             configState = (int)ConfigState.Volume;
         }
 
+    }
+
+    void Start()
+    {
+        dummyButton = GameObject.Find("DummyButton").GetComponent<Button>();
     }
 
     void Update()
@@ -261,6 +268,8 @@ public class UiManager : MonoBehaviour
                     isBgmOn = true;
                 }
 
+                dummyButton.Select();
+
                 menuAllUiInstance.SetActive(false);
                 titleUiInstance.SetActive(false);
                 menuUiInstance.SetActive(false);
@@ -287,6 +296,8 @@ public class UiManager : MonoBehaviour
                     SoundObject.GetComponent<SoundManager>().Play_BGM_GAME();
                     isBgmOn = true;
                 }
+
+                dummyButton.Select();
 
                 stageSelectInstance.SetActive(false);
                 titleUiInstance.SetActive(false);
