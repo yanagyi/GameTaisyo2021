@@ -98,11 +98,11 @@ public class player : MonoBehaviour
             target = hit.collider.gameObject;//親子関係になるオブジェクトを更新する。(Controlledのstateで使うので)
             Debug.Log("Hit:downRay"+target.name);
             if (target.tag == "zenmaiObj") {
-                RobotScript scr = target.GetComponent<RobotScript>();
+                UsableObject scr = target.GetComponent<UsableObject>();
                 transform.parent = target.transform;//親子関係を持たせる。
                 //刺さった時にオブジェクトの中心位置に刺さるようにしていただきたい。インサート口がそれぞれ異なるかもしれないので。
                 scr.isZenmai = true;                
-                scr.FreezeOff();
+ //               scr.FreezeOff();
 
                 FreezeOn();
                 state = (int)player_state.Controll;
@@ -118,9 +118,9 @@ public class player : MonoBehaviour
         
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
 
-            RobotScript scr = target.GetComponent<RobotScript>();
+            UsableObject scr = target.GetComponent<UsableObject>();
             scr.isZenmai = false;
-            scr.FreezeOn();
+      //      scr.FreezeOn();
             transform.parent = null;
             target = null;
 

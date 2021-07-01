@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RobotFragManager : MonoBehaviour
+public class RobotFragManager : UsableObject
 {
 
     public GameObject Robot;
@@ -17,28 +17,39 @@ public class RobotFragManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       robotScript. GetControllFlg(isZenmai);
+        //if (!isZenmai)
+        //    return;
+
+
+        //if (Input.GetKeyDown(KeyCode.Space)) {
+        //    if (robotScript.controlFlag) {
+        //        robotScript.RobotFlagOn();
+        //    } else {
+        //        robotScript.RobotFlagOff();
+        //    }
+        //}
     }
 
     //“–‚½‚è”»’è
-    void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            Debug.Log("hit");
+    //private void OnCollisionStay(Collision other)
+    //{
+    //    if (other.gameObject.tag == "Player")
+    //    {
+    //        Debug.Log("hit");
 
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (robotScript.controlFlag)
-                {
-                    robotScript.RobotFlagOn();
-                }
-                else
-                {
-                    robotScript.RobotFlagOff();
-                }
-            }
-        }
-    }
+    //        if (Input.GetKeyDown(KeyCode.Space))
+    //        {
+    //            if (robotScript.controlFlag)
+    //            {
+    //                robotScript.RobotFlagOn();
+    //            }
+    //            else
+    //            {
+    //                robotScript.RobotFlagOff();
+    //            }
+    //        }
+    //    }
+    //}
 
 }
