@@ -8,6 +8,7 @@ TagManager:
   - zenmaiObj
   - floor
   - move_floor
+  - Wall
   layers:
   - Default
   - TransparentFX

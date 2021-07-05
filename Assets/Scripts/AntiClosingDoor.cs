@@ -26,10 +26,11 @@ public class AntiClosingDoor : SwitchObjectsScript
     }
     public override void CallActionOn()
     {
-        StartCoroutine("OnAction");
+        StartCoroutine(OnAction());
     }
     public override void CallActionOff()
     {
+        StartCoroutine(OffAction());
         return;
     }
     public override IEnumerator OnAction()
