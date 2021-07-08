@@ -23,7 +23,7 @@ public class player : MonoBehaviour
     //当たり判定用のレイ
     Ray downRay;//飛ばすレイの方向
     RaycastHit hit;//当たり判定を取得するポインタ。
-    public float RayLength;//レイの長さを画面上で設定するよう
+    public float RayLength;//レイの長さを設定するよう
     public bool OnGround { get; set; }//追記
     //----------------------------------
     GameObject target;//親子関係になるオブジェクト。(=操るオブジェクト
