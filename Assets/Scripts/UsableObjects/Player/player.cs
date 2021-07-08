@@ -36,6 +36,9 @@ public class player : MonoBehaviour
         downRay = new Ray(transform.position, Vector3.down * RayLength);
         state = (int)player_state.Robot;
         target = null;
+
+        // FPS60ŒÅ’è
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
