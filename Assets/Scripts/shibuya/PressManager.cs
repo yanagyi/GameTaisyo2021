@@ -4,35 +4,32 @@ using UnityEngine;
 
 public class PressManager : UsableObject
 {
-    //public bool pressFlag;//プレスしているかどうか
-    //public float pressTime;//ゼンマイを抜いてから何秒間動き続けるか
-    //public float pressTempo;//プレスする周期
-
-    public GameObject[] press; 
-
+    public GameObject[] press;
+    piston[] pistonScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        //IsZenmai = false;
+        isZenmai = false;
+
+        //プレス機(プレスする部分)、スクリプトを取得　
+        pistonScript = new piston[press.Length];
+        for (int i = 0; i < press.Length; i++)
+        {
+            pistonScript[i] = press[i].GetComponent<piston>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(IsZenmai)
+        //ゼンマイが刺さっていれば対応しているプレス機を稼働させる
+        for (int i = 0; i < press.Length; i++)
         {
-
-        }
-        //else
-        {
-
+            pistonScript[i].PressFlag(isZenmai);
         }
     }
 
-    public class PRESS
-    {
-        public bool pressFlag;
-    }
-
+    
+    
 }
