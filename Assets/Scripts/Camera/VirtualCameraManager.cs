@@ -7,9 +7,6 @@ public class VirtualCameraManager : MonoBehaviour
     public GameObject[] virtualCameras;
     public GameObject[] lookAt;
 
-    public GameObject gaugeObject;
-    private Gauge gaugeScript;
-
     // ステージナンバーの取得
     private int stageNum;
 
@@ -28,8 +25,6 @@ public class VirtualCameraManager : MonoBehaviour
     {
         pauseManagerObject = GameObject.Find("PauseManager");
         pauseManager = pauseManagerObject.GetComponent<PauseManager>();
-
-        gaugeScript = gaugeObject.GetComponent<Gauge>();
 
         stageNum = StageManager.GetNowLevel();
         Debug.Log(stageNum);
@@ -121,7 +116,6 @@ public class VirtualCameraManager : MonoBehaviour
                     if (i == virtualCameras.Length - 2)
                     {
                         pauseManager.Resume();
-                        gaugeScript.GaugeValid();
                     }
                     break;
                 }

@@ -2,98 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Gauge : MonoBehaviour
 {
     public Image[] Circles;
 
-    // ループの有効
-    public bool valid;
-
-    // ゼンマイ使用フラグ
-    public bool zenmai = false;
-
-    // ゼンマイ使用時のゲージ減少(倍)
-    public float speedDouble = 2.0f;
-
-    // ゲージがなくなるまでの時間
-    public float countTime = 5.0f;
-
-    // ゲージの減少速度
-    public float speed = 1.0f;
+    public GameObject player_;
+    private player playerScript;
 
     private float amount = 1.0f;
+
+    void Start()
+    {
+        if (SceneManager.GetActiveScene().name == "Brush_Up" /*|| SceneManager.GetActiveScene().name == "プレイヤーをテストしているシーン名" */)
+        {
+            playerScript = player_.GetComponent<player>();
+        }
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (valid)
+        if (SceneManager.GetActiveScene().name == "master" || SceneManager.GetActiveScene().name == "Uchiike")
         {
-            if(zenmai)
-            {
-                amount -= (1.0f / countTime * Time.deltaTime) * speed * speedDouble;
-            }
-            else
-            {
-                amount -= (1.0f / countTime * Time.deltaTime) * speed;
-            }
-
-            Circles[0].fillAmount = amount;
-            Circles[1].fillAmount = amount;
-            Circles[2].fillAmount = amount;
-
-            if (amount < 0.5f)
-            {
-                Circles[0].enabled = false;
-            }
-            else
-            {
-                Circles[0].enabled = true;
-            }
-
-            if (amount < 0.25f)
-            {
-                Circles[1].enabled = false;
-            }
-            else
-            {
-                Circles[1].enabled = true;
-            }
+            amount -= (1.0f / 180.0f * Time.deltaTime) * 1.0f;
+        }
+        if (SceneManager.GetActiveScene().name == "Brush_Up" /*|| SceneManager.GetActiveScene().name == "プレイヤーをテストしているシーン名" */)
+        {
+            amount = playerScript.GetBattery();
         }
 
-        if(amount < 0.0f)
-        {
-            amount = 0;
-        }
+        Circles[0].fillAmount = amount;
+        Circles[1].fillAmount = amount;
+        Circles[2].fillAmount = amount;
 
-        // ここでPlayerのステートを確認してフラグを更新
-        /*
-        if(false)
+        if (amount < 0.5f)
         {
-            zenmai = true;
+            Circles[0].enabled = false;
         }
         else
         {
-            zenmai = false;
+            Circles[0].enabled = true;
         }
-        */
-    }
-    
-    // ゲージの有効化
-    public void GaugeValid()
-    {
-        valid = true;
-    }
 
-    // ゲージ量を取得
-    public float GetGauge()
-    {
-        return amount;
-    }
-
-    // ゲージ回復用関数
-    public void PlusAmount(float n)
-    {
-        amount += n;
+        if (amount < 0.25f)
+        {
+            Circles[1].enabled = false;
+        }
+        else
+        {
+            Circles[1].enabled = true;
+        }
     }
 }

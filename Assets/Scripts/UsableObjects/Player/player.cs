@@ -27,6 +27,19 @@ public class player : MonoBehaviour
     public bool OnGround { get; set; }//追記
     //----------------------------------
     GameObject target;//親子関係になるオブジェクト。(=操るオブジェクト
+
+
+    //---------------- ゲージ(バッテリー)関連 --------------------
+
+    // バッテリー
+    public float maxBattery = 180;
+    public float nowBattery;
+
+    // バッテリー減少速度
+    public float batterySpeed = 1.0f;
+    public float batteryDouble = 1.2f;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +49,8 @@ public class player : MonoBehaviour
         downRay = new Ray(transform.position, Vector3.down * RayLength);
         state = (int)player_state.Robot;
         target = null;
+
+        nowBattery = maxBattery;
 
         // FPS60固定
         Application.targetFrameRate = 60;
@@ -52,18 +67,28 @@ public class player : MonoBehaviour
         switch (state) {
             case (int)player_state.Robot:
                 RobotAction();
+                nowBattery -= batterySpeed;
                 break;
             //ゼンマイモード。足元に対象のオブジェクトがあればアクション起こす。
             case (int)player_state.Zenmine:
                 ZenmaiAct();
+                nowBattery -= batterySpeed * batteryDouble;
                 break;
             case (int)player_state.Controll:
                 ControllAct();
+                nowBattery -= batterySpeed * batteryDouble;
                 break;
             //プレイヤーモード。ジャンプとか移動とか。
             case (int)player_state.Idle:
+                nowBattery -= batterySpeed;
+                break;
             default:
                 break;
+        }
+
+        if(nowBattery < 0.0f)
+        {
+            nowBattery = 0.0f;
         }
     }
 
@@ -145,5 +170,26 @@ public class player : MonoBehaviour
     void Transformation()
     {
         //変形するアニメーションのスクリプト入れる
+    }
+
+
+    // ゲッター Gaugeに渡す用に変換する
+    public float GetBattery()
+    {
+        float n;
+        n = nowBattery / maxBattery;
+        return n;
+    }
+
+    // セッター
+    public void SetBattery(float n)
+    {
+        nowBattery = n;
+    }
+
+    // バッテリ回復用
+    public void PlusBattery(float n)
+    {
+        nowBattery += n;
     }
 }
