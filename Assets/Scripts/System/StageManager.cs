@@ -88,6 +88,11 @@ public class StageManager : MonoBehaviour
         return NowLevel;
     }
 
+    public GameObject GetStageObject()
+    {
+        return Stages[NowLevel];
+    }
+
     //デバッグ用------------------------------------------------------------------------------------------------------------|
 
     public void GoStage1()

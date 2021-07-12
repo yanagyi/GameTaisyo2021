@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CameraData : MonoBehaviour
 {
-    public Vector3[] PosOnEachStage;
+    // カメラ自体のポジション
+    public Vector3[] pos;
+
+    // ギミックなど見たいオブジェクトを設定する
+    public GameObject[] lookObject;
+
     public bool[] enable;
 
     // Start is called before the first frame update
@@ -21,16 +26,21 @@ public class CameraData : MonoBehaviour
 
     public void SetPos(int nowLevel)
     {
-        gameObject.transform.position = PosOnEachStage[nowLevel];
+        gameObject.transform.position = pos[nowLevel];
     }
 
     public Vector3 GetPos(int nowLevel)
     {
-        return PosOnEachStage[nowLevel];
+        return pos[nowLevel];
     }
 
     public bool GetEnable(int nowLevel)
     {
         return enable[nowLevel];
+    }
+
+    public GameObject GetLookObject(int nowLevel)
+    {
+        return lookObject[nowLevel];
     }
 }
