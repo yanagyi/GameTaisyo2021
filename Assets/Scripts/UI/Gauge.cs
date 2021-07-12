@@ -15,7 +15,7 @@ public class Gauge : MonoBehaviour
 
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "Brush_Up" /*|| SceneManager.GetActiveScene().name == "プレイヤーをテストしているシーン名" */)
+        if (SceneManager.GetActiveScene().name == "BrushUp" /*|| SceneManager.GetActiveScene().name == "プレイヤーをテストしているシーン名" */)
         {
             playerScript = player_.GetComponent<player>();
         }
@@ -24,11 +24,12 @@ public class Gauge : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // ゲージの動きを確認するためにplayer.csを利用していないシーンでも動作する
         if (SceneManager.GetActiveScene().name == "master" || SceneManager.GetActiveScene().name == "Uchiike")
         {
             amount -= (1.0f / 180.0f * Time.deltaTime) * 1.0f;
         }
-        if (SceneManager.GetActiveScene().name == "Brush_Up" /*|| SceneManager.GetActiveScene().name == "プレイヤーをテストしているシーン名" */)
+        if (SceneManager.GetActiveScene().name == "BrushUp" /*|| SceneManager.GetActiveScene().name == "プレイヤーをテストしているシーン名" */)
         {
             amount = playerScript.GetBattery();
         }
