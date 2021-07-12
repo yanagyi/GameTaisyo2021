@@ -29,12 +29,12 @@ public class piston : MonoBehaviour
         //初期状態が上か下か判別して初期座標と目標座標を設定する
         if (pressFlag)
         {
-            startPos = transform.position;
+            startPos = transform.localPosition;
             targetPos = startPos + new Vector3(0.0f, -pressPos, 0.0f);
         }
         else
         {
-            targetPos = transform.position;
+            targetPos = transform.localPosition;
             startPos = targetPos + new Vector3(0.0f, pressPos, 0.0f);
         }
 
@@ -51,11 +51,11 @@ public class piston : MonoBehaviour
             //プレス周期ならば
             if (WpressTempo < 0)
             {
-                if (transform.position == startPos)//初期座標になったらプレスしていない状態
+                if (transform.localPosition == startPos)//初期座標になったらプレスしていない状態
                 {
                     pressFlag = false;
                 }
-                if (transform.position == targetPos)//目標座標になったらプレスしている状態
+                if (transform.localPosition == targetPos)//目標座標になったらプレスしている状態
                 {
                     pressFlag = true;
                 }
@@ -64,11 +64,11 @@ public class piston : MonoBehaviour
 
             if (pressFlag)//初期座標を目指して動く
             {
-                transform.position = Vector3.MoveTowards(transform.position, startPos, pressSpeed);
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, startPos, pressSpeed);
             }
             else//目標座標を目指して動く
             {
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, pressSpeed);
+                transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, pressSpeed);
             }
         }
         else//ゼンマイを抜いても残り時間があれば動き続ける
@@ -81,11 +81,11 @@ public class piston : MonoBehaviour
                 //プレス周期ならば
                 if (WpressTempo < 0)
                 {
-                    if (transform.position == startPos)//初期座標になったらプレスしていない状態
+                    if (transform.localPosition == startPos)//初期座標になったらプレスしていない状態
                     {
                         pressFlag = false;
                     }
-                    if (transform.position == targetPos)//目標座標になったらプレスしている状態
+                    if (transform.localPosition == targetPos)//目標座標になったらプレスしている状態
                     {
                         pressFlag = true;
                     }
@@ -94,11 +94,11 @@ public class piston : MonoBehaviour
 
                 if (pressFlag)//初期座標を目指して動く
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, startPos, pressSpeed);
+                    transform.localPosition = Vector3.MoveTowards(transform.localPosition, startPos, pressSpeed);
                 }
                 else//目標座標を目指して動く
                 {
-                    transform.position = Vector3.MoveTowards(transform.position, targetPos, pressSpeed);
+                    transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPos, pressSpeed);
                 }
             }
         }
