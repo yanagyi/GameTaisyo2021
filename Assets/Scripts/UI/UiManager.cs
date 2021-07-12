@@ -72,15 +72,6 @@ public class UiManager : MonoBehaviour
 
     private Button dummyButton;
 
-    // インスペクターからいちいち変更するのだるそうだしスクリプトで取得する方式に変更するかも
-    /*
-    private GameObject[] titleUiObject;
-    private GameObject[] menuUiObject;
-    private GameObject[] gameUiObject;
-    private GameObject[] stageSelectUiObject;
-    private GameObject[] systemObject;
-    */
-
     void Awake()
     {
         if(nowFade == null)
