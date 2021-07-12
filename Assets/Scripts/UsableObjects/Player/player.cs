@@ -32,13 +32,15 @@ public class player : MonoBehaviour
     //---------------- ゲージ(バッテリー)関連 --------------------
 
     // バッテリー
-    public float maxBattery = 180;
+    public float maxBattery = 180.0f;
     public float nowBattery;
 
     // バッテリー減少速度
     public float batterySpeed = 1.0f;
     public float batteryDouble = 1.2f;
 
+    // バッテリー回復量
+    public float batteryCharge = 90.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -114,7 +116,8 @@ public class player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)) {
             state = (int)player_state.Zenmine;
         }
-        }
+    }
+
     //レイを使った当たり判定。
     void ZenmaiAct()
     {
@@ -188,8 +191,8 @@ public class player : MonoBehaviour
     }
 
     // バッテリ回復用
-    public void PlusBattery(float n)
+    public void PlusBattery()
     {
-        nowBattery += n;
+        nowBattery += batteryCharge;
     }
 }
