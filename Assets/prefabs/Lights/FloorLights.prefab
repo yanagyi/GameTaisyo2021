@@ -87,6 +87,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445818, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445818, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Range
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445821, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
 --- !u!4 &7087383896884343231 stripped
@@ -148,6 +192,46 @@ PrefabInstance:
     - target: {fileID: 606204472824751011, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445818, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445818, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445819, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 606204472936445821, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53ee02f2a3aa0904ca7ca4f51f5d3849, type: 3}
