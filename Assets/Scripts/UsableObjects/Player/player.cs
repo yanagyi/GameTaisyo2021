@@ -99,13 +99,23 @@ public class player : MonoBehaviour
     void RobotAction()
     {
         //プレイヤーの入力を書く
+        if (OnGround == true) {
+            if (Input.GetAxis("Horizontal") < 0) {
+                rb.MovePosition(transform.position - moveSpeed);
+            }
+            if (Input.GetAxis("Horizontal") > 0) {
+                rb.MovePosition(transform.position + moveSpeed);
+            }
+        } 
+        else {
+            if (Input.GetAxis("Horizontal") < 0) {
+                rb.MovePosition(transform.position - (moveSpeed / 2.0f));
+            }
+            if (Input.GetAxis("Horizontal") > 0) {
+                rb.MovePosition(transform.position + (moveSpeed / 2.0f));
+            }
+        }
 
-        if (Input.GetAxis("Horizontal") < 0) {
-            rb.MovePosition(transform.position - moveSpeed);
-        }
-        if (Input.GetAxis("Horizontal") > 0) {
-            rb.MovePosition(transform.position + moveSpeed);
-        }
         //接地していればジャンプできる
         if (Input.GetButtonDown("Jump") && OnGround)//追記
         {
@@ -196,4 +206,5 @@ public class player : MonoBehaviour
     {
         nowBattery += batteryCharge;
     }
+
 }
