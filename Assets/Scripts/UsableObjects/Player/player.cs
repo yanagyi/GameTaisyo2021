@@ -42,6 +42,7 @@ public class player : MonoBehaviour
     // バッテリー回復量
     public float batteryCharge = 90.0f;
 
+    public float RotateSpeed;//プレイヤーの回転する速さ
     // Start is called before the first frame update
     void Start()
     {
@@ -146,7 +147,7 @@ public class player : MonoBehaviour
     }
     void ControllAct()
     {
-        
+        transform.Rotate(new Vector3(0, RotateSpeed, 0));
         if (Input.GetKeyUp(KeyCode.LeftShift)) {
 
             UsableObject scr = target.GetComponent<UsableObject>();
