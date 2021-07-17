@@ -162,17 +162,19 @@ public class player : MonoBehaviour
 
             UsableObject scr = target.GetComponent<UsableObject>();
             scr.isZenmai = false;
-      //      scr.FreezeOn();
             transform.parent = null;
             target = null;
 
             FreezeOff();
+           
+            
             state = (int)player_state.Robot;
         }
     }
     void FreezeOn()
     {
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        rb.isKinematic = true;
     }
     void FreezeOff()
     {
@@ -180,6 +182,7 @@ public class player : MonoBehaviour
 
         rb.constraints = RigidbodyConstraints.FreezePositionZ;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.isKinematic = false;
     }
     void Transformation()
     {
