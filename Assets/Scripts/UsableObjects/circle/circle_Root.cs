@@ -7,31 +7,28 @@ public class circle_Root : UsableObject
     // Start is called before the first frame update
     public GameObject circleObj;
     circle circleScript;
+
+    public bool controlFlag;//プレイヤーが操作状態（ゼンマイが刺さっている）かどうか
+    public GameObject SoundObject;//SE用
+    float SeTempo;//繰り返しSeを鳴らすための変数
     void Start()
     {
         isZenmai = false;
         circleScript = circleObj.GetComponent<circle>();
+
+
+        controlFlag = false;
+        isZenmai = false;
+        SoundObject = GameObject.Find("SoundManager");
     }
 
     // Update is called once per frame
     void Update()
     {
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
-        if (isZenmai == false) {
-            circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+        if (isZenmai == false)
             return;
-        }
-        //いったん全解除
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        //回転ロック
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY;
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationZ;
-        //位置ロック
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX;
-        circleObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionZ;
+      
         circleScript.MoveOn();
     }
 }

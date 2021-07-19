@@ -18,50 +18,39 @@ public class CoilControl : UsableObject
     // Update is called once per frame
     void Update()
     {
-        if(OnOff)
-        {
+        if (OnOff) {
             // 刺さってる間、電気を消す
             // 離れたら作業用の変数(count)を減らす
-            if (isZenmai)
-            {
+            if (isZenmai) {
                 ElectricCurrent[0].SetActive(false);
                 ElectricCurrent[1].SetActive(false);
 
                 // 作業用に代入
                 count = max_count;
-            }
-            else
-            {
+            } else {
                 count--;
             }
 
             // countが0になったら電気を点ける
-            if (count <= 0)
-            {
+            if (count <= 0) {
                 ElectricCurrent[0].SetActive(true);
                 ElectricCurrent[1].SetActive(true);
             }
-        }
-        else
-        {
+        } else {
             // 刺さってる間、電気を点ける
             // 離れたら作業用の変数(count)を減らす
-            if (isZenmai)
-            {
+            if (isZenmai) {
                 ElectricCurrent[0].SetActive(true);
                 ElectricCurrent[1].SetActive(true);
 
                 // 作業用に代入
                 count = max_count;
-            }
-            else
-            {
+            } else {
                 count--;
             }
 
             // countが0になったら電気を消す
-            if (count <= 0)
-            {
+            if (count <= 0) {
                 ElectricCurrent[0].SetActive(false);
                 ElectricCurrent[1].SetActive(false);
             }

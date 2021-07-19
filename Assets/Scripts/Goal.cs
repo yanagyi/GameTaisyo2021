@@ -35,7 +35,6 @@ public class Goal : MonoBehaviour
         if (collision.gameObject.tag != "Player")
             return;
 
-        playerScript.playerGrasp();
 
         dataManager.SetStageClear(StageManager.GetNowLevel() + 1, true);
 

@@ -24,33 +24,33 @@ public class Circle_Ashiba : MonoBehaviour
     {
 
     }
-    private void OnCollisionEnter(Collision collision)
-    {
-        //当たった時に親子関係を決定する
-        if (collision.gameObject.tag != "Player")
-            return;
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    //当たった時に親子関係を決定する
+    //    if (collision.gameObject.tag != "Player")
+    //        return;
 
-        if(!firstHit)
-        {
-            player = collision.gameObject;
-            player.transform.parent = gameObject.transform;
-            playerScript = player.GetComponent<PlayerControl>();
+    //    if(!firstHit)
+    //    {
+    //        player = collision.gameObject;
+    //        player.transform.parent = gameObject.transform;
+    //        playerScript = player.GetComponent<PlayerControl>();
 
-        }
-        firstHit = true;
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag != "Player")
-            return;
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag != "Player")
-            return;
-        player.transform.parent = pauseManagerObject.transform;
-        player = null;
+    //    }
+    //    firstHit = true;
+    //}
+    //private void OnCollisionStay(Collision collision)
+    //{
+    //    if (collision.gameObject.tag != "Player")
+    //        return;
+    //}
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.tag != "Player")
+    //        return;
+    //    player.transform.parent = pauseManagerObject.transform;
+    //    player = null;
 
-        firstHit = false;
-    }
+    //    firstHit = false;
+    //}
 }
