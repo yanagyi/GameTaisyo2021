@@ -45,7 +45,7 @@ public class DataManager : MonoBehaviour
         // ファイルパス指定
         filePath = Application.persistentDataPath + "/savedata.json";
         saveData = new SaveData();
-        saveData.stageData = new StageData[22];
+        saveData.stageData = new StageData[11];
 
         volumeManagerObject = GameObject.Find("VolumeManager");
         volumeManager = volumeManagerObject.GetComponent<VolumeManager>();
