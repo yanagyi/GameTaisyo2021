@@ -124,7 +124,7 @@ public class player : MonoBehaviour
             OnGround = false;//’Ç‹L
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKey("joystick button 9") || Input.GetKey("joystick button 5") ) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown("joystick button 9") || Input.GetKeyDown("joystick button 5") ) {
             state = (int)player_state.Zenmine;
         }
     }
@@ -159,7 +159,7 @@ public class player : MonoBehaviour
     void ControllAct()
     {
         transform.Rotate(new Vector3(0, RotateSpeed, 0));
-        if (Input.GetKeyUp(KeyCode.LeftShift)) {
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetKeyUp("joystick button 9") || Input.GetKeyUp("joystick button 5")) {
 
             UsableObject scr = target.GetComponent<UsableObject>();
             scr.isZenmai = false;
