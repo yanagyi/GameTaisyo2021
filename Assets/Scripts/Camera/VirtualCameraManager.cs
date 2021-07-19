@@ -89,27 +89,17 @@ public class VirtualCameraManager : MonoBehaviour
             else if (virtualCameras[i].name == "PlayerBehindCamera")
             {
                 virtualCameraScript = virtualCameras[i].GetComponent<CinemachineVirtualCamera>();
-                virtualCameras[i].transform.position = virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum);
-
-                if (virtualCameras[i].GetComponent<CameraData>().GetEnable(stageNum))
-                {
-                    virtualCameras[i].transform.position = virtualCameras[i].GetComponent<CameraData>().GetPos(stageNum);
-                }
-                else
-                {
-                    virtualCameras[i].transform.position = 
-                        new Vector3(GameObject.Find("Player").transform.position.x + defaultOffset[i].x, GameObject.Find("Player").transform.position.y + defaultOffset[i].y, GameObject.Find("Player").transform.position.z + defaultOffset[i].z);
-                }
-
-                virtualCameraScript.Follow = GameObject.Find("Player").transform;
+                virtualCameraScript.Follow = GameObject.Find("player").transform;
+                virtualCameras[i].transform.position =
+                    new Vector3(GameObject.Find("player").transform.position.x + defaultOffset[i].x, GameObject.Find("player").transform.position.y + defaultOffset[i].y, GameObject.Find("player").transform.position.z + defaultOffset[i].z);
                 virtualCameras[i].SetActive(true);
             }
             else if (virtualCameras[i].name == "PlayerCamera")
             {
                 virtualCameraScript = virtualCameras[i].GetComponent<CinemachineVirtualCamera>();
-                virtualCameraScript.Follow = GameObject.Find("Player").transform;
+                virtualCameraScript.Follow = GameObject.Find("player").transform;
                 virtualCameras[i].transform.position = 
-                    new Vector3(GameObject.Find("Player").transform.position.x + defaultOffset[i].x, GameObject.Find("Player").transform.position.y + defaultOffset[i].y, GameObject.Find("Player").transform.position.z + defaultOffset[i].z);
+                    new Vector3(GameObject.Find("player").transform.position.x + defaultOffset[i].x, GameObject.Find("player").transform.position.y + defaultOffset[i].y, GameObject.Find("player").transform.position.z + defaultOffset[i].z);
                 virtualCameras[i].SetActive(true);
             }
             else

@@ -28,7 +28,7 @@ public class StageSelectManager : MonoBehaviour
     void Start()
     {
         time = 0;
-        timeLength = 100.0f;
+        timeLength = 50.0f;
         stageNum = 0;
         nowMove = false;
         directionLR = false;
