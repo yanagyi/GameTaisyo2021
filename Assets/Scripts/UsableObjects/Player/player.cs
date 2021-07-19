@@ -124,7 +124,7 @@ public class player : MonoBehaviour
             OnGround = false;//’Ç‹L
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKey("joystick button 9") || Input.GetKey("joystick button 5") ) {
             state = (int)player_state.Zenmine;
         }
     }
